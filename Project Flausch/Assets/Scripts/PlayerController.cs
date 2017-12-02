@@ -8,15 +8,40 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private GameObject playerTexture;
 	private int playerFaceDirection; // 0 = left, 1 = right
+	private Inventory inv;
+	private List<Interactable> interactivesInRange;
 
 	// Use this for initialization
 	void Start () {
-		playerFaceDirection =  0;
+		int playerFaceDirection =  0;
+		inv = new Inventory ();
+		inv.coffeePot = new Item<float> ("Coffee Pot", 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		PlayerMovement ();
+		PlayerInteract ();
+	}
+
+	public void GetInventory() {
+		return inv;
+	}
+
+	private void PlayerInteract() {
+		if (Input.GetKey ("e")) {
+			if (interactivesInRange [0] != null) {
+				interactivesInRange [0].Interact ();
+			}
+		}
+	}
+
+	public void AddInteractable( Interactable inter ) {
+		interactivesInRange.Add (inter);
+	}
+
+	public void RemoveInteractable( Interactable inter ) {
+		interactivesInRange.Remove (inter);
 	}
 
 	private void PlayerMovement() {
