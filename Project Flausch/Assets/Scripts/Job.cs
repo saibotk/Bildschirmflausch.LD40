@@ -3,7 +3,7 @@ public class Job
 {
 	private bool status = true;						// true = active, false = inactiv (done, aborted)
 	private string taskName = "Missing taskName";					// name of the task / headline
-	private string client = "Missing client";
+	private string jobClient = "Missing client";
 	private string jobReward = "Missing jobReward";
 	private string jobDescription = "Missing jobDescription";			// jobdescribtion
 	// taskKind
@@ -11,7 +11,7 @@ public class Job
 	public Job(string taskName, string client, string jobDescription, string jobReward)
 	{
 		this.taskName = taskName;
-		this.client = client;
+		this.jobClient = client;
 		this.jobDescription = jobDescription;
 		this.jobReward = jobReward;
 	}
@@ -29,7 +29,7 @@ public class Job
 
 	public string GetClient()
 	{
-		return this.client();
+		return this.jobClient;
 	}
 
 	public string GetJobReward()
@@ -55,7 +55,7 @@ public class Job
 
 	public void SetClient( string client)
 	{
-		this.client = client;
+		this.jobClient = client;
 	}
 
 	public void SetJobReward( string jobReward)
@@ -65,7 +65,7 @@ public class Job
 
 	public void SetJobDescription( string jobDescription)
 	{
-		this.jobDesciption = jobDescription;
+		this.jobDescription = jobDescription;
 	}
 
 
