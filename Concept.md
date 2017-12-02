@@ -86,9 +86,7 @@
 - JobManagement
 	- Job-Object		Done
 	- Progress-Control
-	-
 - CameraMovement
-	-
 - Sound
 	- BackgroundMusic
 	- BackgroundNoise
