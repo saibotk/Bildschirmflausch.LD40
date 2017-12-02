@@ -62,7 +62,7 @@
 - Mehr Inventarslots (Anfangs 2, später mehr)
 - W-links
 - D-rechts
-- (sW-springen) / Aufzug benutzen
+- (W-springen) / Aufzug benutzen
 - Q-links Hand
 - E-rechte Hand
 
@@ -75,3 +75,39 @@
 - Phil: Musik
 - Andre: Coden
 - Sue: Pixelart
+
+## ToDo-List
+
+- PayerControll
+	- Movement
+		- Left/Right	Done  
+		- Rotation
+		- Animation
+- JobManagement
+	- Job-Object		Done
+	- Progress-Control
+	-
+- CameraMovement
+	-
+- Sound
+	- BackgroundMusic
+	- BackgroundNoise
+		- Outside
+			- Cars
+			- Planes
+			- Ambulanc/Police/Firebrigade
+		- Inside
+			- Colleg
+				- swearing
+				- talking/phoning
+			- Bosses
+			- Telephones
+			- Printers/Scanners
+	- MissonDone
+	- MissonFailed
+	- ButtonClicks
+	- Coffee-Machine
+	- Dishwasher
+	- Lift
+	- Paper moving
+	- Dish moving
