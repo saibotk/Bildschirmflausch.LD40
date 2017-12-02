@@ -468,6 +468,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1661212023533312, guid: 249c8b19f43afaa448bbb36d580a6bfa,
     type: 2}
   m_PrefabInternal: {fileID: 2127669496}
+--- !u!114 &793741024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 793741023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab3ce403542d0c43a59c143c754ee68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &934539056
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1256791613}
   - component: {fileID: 1256791612}
+  - component: {fileID: 1256791614}
   m_Layer: 0
   m_Name: coffeMachine
   m_TagString: Untagged
@@ -760,6 +772,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1256791614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1256791611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e2d6f9382de58478a19e46cfe249f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1483774262
 GameObject:
   m_ObjectHideFlags: 0
