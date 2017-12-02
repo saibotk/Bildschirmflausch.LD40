@@ -5,5 +5,5 @@ using UnityEngine;
 public class Inventory {
 	public Item<Object> leftHand = null;
 	public Item<Object> pocket = null;
-	public Item<Object> coffeePot = null;
+	public Item<float> coffeePot = null;
 }

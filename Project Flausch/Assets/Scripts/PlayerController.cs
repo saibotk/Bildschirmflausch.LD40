@@ -9,11 +9,11 @@ public class PlayerController : MonoBehaviour {
 	private GameObject playerTexture;
 	private int playerFaceDirection; // 0 = left, 1 = right
 	private Inventory inv;
-	private List<Interactable> interactivesInRange;
+	private List<Interactable> interactivesInRange = new List<Interactable>();
 
 	// Use this for initialization
 	void Start () {
-		int playerFaceDirection =  0;
+		playerFaceDirection =  0;
 		inv = new Inventory ();
 		inv.coffeePot = new Item<float> ("Coffee Pot", 0);
 	}
@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerInteract() {
 		if (Input.GetKey ("e")) {
-			if (interactivesInRange [0] != null) {
-				interactivesInRange [0].Interact ();
+			if (interactivesInRange.Count != 0) {
+				interactivesInRange [0].Interact (gameObject);
 			}
 		}
 	}
@@ -65,4 +65,19 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter2D( Collider2D col ) {
+		if (col.gameObject.GetComponent (typeof(Interactable)) != null) {
+			AddInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
+		} else {
+			Debug.Log("No Interactable Script found!");
+		}
+	}
+
+	void OnTriggerExit2D( Collider2D col ) {
+		if (col.gameObject.GetComponent (typeof(Interactable)) != null) {
+			RemoveInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
+		} else {
+			Debug.Log("No Interactable Script found!");
+		}
+	}
 }
