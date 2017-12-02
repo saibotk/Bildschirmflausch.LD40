@@ -1,12 +1,14 @@
+using System.Collections.Generic;
+
 public class Jobmanager
 {
 	private List<Job> jobList = new List<Job>();
 
 	// GetJobAt: integer -> Jobmanager
 	// Returns the job at the given position, starting at 0
-	public Job GetJobAt(integer i)
+	public Job GetJobAt(int i)
 	{
-		returns this.jobList[i];
+		return this.jobList[i];
 	}
 
 	// AddJob: Job -> void
@@ -25,8 +27,8 @@ public class Jobmanager
 
 	// GetAllJobs: void -> List<Job>
 	// Returns all jobs
-	public void GetAllJobs()
+	public List<Job> GetAllJobs()
 	{
-		return jobsList;
+		return jobList;
 	}
 }
