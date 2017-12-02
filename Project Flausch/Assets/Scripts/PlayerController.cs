@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerInteract() {
 		if (Input.GetKey ("e")) {
-			if (interactivesInRange [0] != null) {
-				interactivesInRange [0].Interact ();
+			if (interactivesInRange.Count != 0) {
+				interactivesInRange [0].Interact (gameObject);
 			}
 		}
 	}
@@ -65,4 +65,19 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter2D( Collider2D col ) {
+		if (col.gameObject.GetComponent<Interactable> () != null) {
+			AddInteractable (col.gameObject.GetComponent<Interactable> ());
+		} else {
+			Debug.Log("No Interactable Script found!");
+		}
+	}
+
+	void OnTriggerExit2D( Collider2D col ) {
+		if (col.gameObject.GetComponent<Interactable> () != null) {
+			RemoveInteractable (col.gameObject.GetComponent<Interactable> ());
+		} else {
+			Debug.Log("No Interactable Script found!");
+		}
+	}
 }

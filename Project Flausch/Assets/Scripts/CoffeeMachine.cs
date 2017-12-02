@@ -18,5 +18,6 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 	public void Interact( GameObject player ) {
 		Inventory inv = player.GetComponent<PlayerController> ().GetInventory ();
 		inv.coffeePot.value = 6;
+		Debug.Log("Filled coffee pot");
 	}
 }
