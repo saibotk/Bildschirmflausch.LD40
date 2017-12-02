@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-guid: fd94f74aa332aae459c0ec0a978656c8
-timeCreated: 1512235755
+guid: 1520827cd7d4c284fadc8663b9975fdc
+timeCreated: 1512235897
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: playerIdle_0
-    21300002: playerIdle_1
-    21300004: playerIdle_2
-    21300006: playerIdle_3
+    21300000: managerWalkShirt_0
+    21300002: managerWalkShirt_1
+    21300004: managerWalkShirt_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -91,13 +90,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerIdle_0
+      name: managerWalkShirt_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 35
+        width: 17
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,13 +104,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerIdle_1
+      name: managerWalkShirt_1
       rect:
         serializedVersion: 2
-        x: 8
+        x: 17
         y: 0
-        width: 8
-        height: 35
+        width: 17
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,27 +118,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerIdle_2
+      name: managerWalkShirt_2
       rect:
         serializedVersion: 2
-        x: 16
+        x: 34
         y: 0
-        width: 8
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: playerIdle_3
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 8
-        height: 35
+        width: 17
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
