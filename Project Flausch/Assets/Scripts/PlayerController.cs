@@ -10,12 +10,15 @@ public class PlayerController : MonoBehaviour {
 	private int playerFaceDirection; // 0 = left, 1 = right
 	private Inventory inv;
 	private List<Interactable> interactivesInRange = new List<Interactable>();
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
 		playerFaceDirection =  0;
 		inv = new Inventory ();
 		inv.coffeePot = new Item<float> ("Coffee Pot", 0);
+
+		animator = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -52,7 +55,6 @@ public class PlayerController : MonoBehaviour {
 				playerFaceDirection = 1;
 				playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
 			}
-
 		}
 
 		if (Input.GetKey("a")) {
@@ -63,6 +65,8 @@ public class PlayerController : MonoBehaviour {
 				playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
 			}
 		}
+
+		animator.SetBool("Running", Input.GetKey("a") || Input.GetKey("d"));
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
