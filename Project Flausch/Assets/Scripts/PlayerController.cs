@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 		PlayerInteract ();
 	}
 
-	public void GetInventory() {
+	public Inventory GetInventory() {
 		return inv;
 	}
 
