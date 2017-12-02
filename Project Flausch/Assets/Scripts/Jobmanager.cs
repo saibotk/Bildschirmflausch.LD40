@@ -25,9 +25,9 @@ public class Jobmanager
 		jobList.RemoveAt(i);
 	}
 
-	// GetAllJobs: void -> List<Job>
+	// GetAllJob: void -> List<Job>
 	// Returns all jobs
-	public List<Job> GetAllJobs()
+	public List<Job> GetAllJob()
 	{
 		return jobList;
 	}
