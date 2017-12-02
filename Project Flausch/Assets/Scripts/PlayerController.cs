@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey("d")) {
 			gameObject.transform.Translate( new Vector3(1* movementSpeed * Time.deltaTime, 0));
 
-			if (playerFaceDirection != 0) {
-				playerFaceDirection = 0;
+			if (playerFaceDirection != 1) {
+				playerFaceDirection = 1;
 				playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
 			}
 
@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey("a")) {
 			gameObject.transform.Translate( new Vector3(-1* movementSpeed * Time.deltaTime, 0));
 
-			if (playerFaceDirection != 1) {
-				playerFaceDirection = 1;
+			if (playerFaceDirection != 0) {
+				playerFaceDirection = 0;
 				playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
 			}
 		}
