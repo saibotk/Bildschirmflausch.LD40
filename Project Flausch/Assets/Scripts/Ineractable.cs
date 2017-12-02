@@ -1,9 +1,6 @@
 ﻿using System;
+using UnityEngine;
 
-namespace AssemblyCSharp
-{
-	public interface EmptyInterface
-	{
-		public void interact(GameObject player);
-	}
+public interface Interactable {
+	void Interact(GameObject player);
 }
