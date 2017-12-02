@@ -469,17 +469,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1661212023533312, guid: 249c8b19f43afaa448bbb36d580a6bfa,
     type: 2}
   m_PrefabInternal: {fileID: 2127669496}
---- !u!114 &793741024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 793741023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a197acfbb754041868105c47c986f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &793741025
 Rigidbody2D:
   serializedVersion: 4
@@ -923,6 +912,7 @@ GameObject:
   - component: {fileID: 1720727502}
   - component: {fileID: 1720727503}
   - component: {fileID: 1720727504}
+  - component: {fileID: 1720727505}
   m_Layer: 0
   m_Name: CoffeeMachine
   m_TagString: Untagged
@@ -1012,6 +1002,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.19}
   m_EdgeRadius: 0
+--- !u!114 &1720727505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1720727501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb2406266a8c454b871a2b66b5ec82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2034987202
 GameObject:
   m_ObjectHideFlags: 0
