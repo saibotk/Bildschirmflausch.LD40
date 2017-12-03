@@ -39,11 +39,11 @@ public class Job
 		return this.jobDescription;
 	}
 
-	public float GetJobStartTime(float jobStartTime){
+	public float GetJobStartTime(){
 		return this.jobStartTime;
 	}
 
-	public float GetJobTime(float jobTime){
+	public float GetJobTime(){
 		return this.jobTime;
 	}
 
