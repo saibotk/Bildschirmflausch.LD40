@@ -47,7 +47,7 @@ public class WorkersCoffeeNeeds : MonoBehaviour, Interactable {
 		float coffeeNotInCup = player.GetComponent<PlayerController> ().GetInventory ().coffeePot.drain (neededCoffee);
 		coffeeTimer = (coffeeNotInCup == 0) ? coffeeTimer_init : coffeeTimer + (neededCoffee - coffeeNotInCup) * coffeeTimer_init;
 
-		Debug.Log (player.GetComponent<PlayerController> ().GetInventory ().coffeePot.getFillLevel());
-		Debug.Log (coffeeTimer);
+		//Debug.Log (player.GetComponent<PlayerController> ().GetInventory ().coffeePot.getFillLevel());
+		//Debug.Log (coffeeTimer);
 	}
 }

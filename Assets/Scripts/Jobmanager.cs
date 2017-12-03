@@ -4,10 +4,10 @@ using UnityEngine;
 public class Jobmanager
 {
 	private List<Job> jobList = new List<Job>();
-	private GameManager manager;
+	private GameController manager;
 
 
-	public Jobmanager(GameManager manger) {
+	public Jobmanager(GameController manger) {
 		this.manager = manger;
 	}
 
