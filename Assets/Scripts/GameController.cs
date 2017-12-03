@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
 	public void CheckCofeeNPCs() {
 		int emptyCofeeCounter = 0;
 		foreach (GameObject NPC in coffeeNPCs) {
-			if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer ()) {
+			if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer () == 0) {
 				emptyCofeeCounter++;
 			}
 		}
