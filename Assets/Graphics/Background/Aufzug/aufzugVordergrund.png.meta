@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 6fbf6b9e403dfce4089edba93ed1dc83
 timeCreated: 1512271725
+=======
+guid: f080ad7baee9c6749b1fecb34701952a
+timeCreated: 1512271891
+>>>>>>> Stashed changes
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -31,7 +36,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< Updated upstream
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> Stashed changes
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -58,6 +67,7 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+<<<<<<< Updated upstream
     resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 1
@@ -68,6 +78,9 @@ TextureImporter:
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 1
+=======
+    resizeAlgorithm: 0
+>>>>>>> Stashed changes
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
