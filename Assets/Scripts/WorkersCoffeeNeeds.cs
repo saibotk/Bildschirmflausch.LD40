@@ -15,7 +15,6 @@ public class WorkersCoffeeNeeds : MonoBehaviour, Interactable {
 	// Use this for initialization
 	void Start () {
 		coffeeTimer = coffeeTimer_init;
-
 	}
 	
 	// Update is called once per frame
@@ -42,18 +41,13 @@ public class WorkersCoffeeNeeds : MonoBehaviour, Interactable {
 	}
 
 	public void Interact( GameObject player ) {
+		if (player.GetComponent<PlayerController> ().GetInventory ().coffeePot == null)
+			return;
 		float neededCoffee = 1 - (coffeeTimer / coffeeTimer_init);
-	    float coffeeInPot = player.GetComponent<PlayerController> ().GetInventory ().coffeePot.value;
+		float coffeeNotInCup = player.GetComponent<PlayerController> ().GetInventory ().coffeePot.drain (neededCoffee);
+		coffeeTimer = (coffeeNotInCup == 0) ? coffeeTimer_init : coffeeTimer + (neededCoffee - coffeeNotInCup) * coffeeTimer_init;
 
-		if (coffeeInPot >= neededCoffee){
-			player.GetComponent<PlayerController> ().GetInventory ().coffeePot.value = coffeeInPot - neededCoffee;
-			coffeeTimer = coffeeTimer_init;
-		}else if (coffeeInPot < neededCoffee){
-			player.GetComponent<PlayerController> ().GetInventory ().coffeePot.value = 0;
-			coffeeTimer += (coffeeInPot / neededCoffee) * neededCoffee * coffeeTimer_init;
-		}
-
-		Debug.Log (player.GetComponent<PlayerController> ().GetInventory ().coffeePot.value);
+		Debug.Log (player.GetComponent<PlayerController> ().GetInventory ().coffeePot.getFillLevel());
 		Debug.Log (coffeeTimer);
 	}
 }

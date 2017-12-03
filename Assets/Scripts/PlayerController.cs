@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		movementState =  0;
 		inv = new Inventory ();
-		inv.coffeePot = new Item<float> ("Coffee Pot", 0);
+		inv.coffeePot = new CoffeePot (0);
 
 		animator = GetComponentInChildren<Animator>();
 		liftController = lift.GetComponent<LiftController> (); // could be null!

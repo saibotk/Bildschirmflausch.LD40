@@ -43,7 +43,7 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 			canimator.SetBool ("brewing", true);
 			canimator.SetBool ("empty", false);
 		} else if (currentBrewingTime <= 0 && cinv.coffeePot != null && inv.coffeePot == null ) {
-			cinv.coffeePot.value = 6;
+			cinv.coffeePot.fill(cinv.coffeePot.getMaxFillLevel());
 			inv.coffeePot = cinv.coffeePot;
 			cinv.coffeePot = null;
 			canimator.SetBool ("empty", true);
