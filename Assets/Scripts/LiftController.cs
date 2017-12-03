@@ -22,7 +22,7 @@ public class LiftController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (nextFloor + " " + height);
+		Debug.Log (height + " " + nextFloor);
 		if (height < nextFloor) { // move up
 			height += speed;
 			if (height >= nextFloor)
@@ -32,20 +32,23 @@ public class LiftController : MonoBehaviour {
 			if (height <= nextFloor)
 				height = nextFloor;
 		}
+		gameObject.transform.position = new Vector3(gameObject.transform.position.x, height * levelHeight, gameObject.transform.position.z);
 	}
 
 	public void MoveUp() {
-		nextFloor++;
+		if (nextFloor - height < 0.1)
+			nextFloor++;
 		if (nextFloor > floorCount)
 			nextFloor = floorCount;
-		Debug.Log ("up") ;
+		Debug.Log ("Up " + nextFloor);
 	}
 
-			public void MoveDown() {
-				nextFloor--;
-				if (nextFloor < 0)
-					nextFloor = 0;
-				Debug.Log ("down"+ nextFloor);
+	public void MoveDown() {
+		if (height - nextFloor < 0.1)
+			nextFloor--;
+		if (nextFloor < 0)
+			nextFloor = 0;
+		Debug.Log ("Down " + nextFloor);
 	}
 
 	public bool CanPlayerMove() {

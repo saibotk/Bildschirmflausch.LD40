@@ -6466,7 +6466,7 @@ Prefab:
     - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
         type: 2}
       propertyPath: inLift
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
@@ -7085,8 +7085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelHeight: 1.1
-  speed: 2
-  floorCount: 3
+  speed: 0.05
+  floorCount: 2
 --- !u!1 &1919318963
 GameObject:
   m_ObjectHideFlags: 0
