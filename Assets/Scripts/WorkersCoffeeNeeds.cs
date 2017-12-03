@@ -45,7 +45,7 @@ public class WorkersCoffeeNeeds : MonoBehaviour, Interactable {
 		if (coffeeInPot >= neededCoffee){
 			player.GetComponent<PlayerController> ().GetInventory ().coffeePot.value = coffeeInPot - neededCoffee;
 			coffeeTimer = coffeeTimer_init;
-		}else{
+		}else if (coffeeInPot < neededCoffee){
 			player.GetComponent<PlayerController> ().GetInventory ().coffeePot.value = 0;
 			coffeeTimer += (coffeeInPot / neededCoffee) * neededCoffee * coffeeTimer_init;
 		}
