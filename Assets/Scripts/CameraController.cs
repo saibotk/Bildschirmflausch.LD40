@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	public GameObject player;       //Public variable to store a reference to the player game object
+	public GameObject player;
+	private Vector3 offset;
 
-	private Vector3 offset;         //Private variable to store the offset distance between the player and camera
+	private BoxCollider2D collider;
 
-	// Use this for initialization
-	void Start () 
-	{
-		//Calculate and store the offset value by getting the distance between the player's position and camera's position.
-		offset = transform.position - player.transform.position;
+	void Start () {
+		offset = transform.position;// - player.transform.position;
+		collider = GetComponent<BoxCollider2D>();
 	}
 
-	// LateUpdate is called after Update each frame
-	void LateUpdate () 
-	{
-		// Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
-		transform.position = player.transform.position + offset;
+	void LateUpdate () {
+		Bounds levelBounds = collider.bounds;
+
+		var mapX = 100.0;
+		var mapY = 100.0;
+
+		var vertExtent = Camera.main.orthographicSize;    
+		var horzExtent = vertExtent * Screen.width / Screen.height;
+		// Calculations assume map is position at the origin
+		var minX = horzExtent - mapX / 2.0;
+		var maxX = mapX / 2.0 - horzExtent;
+		var minY = vertExtent - mapY / 2.0;
+		var maxY = mapY / 2.0 - vertExtent;
+
+		var playerPos = player.transform.position + offset;
+		var diff = playerPos - transform.position;
+		diff.Scale (new Vector3 (0.15f, 0.15f, 0));
+		transform.position += diff;
 	}
 }
