@@ -7,12 +7,16 @@ public class PlayerController : MonoBehaviour {
 	private int movementSpeed = 2;
 	[SerializeField]
 	private GameObject playerTexture;
+	[SerializeField]
+	private GameObject lift;
 	private int playerFaceDirection; // 0 = left, 1 = right
 	private Inventory inv;
 	private List<Interactable> interactivesInRange = new List<Interactable>();
 	private Animator animator;
+	private LiftController liftController;
 	private bool wallLeft = false;
 	private bool wallRight = false;
+	public bool inLift;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 		inv.coffeePot = new Item<float> ("Coffee Pot", 0);
 
 		animator = GetComponentInChildren<Animator>();
+		liftController = lift.GetComponent<liftController> ();
 	}
 	
 	// Update is called once per frame
@@ -50,25 +55,33 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void PlayerMovement() {
-		if (Input.GetKey("d") && !wallRight) {
-			gameObject.transform.Translate( new Vector3(1* movementSpeed * Time.deltaTime, 0));
+		if (!inLift || liftController.CanPlayerMove()) {
+			if (Input.GetKey ("d") && !wallRight) {
+				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
 
-			if (playerFaceDirection != 1) {
-				playerFaceDirection = 1;
-				playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
+				if (playerFaceDirection != 1) {
+					playerFaceDirection = 1;
+					playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
+				}
 			}
-		}
 
-		if (Input.GetKey("a") && !wallLeft) {
-			gameObject.transform.Translate( new Vector3(-1* movementSpeed * Time.deltaTime, 0));
+			if (Input.GetKey ("a") && !wallLeft) {
+				gameObject.transform.Translate (new Vector3 (-1 * movementSpeed * Time.deltaTime, 0));
 
-			if (playerFaceDirection != 0) {
-				playerFaceDirection = 0;
-				playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
+				if (playerFaceDirection != 0) {
+					playerFaceDirection = 0;
+					playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
+				}
 			}
+			animator.SetBool("Running", Input.GetKey("a") ^ Input.GetKey("d"));
+		} 
+		if (inLift) {
+			if (Input.GetKey ("w"))
+				liftController.MoveUP ();
+			if (Input.GetKey ("s"))
+				liftController.MoveDown ();
+			gameObject.transform.y = liftController.PlayerHeight ();
 		}
-
-		animator.SetBool("Running", Input.GetKey("a") ^ Input.GetKey("d"));
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {

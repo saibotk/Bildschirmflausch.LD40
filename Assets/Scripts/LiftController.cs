@@ -45,8 +45,12 @@ public class LiftController : MonoBehaviour {
 			nextFloor = floorCount;
 	}
 
-	public bool canPlayerMove() {
+	public bool CanPlayerMove() {
 		return nextFloor == height;
+	}
+
+	public float PlayerHeight() {
+		return height * levelheigt;
 	}
 
 	void OnTriggerStay2D(Collider2D coll)
@@ -61,6 +65,4 @@ public class LiftController : MonoBehaviour {
 			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
 		}
 	}
-
-			
 }
