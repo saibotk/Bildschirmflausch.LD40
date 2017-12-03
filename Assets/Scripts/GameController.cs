@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour {
 			break;
 		case "watering":
 			if (plants.Count == 0) return; // Todo here should the code try to retrieve another job.
-			jobmanager.AddJob (new WateringJob ( plants.ConvertAll<JobInteraction>(x => x.GetComponent<JobInteraction>()), this));
+			jobmanager.AddJob (new WateringJob ( plants.ConvertAll<JobInteraction>(x => x.GetComponent<JobInteraction>()), this.jobmanager));
 			break;
 				
 		}
