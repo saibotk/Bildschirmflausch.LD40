@@ -56,6 +56,7 @@ public class DeliveryJob : Job {
 	override public void cleanup() {
 		this.jobmanager.GetGameController().GetPlayer().GetInventory().RemoveItem(this.letter);
 		this.target.SetInteract (null);
+		this.target.SetJob (null);
 		this.jobmanager.GetGameController().MakeNPCAvailable(this.target.gameObject);
 		this.letterPrefab = null;
 		GameObject.Destroy(this.letterGO);

@@ -7,6 +7,4 @@ public class Letter : Item {
 	public Letter (Job job) : base ("Letter") {
 			this.job = job;
 	}
-
-
 }

@@ -64,5 +64,6 @@ public abstract class Job : IJob
 	}
 
 	abstract public void init ();
+
 	abstract public void cleanup ();
 }
