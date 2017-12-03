@@ -1,11 +1,9 @@
 ﻿using System;
 
-public class Item<Type> {
+public class Item {
 	public readonly String name;
-	public Type value;
 
-	public Item (String name, Type value) {
+	public Item (String name) {
 		this.name = name;
-		this.value = value;
 	}
 }
