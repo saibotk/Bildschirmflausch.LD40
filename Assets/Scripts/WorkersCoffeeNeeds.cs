@@ -20,7 +20,10 @@ public class WorkersCoffeeNeeds : MonoBehaviour, Interactable {
 	
 	// Update is called once per frame
 	void Update () {
-		coffeeTimer -= Time.deltaTime;
+		if (coffeeTimer >= Time.deltaTime)
+			coffeeTimer -= Time.deltaTime;
+		else
+			coffeeTimer = 0;
 
 		SpriteRenderer render = coffeeMeter.GetComponent<SpriteRenderer>();
 
