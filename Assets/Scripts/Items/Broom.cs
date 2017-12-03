@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public class Letter : Item {
+public class Broom : Item {
 	public readonly Job job;
 
-	public Letter (Job job) : base ("Letter") {
-			this.job = job;
+	public Broom (Job job) : base ("Broom") {
+		this.job = job;
 	}
+
+
 }

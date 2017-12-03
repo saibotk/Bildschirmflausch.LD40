@@ -11,6 +11,10 @@ public class GameController : MonoBehaviour {
 	private GameObject player;
 	[SerializeField]
 	private List<GameObject> coffeeNPCs;
+
+	[SerializeField]
+	private List<GameObject> plants;
+
 	[SerializeField]
 	private GameObject letterPrefab;
 	[SerializeField]
@@ -26,7 +30,10 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		// JOB TYPES INIT
 		jobTypes.Add("delivery");
+		jobTypes.Add ("watering");
+
 		lastJob = Time.realtimeSinceStartup;
 		jobmanager = new Jobmanager (this);
 		//coffeeNPCs = new List<GameObject>();
@@ -53,12 +60,17 @@ public class GameController : MonoBehaviour {
 
 	public void addRandomJob () {
 		switch (jobTypes[Random.Range (0, jobTypes.Count)]) {
-			case "delivery":
-				if (availableQuestNPCs.Count == 0) return;
-				int usedNpc = Random.Range (0, availableQuestNPCs.Count);
-				jobmanager.AddJob (new DeliveryJob (availableQuestNPCs[usedNpc].GetComponent<JobInteraction>(), letterSpawnpoint, letterPrefab, this.jobmanager));
-				availableQuestNPCs.RemoveAt(usedNpc);
-				break;
+		case "delivery":
+			if (availableQuestNPCs.Count == 0) return; // Todo here should the code try to retrieve another job.
+			int usedNpc = Random.Range (0, availableQuestNPCs.Count);
+			jobmanager.AddJob (new DeliveryJob (availableQuestNPCs[usedNpc].GetComponent<JobInteraction>(), letterSpawnpoint, letterPrefab, this.jobmanager));
+			availableQuestNPCs.RemoveAt(usedNpc);
+			break;
+		case "watering":
+			if (plants.Count == 0) return; // Todo here should the code try to retrieve another job.
+			jobmanager.AddJob (new WateringJob ( plants.ConvertAll<JobInteraction>(x => x.GetComponent<JobInteraction>()), this.jobmanager));
+			break;
+				
 		}
 	}
 
