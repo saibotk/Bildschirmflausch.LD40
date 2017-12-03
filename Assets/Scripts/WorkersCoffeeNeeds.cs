@@ -50,4 +50,8 @@ public class WorkersCoffeeNeeds : MonoBehaviour, Interactable {
 		//Debug.Log (player.GetComponent<PlayerController> ().GetInventory ().coffeePot.getFillLevel());
 		//Debug.Log (coffeeTimer);
 	}
+
+	public float GetCoffeeTimer() {
+		return coffeeTimer;
+	}
 }

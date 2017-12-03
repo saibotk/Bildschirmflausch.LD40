@@ -1,18 +1,16 @@
 using UnityEngine;
 
-public class Job
+public abstract class Job : IJob
 {
-	private int status = 0;						// true = active, false = inactiv (done, aborted)
-	private string taskName = "Missing taskName";					// name of the task / headline
-	private string jobClient = "Missing client";
+	private int status = 0;												// true = active, false = inactiv (done, aborted)
+	private string taskName = "Missing taskName";						// name of the task / headline
 	private string jobDescription = "Missing jobDescription";			// jobdescription
 	private float jobStartTime = 0;
-	private float jobTime = 0; // in seconds
+	private float jobTime = 0; 											// in seconds
 
-	public Job(string taskName, string client, string jobDescription, float jobTime)
+	public Job(string taskName, string jobDescription, float jobTime)
 	{
 		this.taskName = taskName;
-		this.jobClient = client;
 		this.jobDescription = jobDescription;
 		this.jobStartTime = Time.realtimeSinceStartup;
 		this.jobTime = jobTime;
@@ -27,11 +25,6 @@ public class Job
 	public string GetTaskName()
 	{
 		return this.taskName;
-	}
-
-	public string GetClient()
-	{
-		return this.jobClient;
 	}
 
 	public string GetJobDescription()
@@ -58,11 +51,6 @@ public class Job
 		this.taskName = taskName;
 	}
 
-	public void SetClient( string client)
-	{
-		this.jobClient = client;
-	}
-
 	public void SetJobDescription( string jobDescription)
 	{
 		this.jobDescription = jobDescription;
@@ -75,4 +63,7 @@ public class Job
 	public void SetJobTime(float jobTime){
 		this.jobTime = jobTime;
 	}
+
+	abstract public void init ();
+	abstract public void cleanup (); 
 }
