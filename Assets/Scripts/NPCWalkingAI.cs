@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCActionsManager : MonoBehaviour {
+public class NPCWalkingAI : MonoBehaviour {
 
 	private float idleTime = 5;
 	private float walkingDistance = 0;
 	[SerializeField]
-	private float speed = 3; 
+	private float speed = 30; 
 	// state -1: moving left, state 0 : idle , state 1: moving right
 	private int state = 0;
 
