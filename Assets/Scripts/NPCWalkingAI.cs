@@ -10,6 +10,8 @@ public class NPCWalkingAI : MonoBehaviour {
 	private float speed = 30; 
 	// state -1: moving left, state 0 : idle , state 1: moving right
 	private int state = 0;
+	[SerializeField]
+	private GameObject NPCTexture;
 
 	// Use this for initialization
 //	void Start () {
@@ -40,6 +42,11 @@ public class NPCWalkingAI : MonoBehaviour {
 			idleTime = (float) Random.Range (5, 10);			
 		} else {
 			walkingDistance = (float) Random.Range (1, 3);
+//			if (state == -1) {
+//				NPCTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
+//			} else {
+//				NPCTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
+//			}
 		}
 	}
 

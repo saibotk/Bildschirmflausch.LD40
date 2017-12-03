@@ -5,7 +5,8 @@ public class Job
 	private string taskName = "Missing taskName";					// name of the task / headline
 	private string jobClient = "Missing client";
 	private string jobReward = "Missing jobReward";
-	private string jobDescription = "Missing jobDescription";			// jobdescribtion
+	private string jobDescription = "Missing jobDescription";			// jobdescription
+	// needs job time
 	// taskKind
 
 	public Job(string taskName, string client, string jobDescription, string jobReward)
