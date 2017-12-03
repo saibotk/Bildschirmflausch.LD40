@@ -87,31 +87,29 @@ public class PlayerController : MonoBehaviour {
 				liftController.MoveUp ();
 			if (Input.GetKey ("s"))
 				liftController.MoveDown ();
-			gameObject.transform.position = new Vector3(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
+			//gameObject.transform.position = new Vector3(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
 		}
 
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
-		if (col.gameObject.GetComponent (typeof(Interactable)) != null) {
+		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
 			AddInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
-		} else {
-			Debug.Log("No Interactable Script found!");
-		}
 
-		if (col.CompareTag ("Lift"))
-			inLift = true;			
+		if (col.CompareTag ("Lift")) {
+			inLift = true;
+			transform.parent = lift.transform;
+		}
 	}
 
 	void OnTriggerExit2D( Collider2D col ) {
-		if (col.gameObject.GetComponent (typeof(Interactable)) != null) {
+		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
 			RemoveInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
-		} else {
-			Debug.Log("No Interactable Script found!");
-		}
 
-		if (col.CompareTag ("Lift"))
+		if (col.CompareTag ("Lift")) {
 			inLift = false;
+			transform.parent = null;
+		}
 	}
 
 	/*public void BlockPlayerMovement()
