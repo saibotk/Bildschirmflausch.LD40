@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
 	private Inventory inv;
 	private List<Interactable> interactivesInRange = new List<Interactable>();
 	private Animator animator;
+	private bool wallLeft = false;
+	private bool wallRight = false;
 
 	// Use this for initialization
 	void Start () {
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void PlayerMovement() {
-		if (Input.GetKey("d")) {
+		if (Input.GetKey("d") && !wallRight) {
 			gameObject.transform.Translate( new Vector3(1* movementSpeed * Time.deltaTime, 0));
 
 			if (playerFaceDirection != 1) {
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKey("a")) {
+		if (Input.GetKey("a") && !wallLeft) {
 			gameObject.transform.Translate( new Vector3(-1* movementSpeed * Time.deltaTime, 0));
 
 			if (playerFaceDirection != 0) {
@@ -75,6 +77,14 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			Debug.Log("No Interactable Script found!");
 		}
+
+		if (col.CompareTag ("Wall")) {
+			if (Input.GetKey ("d"))
+				wallRight = true;
+			if (Input.GetKey ("a"))
+				wallLeft = true;
+		}
+			
 	}
 
 	void OnTriggerExit2D( Collider2D col ) {
@@ -82,6 +92,13 @@ public class PlayerController : MonoBehaviour {
 			RemoveInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
 		} else {
 			Debug.Log("No Interactable Script found!");
+		}
+
+		if (col.CompareTag ("Wall")) {
+			if (Input.GetKey ("a"))
+				wallRight = false;
+			if (Input.GetKey ("d"))
+				wallLeft = false;
 		}
 	}
 }
