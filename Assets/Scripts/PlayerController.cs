@@ -101,4 +101,17 @@ public class PlayerController : MonoBehaviour {
 				wallLeft = false;
 		}
 	}
+
+	public void BlockPlayerMovement()
+	{
+		wallRight = true;
+		wallLeft = true;
+	}
+
+	public void AllowPlayerMovement()
+	{
+		wallRight = false;
+		wallLeft = false;
+	}
+
 }
