@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour {
 		jobmanager = new Jobmanager (this);
 		//coffeeNPCs = new List<GameObject>();
 		availableQuestNPCs = new List<GameObject>(questNPCs);
+		addRandomJob ();
 	}
 
 	public PlayerController GetPlayer() {
@@ -61,14 +62,19 @@ public class GameController : MonoBehaviour {
 	public void addRandomJob () {
 		switch (jobTypes[Random.Range (0, jobTypes.Count)]) {
 		case "delivery":
-			if (availableQuestNPCs.Count == 0) return; // Todo here should the code try to retrieve another job.
+			if (availableQuestNPCs.Count == 0)
+				return; // Todo here should the code try to retrieve another job.
 			int usedNpc = Random.Range (0, availableQuestNPCs.Count);
-			jobmanager.AddJob (new DeliveryJob (availableQuestNPCs[usedNpc].GetComponent<JobInteraction>(), letterSpawnpoint, letterPrefab, this.jobmanager));
+			jobmanager.AddJob (new DeliveryJob (availableQuestNPCs [usedNpc].GetComponent<JobInteraction> (), letterSpawnpoint, letterPrefab, this.jobmanager));
+			lastJob = Time.realtimeSinceStartup;
+			Debug.Log ("Job: Delivery!");
 			availableQuestNPCs.RemoveAt(usedNpc);
 			break;
 		case "watering":
 			if (plants.Count == 0) return; // Todo here should the code try to retrieve another job.
-			jobmanager.AddJob (new WateringJob ( plants.ConvertAll<JobInteraction>(x => x.GetComponent<JobInteraction>()), this.jobmanager));
+			jobmanager.AddJob (new WateringJob ( plants.ConvertAll<JobInteraction>(x => x.GetComponent<JobInteraction>()).GetRange(Random.Range(0, Mathf.Max(0, plants.Count - 3)), (plants.Count >= 3 ) ? 3 : plants.Count), this.jobmanager) );
+			lastJob = Time.realtimeSinceStartup;
+			Debug.Log ("Job: Waterings!");
 			break;
 				
 		}

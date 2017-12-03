@@ -59,6 +59,7 @@ public class DeliveryJob : Job {
 		this.target.SetJob (null);
 		this.jobmanager.GetGameController().MakeNPCAvailable(this.target.gameObject);
 		this.letterPrefab = null;
+		this.letter = null;
 		GameObject.Destroy(this.letterGO);
 		this.target = null;
 	}

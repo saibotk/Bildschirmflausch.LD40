@@ -23,7 +23,10 @@ public class Inventory {
 	}
 
 	public void RemoveItem(Item item) {
-		
+		if (leftHand != null && leftHand.Equals (item))
+			leftHand = null;
+		if (pocket != null && pocket.Equals (item))
+			pocket = null;
 	}
 
 	public void Swap() {

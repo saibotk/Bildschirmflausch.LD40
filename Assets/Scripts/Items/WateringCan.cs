@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class WateringCan : Item {
 
-	public WateringCan (Job job) : base ("Watering Can") {
+	public WateringCan () : base ("Watering Can") {
 
 	}
 }
