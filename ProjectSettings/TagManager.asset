@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Lift
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -40,9 +41,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: Building
+    uniqueID: 459511557
     locked: 0
   - name: Background
-    uniqueID: 459511557
+    uniqueID: 3747457459
+    locked: 0
+  - name: Furniture
+    uniqueID: 2384093613
+    locked: 0
+  - name: Objects
+    uniqueID: 2107571933
+    locked: 0
+  - name: Entities
+    uniqueID: 212628091
+    locked: 0
+  - name: Foreground
+    uniqueID: 1143483525
+    locked: 0
+  - name: UI
+    uniqueID: 1411555685
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
