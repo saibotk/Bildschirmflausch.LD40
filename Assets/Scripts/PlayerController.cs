@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 		inv.coffeePot = new Item<float> ("Coffee Pot", 0);
 
 		animator = GetComponentInChildren<Animator>();
-		liftController = lift.GetComponent<liftController> ();
+		liftController = lift.GetComponent<LiftController> ();
 	}
 	
 	// Update is called once per frame
@@ -77,10 +77,10 @@ public class PlayerController : MonoBehaviour {
 		} 
 		if (inLift) {
 			if (Input.GetKey ("w"))
-				liftController.MoveUP ();
+				liftController.MoveUp ();
 			if (Input.GetKey ("s"))
 				liftController.MoveDown ();
-			gameObject.transform.y = liftController.PlayerHeight ();
+			gameObject.transform.position.Set(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
 		}
 	}
 
@@ -89,13 +89,6 @@ public class PlayerController : MonoBehaviour {
 			AddInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
 		} else {
 			Debug.Log("No Interactable Script found!");
-		}
-
-		if (col.CompareTag ("Wall")) {
-			if (Input.GetKey ("d"))
-				wallRight = true;
-			if (Input.GetKey ("a"))
-				wallLeft = true;
 		}
 			
 	}
@@ -106,16 +99,9 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			Debug.Log("No Interactable Script found!");
 		}
-
-		if (col.CompareTag ("Wall")) {
-			if (Input.GetKey ("a"))
-				wallRight = false;
-			if (Input.GetKey ("d"))
-				wallLeft = false;
-		}
 	}
 
-	public void BlockPlayerMovement()
+	/*public void BlockPlayerMovement()
 	{
 		wallRight = true;
 		wallLeft = true;
@@ -125,6 +111,6 @@ public class PlayerController : MonoBehaviour {
 	{
 		wallRight = false;
 		wallLeft = false;
-	}
+	}*/
 
 }

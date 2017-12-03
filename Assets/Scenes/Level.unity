@@ -6458,6 +6458,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
+        type: 2}
+      propertyPath: lift
+      value: 
+      objectReference: {fileID: 1919195211}
+    - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
+        type: 2}
+      propertyPath: inLift
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
   m_IsPrefabParent: 0
@@ -7015,6 +7025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919195212}
   - component: {fileID: 1919195213}
+  - component: {fileID: 1919195214}
   m_Layer: 0
   m_Name: Aufzug
   m_TagString: Untagged
@@ -7062,6 +7073,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.989583, y: 1.1302114}
   m_EdgeRadius: 0
+--- !u!114 &1919195214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919195211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e285888c488d4a139749ec533bf127f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelHeight: 1.1
+  speed: 2
+  floorCount: 3
 --- !u!1 &1919318963
 GameObject:
   m_ObjectHideFlags: 0

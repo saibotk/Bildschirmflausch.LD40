@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class LiftController : MonoBehaviour {
 	[SerializeField]
-	private readonly float levelHeight;
+	private float levelHeight;
 	[SerializeField]
-	private readonly float speed;
+	private float speed;
 	[SerializeField]
-	private readonly int floorCount;
+	private int floorCount;
 	private float height = 0;
 	private int nextFloor;
 
@@ -22,6 +22,7 @@ public class LiftController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (nextFloor + " " + height);
 		if (height < nextFloor) { // move up
 			height += speed;
 			if (height >= nextFloor)
@@ -34,15 +35,17 @@ public class LiftController : MonoBehaviour {
 	}
 
 	public void MoveUp() {
-		nextFloor--;
-		if (nextFloor < 0)
-			nextFloor = 0;
-	}
-
-	public void MoveDown() {
 		nextFloor++;
 		if (nextFloor > floorCount)
 			nextFloor = floorCount;
+		Debug.Log ("up") ;
+	}
+
+			public void MoveDown() {
+				nextFloor--;
+				if (nextFloor < 0)
+					nextFloor = 0;
+				Debug.Log ("down"+ nextFloor);
 	}
 
 	public bool CanPlayerMove() {
@@ -50,19 +53,19 @@ public class LiftController : MonoBehaviour {
 	}
 
 	public float PlayerHeight() {
-		return height * levelheigt;
+		return height * levelHeight;
 	}
 
-	void OnTriggerStay2D(Collider2D coll)
+	/*void OnTriggerStay2D(Collider2D coll)
 	{
-		if (coll.CompareTag ("Player") && !canPlayerMove ()) {
+		if (coll.CompareTag ("Player") && !CanPlayerMove ()) {
 			GameObject player = coll.GetComponent<GameObject> ();
 			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
 		}
 
-		if (coll.CompareTag ("Player") && canPlayerMove ()) {
+		if (coll.CompareTag ("Player") && CanPlayerMove ()) {
 			GameObject player = coll.GetComponent<GameObject> ();
 			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
 		}
-	}
+	}*/
 }
