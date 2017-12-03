@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private LiftController liftController;
 	private bool wallLeft = false;
 	private bool wallRight = false;
-	public bool inLift;
+	public bool inLift = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		PlayerMovement ();
 		PlayerInteract ();
+		Debug.Log (inLift);
 	}
 
 	public Inventory GetInventory() {
@@ -90,7 +91,9 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			Debug.Log("No Interactable Script found!");
 		}
-			
+
+		if (col.CompareTag ("Lift"))
+			inLift = true;			
 	}
 
 	void OnTriggerExit2D( Collider2D col ) {
@@ -99,6 +102,9 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			Debug.Log("No Interactable Script found!");
 		}
+
+		if (col.CompareTag ("Lift"))
+			inLift = false;
 	}
 
 	/*public void BlockPlayerMovement()
