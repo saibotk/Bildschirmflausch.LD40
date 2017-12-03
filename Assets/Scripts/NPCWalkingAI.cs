@@ -7,6 +7,10 @@ public class NPCWalkingAI : MonoBehaviour {
 	private float idleTime = 5;
 	private float walkingDistance = 0;
 	[SerializeField]
+	private int leftBoundary = 0;
+	[SerializeField]
+	private int rightBoundary = 5;
+	[SerializeField]
 	private float speed = 30; 
 	// state -1: moving left, state 0 : idle , state 1: moving right
 	private int state = 0;
@@ -15,7 +19,7 @@ public class NPCWalkingAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		updateSprite ();
 	}
 	
 	// Update is called once per frame
@@ -27,6 +31,10 @@ public class NPCWalkingAI : MonoBehaviour {
 				idleTime -= Time.deltaTime;
 			}
 		} else {
+			if (gameObject.transform.position.x < leftBoundary || gameObject.transform.position.x > rightBoundary) {
+				state *= -1;
+				updateSprite ();
+			}
 			if (walkingDistance <= 0) {
 				changeState();
 			} else {
@@ -36,18 +44,26 @@ public class NPCWalkingAI : MonoBehaviour {
 		}
 	}
 
+	// change state between walking and standing
 	private void changeState() {
 		state = Random.Range (-1, 2);
 		if (state == 0) {
 			idleTime = (float) Random.Range (5, 10);
-			gameObject.GetComponent<Animator> ().SetBool ("walking", false);
+			updateSprite ();
 		} else {
 			walkingDistance = (float) Random.Range (1, 3);
+			updateSprite ();
+		}
+	}
+
+	private void updateSprite() {
+		if (state == 0) {
+			gameObject.GetComponent<Animator> ().SetBool ("walking", false);
+		} else {
+			gameObject.GetComponent<Animator> ().SetBool ("walking", true);
 			if (state == -1) {
-				gameObject.GetComponent<Animator> ().SetBool ("walking", true);
 				NPCTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
 			} else {
-				gameObject.GetComponent<Animator> ().SetBool ("walking", true);
 				NPCTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
 			}
 		}

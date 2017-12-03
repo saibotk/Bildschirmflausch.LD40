@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != 1) {
 					movementState = 1;
-					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()) || true);
+					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()));
 					playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
 				}
 			}
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 				if (movementState != -1) {
 					movementState = -1;
 					playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
-					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()) || true);
+					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()));
 				}
 			}
 
@@ -87,31 +87,37 @@ public class PlayerController : MonoBehaviour {
 				liftController.MoveUp ();
 			if (Input.GetKey ("s"))
 				liftController.MoveDown ();
-			gameObject.transform.position = new Vector3(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
+			if (!liftController.CanPlayerMove ()) {
+				movementState = 0;
+				animator.SetBool ("Running", false);
+			}
+			//gameObject.transform.position = new Vector3(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
 		}
 
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
-		if (col.gameObject.GetComponent (typeof(Interactable)) != null) {
+		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
 			AddInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
-		} else {
-			Debug.Log("No Interactable Script found!");
-		}
 
-		if (col.CompareTag ("Lift"))
-			inLift = true;			
+		if (col.CompareTag ("Lift")) {
+			if (col.isTrigger) {
+				inLift = true;
+				transform.parent = lift.transform;	
+			}
+		}
 	}
 
 	void OnTriggerExit2D( Collider2D col ) {
-		if (col.gameObject.GetComponent (typeof(Interactable)) != null) {
+		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
 			RemoveInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
-		} else {
-			Debug.Log("No Interactable Script found!");
-		}
 
-		if (col.CompareTag ("Lift"))
-			inLift = false;
+		if (col.CompareTag ("Lift")) {
+			if (col.isTrigger) {
+				inLift = false;
+				transform.parent = null;
+			}
+		}
 	}
 
 	/*public void BlockPlayerMovement()
