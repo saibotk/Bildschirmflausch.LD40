@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class Job
 {
@@ -6,14 +7,14 @@ public class Job
 	private string jobClient = "Missing client";
 	private string jobDescription = "Missing jobDescription";			// jobdescription
 	private float jobStartTime = 0;
-	private float jobTime = 0;
+	private float jobTime = 0; // in seconds
 
-	public Job(string taskName, string client, string jobDescription, float jobStartTime, float jobTime)
+	public Job(string taskName, string client, string jobDescription, float jobTime)
 	{
 		this.taskName = taskName;
 		this.jobClient = client;
 		this.jobDescription = jobDescription;
-		this.jobStartTime = jobStartTime;
+		this.jobStartTime = Time.realtimeSinceStartup;
 		this.jobTime = jobTime;
 	}
 

@@ -1,14 +1,33 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Jobmanager
 {
 	private List<Job> jobList = new List<Job>();
+	private GameManager manager;
+
+
+	public Jobmanager(GameManager manger) {
+		this.manager = manger;
+	}
 
 	// GetJobAt: integer -> Jobmanager
 	// Returns the job at the given position, starting at 0
 	public Job GetJobAt(int i)
 	{
 		return this.jobList[i];
+	}
+
+
+	public void checkJobTimes() {
+		List<Job> tmpJobList = new List<Job> (jobList);
+		foreach (Job job in tmpJobList) {
+			if (Time.realtimeSinceStartup >= (job.GetJobStartTime () + job.GetJobTime ())) {
+				manager.addRandomJob ();
+				manager.addRandomJob ();
+				RemoveJob (job);
+			}
+		}
 	}
 
 	// AddJob: Job -> void
@@ -20,9 +39,9 @@ public class Jobmanager
 
 	// RemoveJob: integer -> void
 	// Removes the job with the given number, starting with 0
-	public void RemoveJob(int i)
+	public void RemoveJob(Job job)
 	{
-		jobList.RemoveAt(i);
+		jobList.Remove(job);
 	}
 
 	// GetAllJob: void -> List<Job>
