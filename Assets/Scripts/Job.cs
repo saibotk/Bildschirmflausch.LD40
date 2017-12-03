@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Job : IJob
 {
-	private int status = 0;												// true = active, false = inactiv (done, aborted)
+	private bool completed = false;												// true = active, false = inactiv (done, aborted)
 	private string taskName = "Missing taskName";						// name of the task / headline
 	private string jobDescription = "Missing jobDescription";			// jobdescription
 	private float jobStartTime = 0;
@@ -17,9 +17,8 @@ public abstract class Job : IJob
 	}
 
 	// Getter
-	public int GetStatus()
-	{
-		return this.status;
+	public bool GetStatus() {
+		return this.completed;
 	}
 
 	public string GetTaskName()
@@ -41,9 +40,9 @@ public abstract class Job : IJob
 	}
 
 	// Setter
-	public void SetStatus( int status)
+	public void SetStatus( bool status)
 	{
-		this.status = status;
+		this.completed = status;
 	}
 
 	public void SetTaskName( string taskName)
@@ -65,5 +64,5 @@ public abstract class Job : IJob
 	}
 
 	abstract public void init ();
-	abstract public void cleanup (); 
+	abstract public void cleanup ();
 }

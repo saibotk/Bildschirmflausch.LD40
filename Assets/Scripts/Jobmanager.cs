@@ -6,7 +6,6 @@ public class Jobmanager
 	private List<Job> jobList = new List<Job>();
 	private GameController manager;
 
-
 	public Jobmanager(GameController manager) {
 		this.manager = manager;
 	}
@@ -40,13 +39,18 @@ public class Jobmanager
 	// Removes the job with the given number, starting with 0
 	public void RemoveJob(Job job)
 	{
+		job.cleanup();
 		jobList.Remove(job);
 	}
 
 	// GetAllJob: void -> List<Job>
 	// Returns all jobs
-	public List<Job> GetAllJob()
+	public List<Job> GetAllJobs()
 	{
 		return jobList;
+	}
+
+	public GameController GetGameController() {
+		return this.manager;
 	}
 }
