@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour {
 	private List<Interactable> interactivesInRange = new List<Interactable>();
 	private Animator animator;
 	private LiftController liftController;
-	private bool wallLeft = false;
-	private bool wallRight = false;
 	public bool inLift = false;
 
 	// Use this for initialization
@@ -56,44 +54,35 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void PlayerMovement() {
-		if (!inLift || liftController.CanPlayerMove()) {
-			if (Input.GetKey ("d") && !wallRight) {
+		if (liftController == null || !inLift || liftController.CanPlayerMove()) {
+			if (Input.GetKey ("d")) {
 				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != 1) {
 					movementState = 1;
-					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()));
 					playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
 				}
 			}
 
-			if (Input.GetKey ("a") && !wallLeft) {
+			if (Input.GetKey ("a")) {
 				gameObject.transform.Translate (new Vector3 (-1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != -1) {
 					movementState = -1;
 					playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
-					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()));
 				}
 			}
 
-			if (!Input.GetKey ("a") && !Input.GetKey ("d")) {
-				if (movementState != 0) {
-					movementState = 0;
-					animator.SetBool("Running", false);
-				}
-			}
-		}
-		if (inLift) {
-			if (Input.GetKey ("w"))
-				liftController.MoveUp ();
-			if (Input.GetKey ("s"))
-				liftController.MoveDown ();
-			if (!liftController.CanPlayerMove ()) {
+			if (!(Input.GetKey ("a") ^ Input.GetKey ("d")))
 				movementState = 0;
-				animator.SetBool ("Running", false);
-			}
-			//gameObject.transform.position = new Vector3(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
 		}
-
+		if (liftController != null && inLift) {
+			if (Input.GetKey ("w") && !Input.GetKey ("s"))
+				liftController.MoveUp ();
+			if (Input.GetKey ("s") && !Input.GetKey ("w"))
+				liftController.MoveDown ();
+			if (!liftController.CanPlayerMove ())
+				movementState = 0;
+		}
+		animator.SetBool("Running", movementState != 0);
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
@@ -119,17 +108,4 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
-
-	/*public void BlockPlayerMovement()
-	{
-		wallRight = true;
-		wallLeft = true;
-	}
-
-	public void AllowPlayerMovement()
-	{
-		wallRight = false;
-		wallLeft = false;
-	}*/
-
 }
