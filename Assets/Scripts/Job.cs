@@ -1,24 +1,24 @@
 
 public class Job
 {
-	private bool status = true;						// true = active, false = inactiv (done, aborted)
+	private int status = 0;						// true = active, false = inactiv (done, aborted)
 	private string taskName = "Missing taskName";					// name of the task / headline
 	private string jobClient = "Missing client";
-	private string jobReward = "Missing jobReward";
 	private string jobDescription = "Missing jobDescription";			// jobdescription
-	// needs job time
-	// taskKind
+	private float jobStartTime = 0;
+	private float jobTime = 0;
 
-	public Job(string taskName, string client, string jobDescription, string jobReward)
+	public Job(string taskName, string client, string jobDescription, float jobStartTime, float jobTime)
 	{
 		this.taskName = taskName;
 		this.jobClient = client;
 		this.jobDescription = jobDescription;
-		this.jobReward = jobReward;
+		this.jobStartTime = jobStartTime;
+		this.jobTime = jobTime;
 	}
 
 	// Getter
-	public bool GetStatus()
+	public int GetStatus()
 	{
 		return this.status;
 	}
@@ -33,18 +33,21 @@ public class Job
 		return this.jobClient;
 	}
 
-	public string GetJobReward()
-	{
-		return this.jobReward;
-	}
-
 	public string GetJobDescription()
 	{
 		return this.jobDescription;
 	}
 
+	public float GetJobStartTime(float jobStartTime){
+		return this.jobStartTime;
+	}
+
+	public float GetJobTime(float jobTime){
+		return this.jobTime;
+	}
+
 	// Setter
-	public void SetStatus( bool status)
+	public void SetStatus( int status)
 	{
 		this.status = status;
 	}
@@ -59,15 +62,16 @@ public class Job
 		this.jobClient = client;
 	}
 
-	public void SetJobReward( string jobReward)
-	{
-		this.jobReward = jobReward;
-	}
-
 	public void SetJobDescription( string jobDescription)
 	{
 		this.jobDescription = jobDescription;
 	}
 
+	public void SetJobStartTime(float jobStartTime){
+		this.jobStartTime = jobStartTime;
+	}
 
+	public void SetJobTime(float jobTime){
+		this.jobTime = jobTime;
+	}
 }
