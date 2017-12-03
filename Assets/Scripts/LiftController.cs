@@ -41,10 +41,11 @@ public class LiftController : MonoBehaviour {
 			nextFloor = floorCount;
 	}
 
-			public void MoveDown() {
-				nextFloor--;
-				if (nextFloor < 0)
-					nextFloor = 0;
+	public void MoveDown() {
+		if (height - nextFloor < 0.1)
+			nextFloor--;
+		if (nextFloor < 0)
+			nextFloor = 0;
 	}
 
 	public bool CanPlayerMove() {
