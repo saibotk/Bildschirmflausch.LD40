@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameController : MonoBehaviour {
 
-//	private Jobmanager jobManager = new Jobmanager(this);
+	//	private Jobmanager jobManager = new Jobmanager(this);
 	[SerializeField]
 	private int jobTimeInterval = 20;
 	private float lastJob = Time.realtimeSinceStartup;
@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (Time.realtimeSinceStartup >= lastJob + jobTimeInterval) {
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 		string jobType = jobTypes[Random.Range (0, jobTypes.Count)];
 		switch (jobType) {
 		case "bring":
-//			jobManager.AddJob (new Job ("test", "test", "super Test", 30));
+			//			jobManager.AddJob (new Job ("test", "test", "super Test", 30));
 			break; 
 		}
 	}
