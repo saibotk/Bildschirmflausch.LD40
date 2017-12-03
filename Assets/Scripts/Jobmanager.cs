@@ -7,8 +7,8 @@ public class Jobmanager
 	private GameController manager;
 
 
-	public Jobmanager(GameController manger) {
-		this.manager = manger;
+	public Jobmanager(GameController manager) {
+		this.manager = manager;
 	}
 
 	// GetJobAt: integer -> Jobmanager
@@ -17,7 +17,6 @@ public class Jobmanager
 	{
 		return this.jobList[i];
 	}
-
 
 	public void checkJobTimes() {
 		List<Job> tmpJobList = new List<Job> (jobList);
