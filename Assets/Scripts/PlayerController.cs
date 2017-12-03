@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 	private GameObject playerTexture;
 	[SerializeField]
 	private GameObject lift;
-	private int playerFaceDirection; // 0 = left, 1 = right
+	private int movementState; // -1 = left, 0 = idle, 1 = right
 	private Inventory inv;
 	private List<Interactable> interactivesInRange = new List<Interactable>();
 	private Animator animator;
@@ -20,19 +20,19 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerFaceDirection =  0;
+		movementState =  0;
 		inv = new Inventory ();
 		inv.coffeePot = new Item<float> ("Coffee Pot", 0);
 
 		animator = GetComponentInChildren<Animator>();
-		liftController = lift.GetComponent<LiftController> ();
+		liftController = lift.GetComponent<LiftController> (); // could be null!
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		PlayerMovement ();
 		PlayerInteract ();
-		Debug.Log (inLift);
+		//Debug.Log (inLift);
 	}
 
 	public Inventory GetInventory() {
@@ -59,19 +59,26 @@ public class PlayerController : MonoBehaviour {
 		if (!inLift || liftController.CanPlayerMove()) {
 			if (Input.GetKey ("d") && !wallRight) {
 				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
-
-				if (playerFaceDirection != 1) {
-					playerFaceDirection = 1;
+				if (movementState != 1) {
+					movementState = 1;
+					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()) || true);
 					playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
 				}
 			}
 
 			if (Input.GetKey ("a") && !wallLeft) {
 				gameObject.transform.Translate (new Vector3 (-1 * movementSpeed * Time.deltaTime, 0));
-
-				if (playerFaceDirection != 0) {
-					playerFaceDirection = 0;
+				if (movementState != -1) {
+					movementState = -1;
 					playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
+					animator.SetBool("Running", (liftController != null && liftController.CanPlayerMove()) || true);
+				}
+			}
+
+			if (!Input.GetKey ("a") && !Input.GetKey ("d")) {
+				if (movementState != 0) {
+					movementState = 0;
+					animator.SetBool("Running", false);
 				}
 			}
 		}
@@ -82,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 				liftController.MoveDown ();
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
 		}
-		animator.SetBool("Running", (Input.GetKey("a") ^ Input.GetKey("d")) && liftController.CanPlayerMove());
+
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
