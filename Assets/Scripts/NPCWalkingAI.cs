@@ -36,6 +36,7 @@ public class NPCWalkingAI : MonoBehaviour {
 		}
 	}
 
+	// change state between walking and standing
 	private void changeState() {
 		state = Random.Range (-1, 2);
 		if (state == 0) {
@@ -43,11 +44,10 @@ public class NPCWalkingAI : MonoBehaviour {
 			gameObject.GetComponent<Animator> ().SetBool ("walking", false);
 		} else {
 			walkingDistance = (float) Random.Range (1, 3);
+			gameObject.GetComponent<Animator> ().SetBool ("walking", true);
 			if (state == -1) {
-				gameObject.GetComponent<Animator> ().SetBool ("walking", true);
 				NPCTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
 			} else {
-				gameObject.GetComponent<Animator> ().SetBool ("walking", true);
 				NPCTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
 			}
 		}
