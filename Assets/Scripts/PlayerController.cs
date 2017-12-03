@@ -97,8 +97,10 @@ public class PlayerController : MonoBehaviour {
 			AddInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
 
 		if (col.CompareTag ("Lift")) {
-			inLift = true;
-			transform.parent = lift.transform;
+			if (col.isTrigger) {
+				inLift = true;
+				transform.parent = lift.transform;	
+			}
 		}
 	}
 
@@ -107,8 +109,10 @@ public class PlayerController : MonoBehaviour {
 			RemoveInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
 
 		if (col.CompareTag ("Lift")) {
-			inLift = false;
-			transform.parent = null;
+			if (col.isTrigger) {
+				inLift = false;
+				transform.parent = null;
+			}
 		}
 	}
 
