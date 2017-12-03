@@ -73,15 +73,15 @@ public class PlayerController : MonoBehaviour {
 					playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
 				}
 			}
-			animator.SetBool("Running", Input.GetKey("a") ^ Input.GetKey("d"));
-		} 
+		}
 		if (inLift) {
 			if (Input.GetKey ("w"))
 				liftController.MoveUp ();
 			if (Input.GetKey ("s"))
 				liftController.MoveDown ();
-			gameObject.transform.position.Set(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, liftController.PlayerHeight (), gameObject.transform.position.z);
 		}
+		animator.SetBool("Running", (Input.GetKey("a") ^ Input.GetKey("d")) && liftController.CanPlayerMove());
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
