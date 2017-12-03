@@ -52,12 +52,12 @@ public class LiftController : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D coll)
 	{
 		if (coll.CompareTag ("Player") && !canPlayerMove ()) {
-			GameObject player = coll.GetComponent<gameObject> ();
+			GameObject player = coll.GetComponent<GameObject> ();
 			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
 		}
 
 		if (coll.CompareTag ("Player") && canPlayerMove ()) {
-			GameObject player = coll.GetComponent<gameObject> ();
+			GameObject player = coll.GetComponent<GameObject> ();
 			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
 		}
 	}
