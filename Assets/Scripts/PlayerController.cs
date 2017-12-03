@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void PlayerInteract() {
-		if (Input.GetKey ("e")) {
+		if (Input.GetKeyDown ("e")) {
 			if (interactivesInRange.Count != 0) {
 				interactivesInRange [0].Interact (gameObject);
 			}
