@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour {
 			addRandomJob ();
 		}
 		jobManager.checkJobTimes ();
+		CheckCofeeNPCs ();
 	}
 
 	public void addRandomJob () {
