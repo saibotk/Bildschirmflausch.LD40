@@ -14,9 +14,9 @@ public class NPCWalkingAI : MonoBehaviour {
 	private GameObject NPCTexture;
 
 	// Use this for initialization
-//	void Start () {
-//		
-//	}
+	void Start () {
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,14 +39,17 @@ public class NPCWalkingAI : MonoBehaviour {
 	private void changeState() {
 		state = Random.Range (-1, 2);
 		if (state == 0) {
-			idleTime = (float) Random.Range (5, 10);			
+			idleTime = (float) Random.Range (5, 10);
+			gameObject.GetComponent<Animator> ().SetBool ("walking", false);
 		} else {
 			walkingDistance = (float) Random.Range (1, 3);
-//			if (state == -1) {
-//				NPCTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
-//			} else {
-//				NPCTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
-//			}
+			if (state == -1) {
+				gameObject.GetComponent<Animator> ().SetBool ("walking", true);
+				NPCTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
+			} else {
+				gameObject.GetComponent<Animator> ().SetBool ("walking", true);
+				NPCTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
+			}
 		}
 	}
 
