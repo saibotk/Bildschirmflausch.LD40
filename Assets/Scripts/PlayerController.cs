@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		animator.SetBool("Running", Input.GetKey("a") || Input.GetKey("d"));
+		animator.SetBool("Running", Input.GetKey("a") ^ Input.GetKey("d"));
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
@@ -101,4 +101,17 @@ public class PlayerController : MonoBehaviour {
 				wallLeft = false;
 		}
 	}
+
+	public void BlockPlayerMovement()
+	{
+		wallRight = true;
+		wallLeft = true;
+	}
+
+	public void AllowPlayerMovement()
+	{
+		wallRight = false;
+		wallLeft = false;
+	}
+
 }
