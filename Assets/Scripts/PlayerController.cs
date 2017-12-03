@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		PlayerMovement ();
 		PlayerInteract ();
-		//Debug.Log (inLift);
 	}
 
 	public Inventory GetInventory() {
