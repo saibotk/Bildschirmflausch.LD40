@@ -3,21 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoffeeMachine : MonoBehaviour, Interactable {
+	private Inventory cinv = new Inventory ();
+	private Animator canimator;
+	[SerializeField]
+	private SpriteRenderer sr;
+	[SerializeField]
+	private Sprite fullPot;
+	[SerializeField]
+	private float brewingTime = 2;
+	private float currentBrewingTime;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		canimator = gameObject.GetComponent<Animator> ();
+		canimator.SetFloat ("brewingTimeMultiplier", (1f / brewingTime)); // DOESNT WORK!
+		currentBrewingTime = brewingTime;
 	}
 
-	// Define what to do when a Player interacts with the Coffeemachine
+	void Update() {
+		if (cinv.coffeePot != null) {
+			if (currentBrewingTime > 0) {
+				currentBrewingTime -= Time.deltaTime;
+			} else {
+				if (canimator.GetBool ("brewing")) {
+					canimator.SetBool ("brewing", false);
+				}
+			}
+		}
+	}
+
+	// Define what to do when a player interacts with the coffeemachine
 	public void Interact( GameObject player ) {
 		Inventory inv = player.GetComponent<PlayerController> ().GetInventory ();
-		inv.coffeePot.value = 6;
-		Debug.Log("Filled coffee pot");
+		if (inv.coffeePot != null && cinv.coffeePot == null) {
+			cinv.coffeePot = inv.coffeePot;
+			inv.coffeePot = null;
+			currentBrewingTime = brewingTime;
+			canimator.SetFloat ("brewingTimeMultiplier", (1f / brewingTime));
+			canimator.SetBool ("brewing", true);
+			canimator.SetBool ("empty", false);
+		} else if (currentBrewingTime <= 0 && cinv.coffeePot != null && inv.coffeePot == null ) {
+			cinv.coffeePot.value = 6;
+			inv.coffeePot = cinv.coffeePot;
+			cinv.coffeePot = null;
+			canimator.SetBool ("empty", true);
+		}
+
 	}
 }
