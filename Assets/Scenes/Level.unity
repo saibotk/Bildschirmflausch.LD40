@@ -3418,11 +3418,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429617246}
---- !u!82 &430086894 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82677281832986532, guid: 787588ccb91ba0248b30138b335afb15,
-    type: 2}
-  m_PrefabInternal: {fileID: 1918690479}
 --- !u!1001 &430949148
 Prefab:
   m_ObjectHideFlags: 0
@@ -5785,7 +5780,7 @@ Prefab:
         type: 2}
       propertyPath: gameovers
       value: 
-      objectReference: {fileID: 430086894}
+      objectReference: {fileID: 2129972413}
     - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
         type: 2}
       propertyPath: soundeffects.Array.data[0]
