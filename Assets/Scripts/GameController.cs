@@ -85,8 +85,9 @@ public class GameController : MonoBehaviour {
 	private List<GameObject> getAvailable(List<GameObject> li) {
 		return li.FindAll (x => 
 			x.GetComponent(typeof(IAvailable)) != null && 
-			(x.GetComponent(typeof(IAvailable)) as IAvailable).isAvailable());
+			(x.GetComponent(typeof(IAvailable)) as IAvailable).IsAvailable(floor));
 	}
+
 	public void addRandomJob() {
 		addRandomJob (jobTypes [Random.Range (0, jobTypes.Count)]);
 	}
@@ -102,7 +103,7 @@ public class GameController : MonoBehaviour {
 				} 
 
 				GameObject npc = aNPCs [Random.Range (0, questNPCs.Count)];
-				if (npc.GetComponent<NPC> ().getFloor() <= floor) {
+				if (npc.GetComponent<NPC> ().GetFloor() <= floor) {
 					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager));
 					Debug.Log ("Job: Delivery!");
 				}
@@ -163,11 +164,11 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("Score is: " + score);
 	}
 
-    public int getScore()
-
-    {
-
+    public int getScore() {
         return score;
-
     }
+
+	public int GetFloor() {
+		return floor;
+	}
 }

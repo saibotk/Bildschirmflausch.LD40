@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 interface IAvailable {
-	void setAvailable (bool b);
-	bool isAvailable();
+	void SetAvailable (bool b);
+	bool IsAvailable(int floor);
 }

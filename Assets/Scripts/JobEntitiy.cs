@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
 
+	[SerializeField]
+	private int floor = 0;
 	private Job job = null;
 	private Action<GameObject> interactMethod = null;
 	private bool available = true;
@@ -23,11 +25,15 @@ public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
 		this.job = job;
 	}
 
-	public void setAvailable(bool b) {
+	public void SetAvailable(bool b) {
 		this.available = b;
 	}
 
-	public bool isAvailable() {
-		return this.available;
+	public bool IsAvailable(int floor) {
+		return available && GetFloor () <= floor;
+	}
+
+	public int GetFloor() {
+		return floor;
 	}
 }

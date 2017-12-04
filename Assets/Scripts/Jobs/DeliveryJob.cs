@@ -12,7 +12,7 @@ public class DeliveryJob : Job {
 
 	public DeliveryJob(NPC target, Transform transform, GameObject prefab, Jobmanager manager) : base ("Delivery", "Deliver the item!", 30f, 30) {
 		this.target = target;
-		this.target.setAvailable (false);
+		this.target.SetAvailable (false);
 		this.letter = new Letter(this);
 		this.interactableSpawnpoint = transform;
 		this.letterPrefab = prefab;
@@ -56,7 +56,7 @@ public class DeliveryJob : Job {
 		this.jobmanager.GetGameController().GetPlayer().GetInventory().RemoveItem(this.letter);
 		this.target.SetInteract (null);
 		this.target.SetJob (null);
-		this.target.setAvailable (true);
+		this.target.SetAvailable (true);
 		this.letterPrefab = null;
 		this.letter = null;
 		GameObject.Destroy(this.letterGO);

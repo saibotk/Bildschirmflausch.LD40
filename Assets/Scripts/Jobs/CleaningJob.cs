@@ -33,7 +33,7 @@ public class CleaningJob : Job {
 		dirtSpotsGO = new List<GameObject> ();
 		foreach (GameObject dirtSpot in dirtSpots) {
 			dirtSpotsGO.Add (GameObject.Instantiate (this.dirtSpotPrefab, dirtSpot.transform.position, dirtSpot.transform.rotation));
-			(dirtSpot.GetComponent (typeof(IAvailable)) as IAvailable).setAvailable (false);
+			(dirtSpot.GetComponent (typeof(IAvailable)) as IAvailable).SetAvailable (false);
 		}
 
 
@@ -72,7 +72,7 @@ public class CleaningJob : Job {
 				GameObject.Destroy (dirtGo);
 			}
 			foreach (GameObject t in dirtSpots) {
-				(t.GetComponent (typeof(IAvailable)) as IAvailable).setAvailable (true);
+				(t.GetComponent (typeof(IAvailable)) as IAvailable).SetAvailable (true);
 			}
 		}
 	}
