@@ -33,5 +33,6 @@ public class Inventory {
 		Item tmp = leftHand;
 		this.leftHand = pocket;
 		this.pocket = tmp;
+		Debug.Log ("Swapped Item to " + ((leftHand != null) ? leftHand.name : "null"));
 	}
 }

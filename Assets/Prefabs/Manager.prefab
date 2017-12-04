@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362652855635084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.49, y: 0.35, z: 0.499}
+  m_LocalPosition: {x: -0.47772598, y: -0.6849539, z: 10.545432}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4840174585694910}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebc7ec8991ba3444813ae3b6e7a6450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coffeeTimer_init: 14
+  coffeeTimer_init: 24
   coffeeMeter: {fileID: 1835090682137434}
   coffeeMeter_spriteSheet: {fileID: 2800000, guid: 7355b4852a9f13e489dfedade0deefd8,
     type: 3}
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftBoundary: -1
-  rightBoundary: 3
+  rightBoundary: 4.7
   speed: 30
   NPCTexture: {fileID: 1812543327789284}
 --- !u!212 &212093718323959430

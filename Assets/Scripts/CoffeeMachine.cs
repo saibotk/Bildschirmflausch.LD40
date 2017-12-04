@@ -5,10 +5,9 @@ using UnityEngine;
 public class CoffeeMachine : MonoBehaviour, Interactable {
 	private Inventory cinv = new Inventory ();
 	private Animator canimator;
+	private AudioSource caudio;
 	[SerializeField]
 	private SpriteRenderer sr;
-	[SerializeField]
-	private Sprite fullPot;
 	[SerializeField]
 	private float brewingTime = 2;
 	private float currentBrewingTime;
@@ -18,6 +17,7 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 		canimator = gameObject.GetComponent<Animator> ();
 		canimator.SetFloat ("brewingTimeMultiplier", (1f / brewingTime)); // DOESNT WORK!
 		currentBrewingTime = brewingTime;
+		caudio = gameObject.GetComponentInChildren<AudioSource> ();
 	}
 
 	void Update() {
@@ -27,6 +27,7 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 			} else {
 				if (canimator.GetBool ("brewing")) {
 					canimator.SetBool ("brewing", false);
+					caudio.Stop ();
 				}
 			}
 		}
@@ -42,6 +43,8 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 			canimator.SetFloat ("brewingTimeMultiplier", (1f / brewingTime));
 			canimator.SetBool ("brewing", true);
 			canimator.SetBool ("empty", false);
+			caudio.Play ();
+
 		} else if (currentBrewingTime <= 0 && cinv.coffeePot != null && inv.coffeePot == null ) {
 			cinv.coffeePot.fill(cinv.coffeePot.getMaxFillLevel());
 			inv.coffeePot = cinv.coffeePot;

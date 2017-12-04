@@ -20,7 +20,6 @@ public class WateringJob : Job {
 				delegate (GameObject player) {
 					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is WateringCan) {
-							player.GetComponent<PlayerController> ().GetInventory ().leftHand = null;
 							Debug.Log ("Used Watering Can");
 							target.SetInteract (null);
 							targets.Remove(target);
@@ -41,6 +40,7 @@ public class WateringJob : Job {
 
 	override public void cleanup() {
 		foreach (JobInteraction target in targets) {
+			jobmanager.GetGameController ().MakePlantAvailable (target.gameObject);
 			target.SetInteract (null);
 			target.SetJob (null);
 		}

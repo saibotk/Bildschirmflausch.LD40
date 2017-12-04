@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+	private int gamestate = 0;
 	private Jobmanager jobmanager;
 	[SerializeField]
-	private int jobTimeInterval = 20;
+	private int jobTimeInterval = 40;
 	[SerializeField]
 	private GameObject player;
 	[SerializeField]
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private List<GameObject> questNPCs;
 	private List<GameObject> availableQuestNPCs;
+	private List<GameObject> availableQuestPlants;
 
 	private float lastJob;
 
@@ -37,7 +39,8 @@ public class GameController : MonoBehaviour {
 		lastJob = Time.realtimeSinceStartup;
 		jobmanager = new Jobmanager (this);
 		//coffeeNPCs = new List<GameObject>();
-		availableQuestNPCs = new List<GameObject>(questNPCs);
+		availableQuestNPCs = new List<GameObject> (questNPCs);
+		availableQuestPlants = new List<GameObject> (plants);
 		addRandomJob ();
 	}
 
@@ -59,6 +62,10 @@ public class GameController : MonoBehaviour {
 		availableQuestNPCs.Add(obj);
 	}
 
+	public void MakePlantAvailable(GameObject obj) {
+		availableQuestPlants.Add(obj);
+	}
+
 	public void addRandomJob () {
 		switch (jobTypes[Random.Range (0, jobTypes.Count)]) {
 		case "delivery":
@@ -71,9 +78,13 @@ public class GameController : MonoBehaviour {
 			availableQuestNPCs.RemoveAt(usedNpc);
 			break;
 		case "watering":
-			if (plants.Count == 0) return; // Todo here should the code try to retrieve another job.
-			jobmanager.AddJob (new WateringJob ( plants.ConvertAll<JobInteraction>(x => x.GetComponent<JobInteraction>()).GetRange(Random.Range(0, Mathf.Max(0, plants.Count - 3)), (plants.Count >= 3 ) ? 3 : plants.Count), this.jobmanager) );
+			if (plants.Count == 0 || availableQuestPlants.Count == 0)
+				return; // Todo here should the code try to retrieve another job.
+			int index = Random.Range (0, Mathf.Max (0, plants.Count - 3));
+			int count = (plants.Count >= 3) ? 3 : plants.Count;
+			jobmanager.AddJob (new WateringJob (plants.ConvertAll<JobInteraction> (x => x.GetComponent<JobInteraction> ()).GetRange (index, count), this.jobmanager));
 			lastJob = Time.realtimeSinceStartup;
+			availableQuestPlants.RemoveRange (index, count);
 			Debug.Log ("Job: Waterings!");
 			break;
 				
@@ -81,7 +92,10 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void GameOver() {
-		//Debug.Log ("GAME OVER");
+		if (gamestate != 1) {
+			gamestate = 1;
+			Debug.Log ("----- GAME OVER. YOU CANT BEAT THE BOSS! ----------");
+		}
 	}
 
 	public void CheckCoffeeNPCs() {

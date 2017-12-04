@@ -24,6 +24,7 @@ public class Jobmanager
 				manager.addRandomJob ();
 				manager.addRandomJob ();
 				RemoveJob (job);
+				Debug.Log ("Failed Job " + job.GetTaskName() + ", you too late my son!");
 			}
 		}
 	}

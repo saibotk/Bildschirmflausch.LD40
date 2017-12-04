@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour {
 				interactivesInRange [0].Interact (gameObject);
 			}
 		}
+		if (Input.GetKeyDown ("q")) {
+			inv.Swap ();
+		}
 	}
 
 	public void AddInteractable( Interactable inter ) {
