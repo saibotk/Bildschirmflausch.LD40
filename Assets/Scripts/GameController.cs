@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+    AudioSource gameoversound;
 	private int gamestate = 0;
 	private Jobmanager jobmanager;
 	[SerializeField]
@@ -43,6 +44,8 @@ public class GameController : MonoBehaviour {
 		availableQuestNPCs = new List<GameObject> (questNPCs);
 		availableQuestPlants = new List<GameObject> (plants);
 		addRandomJob ();
+
+        gameoversound = GetComponent<AudioSource>();
 	}
 
 	public PlayerController GetPlayer() {
@@ -97,6 +100,7 @@ public class GameController : MonoBehaviour {
 	private void GameOver() {
 		if (gamestate != 1) {
 			gamestate = 1;
+            gameoversound.Play();
 			Debug.Log ("----- GAME OVER. YOU CANT BEAT THE BOSS! ----------");
 		}
 	}
