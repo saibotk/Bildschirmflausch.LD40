@@ -60,11 +60,6 @@ public class LiftController : MonoBehaviour {
 		return height * levelHeight;
 	}
 
-	// Called when reaching the next floor
-	private void Pling() {
-		// TODO replace with actual sound
-		Debug.Log("Pling!");
-	}
 	/*void OnTriggerStay2D(Collider2D coll)
 	{
 		if (coll.CompareTag ("Player") && !CanPlayerMove ()) {

@@ -7,7 +7,7 @@ public class AudioControl : MonoBehaviour
 
     public AudioMixerSnapshot maintheme;
     public AudioMixerSnapshot lifttheme;
-    public float bpm = 128;
+    public AudioSource elevatorpling;
 
 
     private float m_TransitionIn;
@@ -16,9 +16,8 @@ public class AudioControl : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        m_QuarterNote = 60 / bpm;
-        m_TransitionIn = m_QuarterNote;
-        m_TransitionOut = 2;
+        m_TransitionIn = 1;
+        m_TransitionOut = 1;
 
     }
 
@@ -37,5 +36,9 @@ public class AudioControl : MonoBehaviour
                 maintheme.TransitionTo(m_TransitionOut);
             }
         }
+    }
+
+    void Pling(){
+        elevatorpling.Play();
     }
 }
