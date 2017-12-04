@@ -8,17 +8,7 @@ public class NPC : JobEntitiy {
 	[SerializeField]
 	public bool isQuestNPC;
 
-	private bool available; // If it can execute a job. Ignored if questNPC = false
-
 	public NPC ()	{
-	}
-
-	public void setAvailable(bool available) {
-		this.available = available;
-	}
-
-	public bool isAvailable(){
-		return available;
 	}
 
 	public int getFloor() {

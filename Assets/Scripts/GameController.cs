@@ -83,7 +83,9 @@ public class GameController : MonoBehaviour {
 	}
 		
 	private List<GameObject> getAvailable(List<GameObject> li) {
-		return li.FindAll (x => x.GetComponent(typeof(IAvailable)) != null && (x.GetComponent(typeof(IAvailable)) as IAvailable).isAvailable());
+		return li.FindAll (x => 
+			x.GetComponent(typeof(IAvailable)) != null && 
+			(x.GetComponent(typeof(IAvailable)) as IAvailable).isAvailable());
 	}
 	public void addRandomJob() {
 		addRandomJob (jobTypes [Random.Range (0, jobTypes.Count)]);
