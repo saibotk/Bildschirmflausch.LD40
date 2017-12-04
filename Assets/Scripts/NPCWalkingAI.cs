@@ -64,9 +64,9 @@ public class NPCWalkingAI : MonoBehaviour {
 
 	private void updateSprite() {
 		if (state == 0) {
-			gameObject.GetComponent<Animator> ().SetBool ("walking", false);
+			gameObject.GetComponentInChildren<Animator> ().SetBool ("walking", false);
 		} else {
-			gameObject.GetComponent<Animator> ().SetBool ("walking", true);
+			gameObject.GetComponentInChildren<Animator> ().SetBool ("walking", true);
 			if (state == -1) {
 				NPCTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
 			} else {

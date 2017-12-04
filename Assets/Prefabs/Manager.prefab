@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
-  questNPC: 1
+  isQuestNPC: 0
 --- !u!114 &114918919706196124
 MonoBehaviour:
   m_ObjectHideFlags: 1

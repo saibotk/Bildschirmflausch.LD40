@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
-  questNPC: 0
+  isQuestNPC: 0
 --- !u!212 &212154608501352212
 SpriteRenderer:
   m_ObjectHideFlags: 1
