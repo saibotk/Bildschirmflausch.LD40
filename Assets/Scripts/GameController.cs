@@ -163,4 +163,9 @@ public class GameController : MonoBehaviour {
 		gui.UpdateScore (this.score);
 		Debug.Log ("Score is: " + score);
 	}
+
+    public int getScore()
+    {
+        return score;
+    }
 }
