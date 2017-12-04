@@ -9,5 +9,11 @@ public class Broom : Item {
 		this.job = job;
 	}
 
+	public override bool Equals (object obj)
+	{
+		if (obj is Broom)
+			return (job != null) ? job.Equals (((Broom)obj).job) : base.Equals (obj);
+		return base.Equals (obj);
+	}
 
 }

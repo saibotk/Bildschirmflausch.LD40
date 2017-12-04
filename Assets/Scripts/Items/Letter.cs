@@ -12,7 +12,7 @@ public class Letter : Item {
 	public override bool Equals (object obj)
 	{	
 		if (obj is Letter)
-			return job.Equals (((Letter)obj).job);
+			return (job != null) ? job.Equals (((Letter)obj).job) : base.Equals (obj);
 		return base.Equals (obj);
 	}
 }
