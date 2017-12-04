@@ -24,12 +24,16 @@ public class LiftController : MonoBehaviour {
 	void Update () {
 		if (height < nextFloor) { // move up
 			height += speed;
-			if (height >= nextFloor)
+			if (height >= nextFloor) {
 				height = nextFloor;
+				Pling ();
+			}
 		} else if (height > nextFloor) {
 			height -= speed;
-			if (height <= nextFloor)
+			if (height <= nextFloor) {
 				height = nextFloor;
+				Pling ();
+			}
 		}
 		gameObject.transform.position = new Vector3(gameObject.transform.position.x, height * levelHeight, gameObject.transform.position.z);
 	}
@@ -56,6 +60,11 @@ public class LiftController : MonoBehaviour {
 		return height * levelHeight;
 	}
 
+	// Called when reaching the next floor
+	private void Pling() {
+		// TODO replace with actual sound
+		Debug.Log("Pling!");
+	}
 	/*void OnTriggerStay2D(Collider2D coll)
 	{
 		if (coll.CompareTag ("Player") && !CanPlayerMove ()) {
