@@ -3684,8 +3684,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1910873683
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0bd7ef3bf1aa94ac4a30a1219553b89d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6130,7 +6130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &902319842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6195,7 +6195,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 902319841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 658, y: 236, z: 0}
+  m_LocalPosition: {x: 665.5, y: 236, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1289706230}
@@ -6220,6 +6220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pocket: {fileID: 1656535274}
   left: {fileID: 429617246}
+  right: {fileID: 0}
+  score: {fileID: 0}
   coffeePot: {fileID: 2144292115}
   coffeePotFill: {fileID: 541011657}
 --- !u!1 &910239772 stripped
@@ -6256,8 +6258,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gui: {fileID: 902319846}
-  jobTimeInterval: 60
   player: {fileID: 545958729}
+  jobTimeInterval: 60
+  questNPCs:
+  - {fileID: 1534333544}
+  - {fileID: 1697348269}
+  - {fileID: 210646979}
+  - {fileID: 1828282915}
+  - {fileID: 2130388987}
   coffeeNPCs:
   - {fileID: 1268753334}
   - {fileID: 1975700450}
@@ -6288,12 +6296,6 @@ MonoBehaviour:
   - {fileID: 138711013}
   - {fileID: 1166128631}
   dirtPrefab: {fileID: 1760805179898806, guid: b8df4aec32647e249b3c73544c2bbabc, type: 2}
-  questNPCs:
-  - {fileID: 1534333544}
-  - {fileID: 1697348269}
-  - {fileID: 210646979}
-  - {fileID: 1828282915}
-  - {fileID: 2130388987}
   availableQuestNPCs: []
   availableQuestPlants: []
   availableQuestDirtSpots: []
@@ -6993,7 +6995,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 991409200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -658, y: 0, z: 0}
+  m_LocalPosition: {x: -665.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 828472510}
@@ -9753,7 +9755,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1491259092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -502.3, y: 46.3, z: 0}
+  m_LocalPosition: {x: -509.8, y: 46.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1082870979}
@@ -11925,11 +11927,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1035443057}
     m_Modifications:
-    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: maintheme.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4798271821835782, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.325
@@ -11977,41 +11974,6 @@ Prefab:
       propertyPath: lift
       value: 
       objectReference: {fileID: 1919195211}
-    - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: coffeePotUILevels
-      value: 
-      objectReference: {fileID: 1804951824}
-    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: maintheme.Array.data[0]
-      value: 
-      objectReference: {fileID: 24500006, guid: 2409444387c3fce46a8895cb3a39496a,
-        type: 2}
-    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: maintheme.Array.data[1]
-      value: 
-      objectReference: {fileID: 245131924385441920, guid: 2409444387c3fce46a8895cb3a39496a,
-        type: 2}
-    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: maintheme.Array.data[2]
-      value: 
-      objectReference: {fileID: 245209096600761262, guid: 2409444387c3fce46a8895cb3a39496a,
-        type: 2}
-    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: maintheme.Array.data[3]
-      value: 
-      objectReference: {fileID: 245306581431918312, guid: 2409444387c3fce46a8895cb3a39496a,
-        type: 2}
-    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: maintheme.Array.data[4]
-      value: 
-      objectReference: {fileID: 245106453393161806, guid: 2409444387c3fce46a8895cb3a39496a,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
   m_IsPrefabParent: 0
@@ -16689,7 +16651,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2144292115}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 658, y: 0, z: 0}
+  m_LocalPosition: {x: 665.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1219103597}
