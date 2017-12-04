@@ -10,21 +10,26 @@ public class AudioControl : MonoBehaviour
 
     private float m_TransitionIn;
     private float m_TransitionOut;
-    private float m_QuarterNote;
     private int layerstate;
     private int score;
 
-    private GameObject _GameControler;
+    public GameObject _GameControler;
 
     // Use this for initialization
     void Start() {
-        m_TransitionIn = 1;
+        m_TransitionIn = 0.5f;
         m_TransitionOut = 1;
         layerstate = 0;
         score = 0;
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
+    // Update is called once per frame
+    void Update()
+    {
+        AddLayer();
+    }
+
+        void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Lift")) {
             if (col.isTrigger) {
                 lifttheme.TransitionTo(m_TransitionIn);
@@ -42,11 +47,11 @@ public class AudioControl : MonoBehaviour
 
     void AddLayer()
     {
-        if((score + 35) == _GameControler.GetComponent<GameController>().getScore() )
+        if(layerstate < 4 && (score + 35) <= _GameControler.GetComponent<GameController>().getScore())
         {
             score = _GameControler.GetComponent<GameController>().getScore();
-            layerstate++;
-            maintheme[layerstate].TransitionTo(50);
+            layerstate++;   
+            maintheme[layerstate].TransitionTo(7);
         }
     }
 
