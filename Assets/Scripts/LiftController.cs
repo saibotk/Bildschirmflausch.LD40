@@ -7,9 +7,7 @@ public class LiftController : MonoBehaviour {
 	[SerializeField]
 	private float speed;
 	[SerializeField]
-	private int floorCount;
-	[SerializeField]
-	private int minFloor;
+	private GameController controller;
 	[SerializeField]
 	public GameObject player;
 	private float height = 0;
@@ -45,15 +43,15 @@ public class LiftController : MonoBehaviour {
 	public void MoveUp() {
 		if (nextFloor - height < 0.1)
 			nextFloor++;
-		if (nextFloor > floorCount)
-			nextFloor = floorCount;
+		if (nextFloor > controller.GetFloor())
+			nextFloor = controller.GetFloor();
 	}
 
 	public void MoveDown() {
 		if (height - nextFloor < 0.1)
 			nextFloor--;
-		if (nextFloor < minFloor)
-			nextFloor = minFloor;
+		if (nextFloor < 0)
+			nextFloor = 0;
 	}
 
 	public bool CanPlayerMove() {

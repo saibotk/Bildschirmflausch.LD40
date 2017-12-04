@@ -6299,7 +6299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &902319842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14446,7 +14446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelHeight: 1.1
   speed: 0.05
-  floorCount: 3
+  floorCount: 0
   minFloor: 0
   player: {fileID: 545958729}
 --- !u!61 &1919195215

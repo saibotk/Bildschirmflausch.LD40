@@ -4,5 +4,6 @@ using UnityEngine;
 
 interface IAvailable {
 	void SetAvailable (bool b);
+	/** @param floor The current level of the player */
 	bool IsAvailable(int floor);
 }
