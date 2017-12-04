@@ -41,7 +41,8 @@ GameObject:
   - component: {fileID: 61129779038627964}
   - component: {fileID: 61139397344364224}
   - component: {fileID: 61777786253595440}
-  - component: {fileID: 81954161928011714}
+  - component: {fileID: 81845010724641844}
+  - component: {fileID: 114782357041478034}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -171,7 +172,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27, y: 0.3579835}
   m_EdgeRadius: 0
---- !u!81 &81954161928011714
+--- !u!81 &81845010724641844
 AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -211,6 +212,22 @@ MonoBehaviour:
   gui: {fileID: 0}
   lift: {fileID: 0}
   inLift: 0
+--- !u!114 &114782357041478034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661212023533312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc86338678a17ba459052e4fc9f399d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maintheme: {fileID: 24500006, guid: 2409444387c3fce46a8895cb3a39496a, type: 2}
+  lifttheme: {fileID: 245042827025066818, guid: 2409444387c3fce46a8895cb3a39496a,
+    type: 2}
+  gameover: {fileID: 245289894540324194, guid: 2409444387c3fce46a8895cb3a39496a, type: 2}
+  bpm: 128
 --- !u!212 &212640330521930672
 SpriteRenderer:
   m_ObjectHideFlags: 1
