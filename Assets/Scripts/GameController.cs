@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour {
 			(floor < 3 && score >= 200)){
 			floor++;
 			Debug.Log ("Unlocked floor " + floor);
-			// TODO play sound
+			player.GetComponent<AudioControl> ().AddLayer (floor);
 			// TODO notification
 		}
 	}

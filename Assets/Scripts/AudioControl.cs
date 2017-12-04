@@ -12,9 +12,8 @@ public class AudioControl : MonoBehaviour
 
     private float m_TransitionIn;
     private float m_TransitionOut;
-    private int layerstate;
+	private int floor = 0;
     private bool endstate;
-    private int floor;
 
     public GameObject _GameControler;
 
@@ -22,15 +21,12 @@ public class AudioControl : MonoBehaviour
     void Start() {
         m_TransitionIn = 0.5f;
         m_TransitionOut = 1;
-        layerstate = 1;
-        floor = 0;
         endstate = false;
+		AddLayer (0);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        AddLayer();
+    void Update() {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -44,7 +40,7 @@ public class AudioControl : MonoBehaviour
     void OnTriggerExit2D(Collider2D col) {
         if (col.CompareTag("Lift") && endstate == false) {
             if (col.isTrigger) {
-                maintheme[layerstate].TransitionTo(m_TransitionOut);
+				maintheme[floor].TransitionTo(m_TransitionOut);
             }
         }
     }
@@ -57,13 +53,14 @@ public class AudioControl : MonoBehaviour
         }    
     }
 
-    void AddLayer() {
-        if(layerstate < 4 && floor < _GameControler.GetComponent<GameController>().GetFloor()) {
-            floor = _GameControler.GetComponent<GameController>().GetFloor();
-            layerstate++;   
-            maintheme[layerstate].TransitionTo(7);
-        }
+	public void AddLayer(int floor) {
+		if (floor > 0)
+			maintheme[floor+1].TransitionTo(7);
+		else
+			maintheme[floor].TransitionTo(7);
+		this.floor = floor;
     }
+
     /* SFX List
      * 0 : Elevator
        1 : Coffe Danger
