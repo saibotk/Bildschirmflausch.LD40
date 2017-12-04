@@ -45,4 +45,8 @@ public class GameUI : MonoBehaviour {
 	public void showGameOver() {
 		gameOverPanel.SetActive (true);
 	}
+
+	public void UpdateJobListUI(List<Job> jobList) {
+
+	}
 }
