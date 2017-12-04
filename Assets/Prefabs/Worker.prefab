@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4745619587778702}
   - component: {fileID: 212461172755957190}
   - component: {fileID: 114703396628219164}
+  - component: {fileID: 95536130216649854}
   m_Layer: 0
   m_Name: Texture
   m_TagString: Untagged
@@ -146,6 +147,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95536130216649854
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348086939805166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7ade04708f1b284ab3ccdaba821f05b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114060289822648912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,9 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5436f9d4b77a45e0b07c8baecf4b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBoundary: -1
-  rightBoundary: 4.7
   speed: 30
+  canIdle: 0
   NPCTexture: {fileID: 1348086939805166}
 --- !u!114 &114524321074359702
 MonoBehaviour:

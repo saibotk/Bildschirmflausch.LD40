@@ -10,6 +10,8 @@ public class NPCWalkingAI : MonoBehaviour {
 	private float rightBoundary = 2.5f;
 	[SerializeField]
 	private float speed = 30; 
+	[SerializeField]
+	private bool canIdle = true;
 	// state -1: moving left, state 0 : idle , state 1: moving right
 	private int state = 0;
 	[SerializeField]
@@ -49,6 +51,8 @@ public class NPCWalkingAI : MonoBehaviour {
 	// change state between walking and standing
 	private void changeState() {
 		state = Random.Range (-1, 2);
+		if (state == 0 && !canIdle)
+			state = Random.Range (0, 1) * 2 - 1;
 		if (state == 0) {
 			idleTime = (float) Random.Range (5, 10);
 			updateSprite ();
