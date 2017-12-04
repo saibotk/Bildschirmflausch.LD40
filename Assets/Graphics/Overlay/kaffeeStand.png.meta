@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d586591d4cafc034088b643445ef9ba9
-timeCreated: 1512393772
+timeCreated: 1512401843
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: kaffeeStand_3
     21300008: kaffeeStand_4
     21300010: kaffeeStand_5
+    21300012: kaffeeStand_6
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -176,6 +177,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 60
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: kaffeeStand_6
+      rect:
+        serializedVersion: 2
+        x: 72
         y: 0
         width: 12
         height: 12
