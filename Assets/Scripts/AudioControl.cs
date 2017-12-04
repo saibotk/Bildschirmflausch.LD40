@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 
 public class AudioControl : MonoBehaviour
 {
-    public AudioMixerSnapshot maintheme;
+    public AudioMixerSnapshot[] maintheme;
     public AudioMixerSnapshot lifttheme;
     public AudioSource elevatorpling;
 
@@ -11,11 +11,13 @@ public class AudioControl : MonoBehaviour
     private float m_TransitionIn;
     private float m_TransitionOut;
     private float m_QuarterNote;
+    private int layerstate;
 
     // Use this for initialization
     void Start() {
         m_TransitionIn = 1;
         m_TransitionOut = 1;
+        layerstate = 0;
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -29,7 +31,7 @@ public class AudioControl : MonoBehaviour
     void OnTriggerExit2D(Collider2D col) {
         if (col.CompareTag("Lift")) {
             if (col.isTrigger) {
-                maintheme.TransitionTo(m_TransitionOut);
+                maintheme[layerstate].TransitionTo(m_TransitionOut);
             }
         }
     }
