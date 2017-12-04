@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
@@ -46,8 +47,9 @@ public class GameController : MonoBehaviour {
 	public List<GameObject> availableQuestNPCs;
 	public List<GameObject> availableQuestPlants;
 	public List<Transform> availableQuestDirtSpots;
+    public AudioMixerSnapshot gameover;
 
-	private float lastJob;
+    private float lastJob;
 
 	private List<string> jobTypes = new List<string>();
 
@@ -128,6 +130,7 @@ public class GameController : MonoBehaviour {
 	private void GameOver() {
 		if (gamestate != 1) {
 			gamestate = 1;
+            gameover.TransitionTo(0f);
             gameoversound.Play();
 			Debug.Log ("----- GAME OVER. YOU CANT BEAT THE BOSS! ----------");
 		}

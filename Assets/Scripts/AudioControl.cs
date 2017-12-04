@@ -7,7 +7,6 @@ public class AudioControl : MonoBehaviour
 
     public AudioMixerSnapshot maintheme;
     public AudioMixerSnapshot lifttheme;
-    public AudioMixerSnapshot gameover;
     public float bpm = 128;
 
 
