@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour {
 		// JOB TYPES INIT
 		jobTypes.Add("delivery");
 		jobTypes.Add ("watering");
+		jobTypes.Add ("cleaning");
 
 		lastJob = Time.realtimeSinceStartup;
 		jobmanager = new Jobmanager (this);
@@ -87,7 +88,9 @@ public class GameController : MonoBehaviour {
 			availableQuestPlants.RemoveRange (index, count);
 			Debug.Log ("Job: Waterings!");
 			break;
-				
+		case "cleaning":
+			
+			break;
 		}
 	}
 
