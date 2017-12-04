@@ -15,7 +15,7 @@ public class WateringJob : Job {
 	override public void init() {
 		List<JobEntitiy> tmptargets = new List<JobEntitiy> (targets);
 		foreach (JobEntitiy target in tmptargets) {
-			target.setAvailable (false);
+			target.SetAvailable (false);
 			target.SetJob (this);
 			target.SetInteract (
 				delegate (GameObject player) {
@@ -41,10 +41,9 @@ public class WateringJob : Job {
 
 	override public void cleanup() {
 		foreach (JobEntitiy target in targets) {
-			target.setAvailable (true);
 			target.SetInteract (null);
 			target.SetJob (null);
-			target.setAvailable (true);
+			target.SetAvailable (true);
 		}
 		this.targets = null;
 		this.jobmanager = null;

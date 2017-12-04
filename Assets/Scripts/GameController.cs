@@ -91,6 +91,7 @@ public class GameController : MonoBehaviour {
 			(x.GetComponent (typeof(IAvailable)) as IAvailable).isAvailable ());
 		}
 	}
+
 	public void addRandomJob() {
 		addRandomJob (jobTypes);
 	}
@@ -178,11 +179,11 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("Score is: " + score);
 	}
 
-    public int getScore()
-
-    {
-
+    public int getScore() {
         return score;
-
     }
+
+	public int GetFloor() {
+		return floor;
+	}
 }

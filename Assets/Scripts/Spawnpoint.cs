@@ -5,12 +5,18 @@ using UnityEngine;
 public class Spawnpoint : MonoBehaviour, IAvailable {
 	private bool available = true;
 
-	public void setAvailable (bool b){
+	[SerializeField]
+	private int floor = 0;
+
+	public void SetAvailable(bool b) {
 		this.available = b;
 	}
 
-	public bool isAvailable() {
-		return this.available;
+	public bool IsAvailable(int floor) {
+		return available && GetFloor () <= floor;
+	}
+
+	public int GetFloor() {
+		return floor;
 	}
 }
-
