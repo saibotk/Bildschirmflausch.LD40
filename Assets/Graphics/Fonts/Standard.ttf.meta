@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3d9bc936d777a4377b12fedf9de8d958
-timeCreated: 1512243151
+guid: 603228670876d8f438e0ff2bf1a2093e
+timeCreated: 1512417727
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,12 +10,12 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Joystix
+  fontName: Standard
   fontNames:
-  - Joystix
+  - Standard
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 2
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   userData: 
   assetBundleName: 
