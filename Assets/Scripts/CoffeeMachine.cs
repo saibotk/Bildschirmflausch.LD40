@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoffeeMachine : MonoBehaviour, Interactable {
-	private Inventory cinv = new Inventory ();
+	private CoffeePot cpot = null;
 	private Animator canimator;
 	private AudioSource caudio;
 	[SerializeField]
@@ -21,7 +21,7 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 	}
 
 	void Update() {
-		if (cinv.coffeePot != null) {
+		if (cpot != null) {
 			if (currentBrewingTime > 0) {
 				currentBrewingTime -= Time.deltaTime;
 			} else {
@@ -36,8 +36,8 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 	// Define what to do when a player interacts with the coffeemachine
 	public void Interact( GameObject player ) {
 		Inventory inv = player.GetComponent<PlayerController> ().GetInventory ();
-		if (inv.coffeePot != null && cinv.coffeePot == null) {
-			cinv.coffeePot = inv.coffeePot;
+		if (inv.coffeePot != null && cpot == null) {
+			cpot = inv.coffeePot;
 			inv.coffeePot = null;
 			currentBrewingTime = brewingTime;
 			canimator.SetFloat ("brewingTimeMultiplier", (1f / brewingTime));
@@ -45,10 +45,10 @@ public class CoffeeMachine : MonoBehaviour, Interactable {
 			canimator.SetBool ("empty", false);
 			caudio.Play ();
 
-		} else if (currentBrewingTime <= 0 && cinv.coffeePot != null && inv.coffeePot == null ) {
-			cinv.coffeePot.fill(cinv.coffeePot.getMaxFillLevel());
-			inv.coffeePot = cinv.coffeePot;
-			cinv.coffeePot = null;
+		} else if (currentBrewingTime <= 0 && cpot != null && inv.coffeePot == null ) {
+			cpot.fill(cpot.getMaxFillLevel());
+			inv.coffeePot = cpot;
+			cpot = null;
 			canimator.SetBool ("empty", true);
 		}
 

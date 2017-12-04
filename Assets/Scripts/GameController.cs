@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+	[SerializeField]
+	private GameUI gui;
 
     private AudioSource gameoversound;
 	private int gamestate = 0;

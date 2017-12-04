@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private GameObject playerTexture;
 	[SerializeField]
+	private GameUI gui;
+	[SerializeField]
 	private GameObject lift;
 	private int movementState; // -1 = left, 0 = idle, 1 = right
 	private Inventory inv;
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		movementState =  0;
-		inv = new Inventory ();
+		inv = new Inventory (gui);
 		inv.coffeePot = new CoffeePot (0);
 
 		animator = GetComponentInChildren<Animator>();

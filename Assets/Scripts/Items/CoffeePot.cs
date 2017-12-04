@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 
 public class CoffeePot : Item {
@@ -7,7 +8,7 @@ public class CoffeePot : Item {
 	private float fillLevel;
 	private float maxFillLevel = 6;
 
-	public CoffeePot (float level) : base ("Coffee Pot") {
+	public CoffeePot (float level) : base ("Coffee Pot", null) {
 		this.fillLevel = level;
 	}
 
