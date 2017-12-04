@@ -11,7 +11,7 @@ public class RandomSprite : MonoBehaviour {
 
 	void Update () {
 		if (!initialized) {
-			GetComponent<Animator> ().Play ((Random.Range(0, 1) > 0 ? "female" : "male")+ Random.Range (0, 11));
+			GetComponent<Animator> ().Play ((Random.Range(0, 2) > 0 ? "female" : "male") + Random.Range (0, 12));
 			initialized = true;
 		}
 	}
