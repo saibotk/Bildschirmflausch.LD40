@@ -6,7 +6,13 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private int movementSpeed = 2;
 	[SerializeField]
+	private GameObject graphics;
+
+	[SerializeField]
 	private GameObject playerTexture;
+	[SerializeField]
+	private GameObject rightHandTexture;
+
 	[SerializeField]
 	private GameUI gui;
 	[SerializeField]
@@ -47,6 +53,9 @@ public class PlayerController : MonoBehaviour {
 						iaclose = ia;
 				}
 				(iaclose.GetComponentInChildren (typeof(Interactable)) as Interactable).Interact (gameObject);
+
+				// TODO right position?
+				animator.SetBool("Coffee", (inv.coffeePot == null) ? false : true);
 			}
 		}
 		if (Input.GetKeyDown ("q")) {
@@ -68,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != 1) {
 					movementState = 1;
-					playerTexture.transform.eulerAngles = new Vector3 (0, 180, 0);
+					graphics.transform.eulerAngles = new Vector3 (0, 180, 0);
 				}
 			}
 
@@ -76,7 +85,7 @@ public class PlayerController : MonoBehaviour {
 				gameObject.transform.Translate (new Vector3 (-1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != -1) {
 					movementState = -1;
-					playerTexture.transform.eulerAngles = new Vector3 (0, 0, 0);
+					graphics.transform.eulerAngles = new Vector3 (0, 0, 0);
 				}
 			}
 

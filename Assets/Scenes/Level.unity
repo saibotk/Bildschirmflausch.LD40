@@ -3638,12 +3638,12 @@ SpriteRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 1661212023533312, guid: 249c8b19f43afaa448bbb36d580a6bfa,
     type: 2}
-  m_PrefabInternal: {fileID: 1700626896}
+  m_PrefabInternal: {fileID: 1727369496}
 --- !u!4 &545958734 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4798271821835782, guid: 249c8b19f43afaa448bbb36d580a6bfa,
     type: 2}
-  m_PrefabInternal: {fileID: 1700626896}
+  m_PrefabInternal: {fileID: 1727369496}
 --- !u!1 &548844774
 GameObject:
   m_ObjectHideFlags: 0
@@ -11681,7 +11681,7 @@ Transform:
   m_PrefabParentObject: {fileID: 4588094816712962, guid: 72638bc23bf45064fab9c9b19c898191,
     type: 2}
   m_PrefabInternal: {fileID: 1698126719}
---- !u!1001 &1700626896
+--- !u!1001 &1727369496
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11690,7 +11690,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4798271821835782, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.697726
+      value: -2.325
       objectReference: {fileID: 0}
     - target: {fileID: 4798271821835782, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
       propertyPath: m_LocalPosition.y

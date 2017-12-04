@@ -64,6 +64,7 @@ public class CleaningJob : Job {
 
 	override public void cleanup() {
 		GameObject.Destroy (this.broomGO);
+		this.manager.GetGameController ().GetPlayer ().GetInventory ().RemoveItem (new Broom (this));
 		if (dirtSpotsGO != null && dirtSpotsGO.Count != 0) {
 			List<GameObject> tmpDirtGO = new List<GameObject> (dirtSpotsGO);
 			foreach (GameObject dirtGo in tmpDirtGO) {
