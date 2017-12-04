@@ -17,7 +17,8 @@ public abstract class Job : IJob
 		this.jobStartTime = Time.realtimeSinceStartup;
 		this.jobTime = jobTime;
 		this.scoreValue = scoreValue;
-		this.jobColor = new Color (Random.Range (0, 256), Random.Range (0, 256), Random.Range (0, 256), 255);
+		this.jobColor = new Color (Random.Range (0.0F, 1.0F), Random.Range (0.0F, 1.0F), Random.Range (0.0F, 1.0F), 1);
+		Debug.Log (this.jobColor);
 	}
 
 	// Getter
