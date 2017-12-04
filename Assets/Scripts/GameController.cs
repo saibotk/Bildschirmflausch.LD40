@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-	private AudioSource gameoversound;
 	private int gamestate = 0;
 	private Jobmanager jobmanager;
 
@@ -50,7 +49,6 @@ public class GameController : MonoBehaviour {
 
 	private int score;
 	[Header("Don't touch")]
-    public AudioMixerSnapshot gameover;
 
 	private List<string> jobTypes = new List<string>();
 
@@ -68,8 +66,6 @@ public class GameController : MonoBehaviour {
 		jobmanager = new Jobmanager (this);
 
 		addRandomJob ();
-
-        gameoversound = GetComponent<AudioSource>();
 	}
 		
 	// Update is called once per frame
@@ -155,8 +151,7 @@ public class GameController : MonoBehaviour {
 	private void GameOver() {
 		if (gamestate != 1) {
 			gamestate = 1;
-            gameover.TransitionTo(0f);
-            gameoversound.Play();
+            player.GetComponent<AudioControl>().gameoverplay();
 			Debug.Log ("----- GAME OVER. YOU CANT BEAT THE BOSS! ----------");
 		}
 	}
@@ -168,8 +163,11 @@ public class GameController : MonoBehaviour {
 				emptyCofeeCounter++;
 			}
 		}
-		if (emptyCofeeCounter >= 3) {
-			GameOver ();
+        if (emptyCofeeCounter == 2) {
+            player.GetComponent<AudioControl>().sfxplay(1);
+        }
+        if (emptyCofeeCounter >= 3) {
+		    GameOver ();
 		}
 	}
 

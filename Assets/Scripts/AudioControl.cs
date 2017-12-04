@@ -5,13 +5,16 @@ public class AudioControl : MonoBehaviour
 {
     public AudioMixerSnapshot[] maintheme;
     public AudioMixerSnapshot lifttheme;
-    public AudioSource elevatorpling;
+    public AudioMixerSnapshot end;
+    public AudioSource gameovers;
+    public AudioSource[] soundeffects;
 
 
     private float m_TransitionIn;
     private float m_TransitionOut;
     private int layerstate;
-    private int score;
+    private bool endstate;
+    private int floor;
 
     public GameObject _GameControler;
 
@@ -19,8 +22,9 @@ public class AudioControl : MonoBehaviour
     void Start() {
         m_TransitionIn = 0.5f;
         m_TransitionOut = 1;
-        layerstate = 0;
-        score = 0;
+        layerstate = 1;
+        floor = 0;
+        endstate = false;
     }
 
     // Update is called once per frame
@@ -29,8 +33,8 @@ public class AudioControl : MonoBehaviour
         AddLayer();
     }
 
-        void OnTriggerEnter2D(Collider2D col) {
-        if (col.CompareTag("Lift")) {
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.CompareTag("Lift") && endstate == false) {
             if (col.isTrigger) {
                 lifttheme.TransitionTo(m_TransitionIn);
             }
@@ -38,24 +42,35 @@ public class AudioControl : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D col) {
-        if (col.CompareTag("Lift")) {
+        if (col.CompareTag("Lift") && endstate == false) {
             if (col.isTrigger) {
                 maintheme[layerstate].TransitionTo(m_TransitionOut);
             }
         }
     }
 
-    void AddLayer()
-    {
-        if(layerstate < 4 && (score + 35) <= _GameControler.GetComponent<GameController>().getScore())
-        {
-            score = _GameControler.GetComponent<GameController>().getScore();
+    public void gameoverplay() {
+        if (endstate == false) {
+            end.TransitionTo(0f);
+            gameovers.Play();
+            endstate = true;
+        }    
+    }
+
+    void AddLayer() {
+        if(layerstate < 4 && floor < _GameControler.GetComponent<GameController>().GetFloor()) {
+            floor = _GameControler.GetComponent<GameController>().GetFloor();
             layerstate++;   
             maintheme[layerstate].TransitionTo(7);
         }
     }
-
-	public void Pling(){
-        elevatorpling.Play();
+    /* SFX List
+     * 0 : Elevator
+       1 : Coffe Danger
+       2 : Job accomplished
+       3 : Job failed */
+	public void sfxplay(int sound){
+        if(endstate == false)
+            soundeffects[sound].Play();
     }
 }

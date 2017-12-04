@@ -30,13 +30,13 @@ public class LiftController : MonoBehaviour {
 			height += speed;
 			if (height >= nextFloor) {
 				height = nextFloor;
-				player.GetComponent<AudioControl> ().Pling ();
+				player.GetComponent<AudioControl> ().sfxplay(0);
 			}
 		} else if (height > nextFloor) {
 			height -= speed;
 			if (height <= nextFloor) {
 				height = nextFloor;
-				player.GetComponent<AudioControl> ().Pling ();
+				player.GetComponent<AudioControl> ().sfxplay (0);
 			}
 		}
 		gameObject.transform.position = new Vector3(gameObject.transform.position.x, height * levelHeight, gameObject.transform.position.z);
