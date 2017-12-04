@@ -5,10 +5,13 @@ using UnityEngine;
 public class WateringJob : Job {
 	private List<JobEntitiy> targets;
 	private Jobmanager jobmanager;
+	private GameObject indicatorPrefab;
 
-	public WateringJob(List<JobEntitiy> targets, Jobmanager manager) : base ("Watering the plants", "Water em all!", 30f, 50) {
+
+	public WateringJob(List<JobEntitiy> targets, Jobmanager manager, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 30f, 50) {
 		this.targets = targets;
 		this.jobmanager = manager;
+		this.indicatorPrefab = indicatorPrefab;
 		init ();
 	}
 
@@ -17,12 +20,14 @@ public class WateringJob : Job {
 		foreach (JobEntitiy target in tmptargets) {
 			target.SetAvailable (false);
 			target.SetJob (this);
+			target.SetIndicator(GameObject.Instantiate (indicatorPrefab, target.transform));
 			target.SetInteract (
 				delegate (GameObject player) {
 					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is WateringCan) {
 							Debug.Log ("Used Watering Can");
 							target.SetInteract (null);
+							GameObject.Destroy(target.GetIndicator());
 							targets.Remove(target);
 							if(this.targets.Count == 0) {
 								this.finishJob ();
@@ -44,7 +49,9 @@ public class WateringJob : Job {
 			target.SetInteract (null);
 			target.SetJob (null);
 			target.SetAvailable (true);
+			GameObject.Destroy (target.GetIndicator ());
 		}
+		this.indicatorPrefab = null;
 		this.targets = null;
 		this.jobmanager = null;
 	}

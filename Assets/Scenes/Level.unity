@@ -6429,6 +6429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gui: {fileID: 902319846}
   player: {fileID: 545958729}
+  indicator: {fileID: 1877144377626026, guid: a2ef72f979564584dafc346fd0e75506, type: 2}
   questNPCs:
   - {fileID: 1534333544}
   - {fileID: 1697348269}
