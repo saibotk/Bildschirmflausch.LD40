@@ -8,6 +8,7 @@ public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
 	[SerializeField]
 	private int floor = 0;
 	private Job job = null;
+	private GameObject indicator;
 	private Action<GameObject> interactMethod = null;
 	private bool available = true;
 
@@ -23,6 +24,14 @@ public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
 
 	public void SetJob(Job job) {
 		this.job = job;
+	}
+
+	public void SetIndicator(GameObject g) {
+		this.indicator = g;
+	}
+
+	public GameObject GetIndicator() {
+		return this.indicator;
 	}
 
 	public void SetAvailable(bool b) {

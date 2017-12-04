@@ -6,12 +6,14 @@ public class DeliveryJob : Job {
 	private NPC target;
 	private Transform interactableSpawnpoint;
 	private GameObject letterPrefab;
+	private GameObject indicatorPrefab;
 	private GameObject letterGO;
 	private Jobmanager jobmanager;
 	private Letter letter;
 
-	public DeliveryJob(NPC target, Transform transform, GameObject prefab, Jobmanager manager) : base ("Delivery", "Deliver the item!", 30f, 30) {
+	public DeliveryJob(NPC target, Transform transform, GameObject prefab, Jobmanager manager, GameObject indicatorPrefab) : base ("Delivery", "Deliver the item!", 30f, 30) {
 		this.target = target;
+		this.indicatorPrefab = indicatorPrefab;
 		this.target.SetAvailable (false);
 		this.letter = new Letter(this);
 		this.interactableSpawnpoint = transform;
@@ -32,6 +34,8 @@ public class DeliveryJob : Job {
 			}
 		);
 
+		this.target.SetIndicator(GameObject.Instantiate (indicatorPrefab, this.target.transform));
+		this.target.GetIndicator ().transform.localScale = new Vector3 (0.5f, 0.5f, 0);
 		this.target.SetJob(this);
 		this.target.SetInteract (
 			delegate (GameObject player) {
@@ -57,6 +61,8 @@ public class DeliveryJob : Job {
 		this.target.SetInteract (null);
 		this.target.SetJob (null);
 		this.target.SetAvailable (true);
+		this.indicatorPrefab = null;
+		GameObject.Destroy (this.target.GetIndicator());
 		this.letterPrefab = null;
 		this.letter = null;
 		GameObject.Destroy(this.letterGO);

@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour {
 
 	[Header("Jobs")]
 	[SerializeField]
+	private GameObject indicator;
+	[SerializeField]
 	private List<GameObject> questNPCs; // TODO merge both into one seperate by isQuestNPC()
 	[SerializeField]
 	private List<GameObject> coffeeNPCs;
@@ -80,7 +82,7 @@ public class GameController : MonoBehaviour {
 			(floor < 3 && score >= 200)){
 			floor++;
 			Debug.Log ("Unlocked floor " + floor);
-			// TODO play sound
+			player.GetComponent<AudioControl> ().AddLayer (floor);
 			// TODO notification
 		}
 	}
@@ -123,7 +125,7 @@ public class GameController : MonoBehaviour {
 
 				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
 				if (npc.GetComponent<NPC> ().GetFloor() <= floor) {
-					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager));
+					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager, this.indicator));
 					Debug.Log ("Job: Delivery!");
 				}
 				break;
@@ -140,7 +142,7 @@ public class GameController : MonoBehaviour {
 				int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));
 				int count = (aPlants.Count >= 3) ? 3 : aPlants.Count;
 				List<GameObject> cAPlants = new List<GameObject> (aPlants);
-				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager));
+				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager, this.indicator));
 				Debug.Log ("Job: Waterings!");
 				break;
 			case "cleaning":
