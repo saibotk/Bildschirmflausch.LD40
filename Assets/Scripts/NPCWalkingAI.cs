@@ -19,7 +19,7 @@ public class NPCWalkingAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		updateSprite ();
+		changeState ();
 	}
 	
 	// Update is called once per frame

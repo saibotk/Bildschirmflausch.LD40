@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4745619587778702}
   - component: {fileID: 212461172755957190}
-  - component: {fileID: 114703396628219164}
   - component: {fileID: 95536130216649854}
+  - component: {fileID: 114703396628219164}
   m_Layer: 0
   m_Name: Texture
   m_TagString: Untagged
