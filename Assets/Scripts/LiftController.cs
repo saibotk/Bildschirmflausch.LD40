@@ -8,6 +8,8 @@ public class LiftController : MonoBehaviour {
 	private float speed;
 	[SerializeField]
 	private int floorCount;
+	[SerializeField]
+	public GameObject player;
 	private float height = 0;
 	private int nextFloor;
 
@@ -26,13 +28,13 @@ public class LiftController : MonoBehaviour {
 			height += speed;
 			if (height >= nextFloor) {
 				height = nextFloor;
-				Pling ();
+				player.GetComponent<AudioControl> ().Pling ();
 			}
 		} else if (height > nextFloor) {
 			height -= speed;
 			if (height <= nextFloor) {
 				height = nextFloor;
-				Pling ();
+				player.GetComponent<AudioControl> ().Pling ();
 			}
 		}
 		gameObject.transform.position = new Vector3(gameObject.transform.position.x, height * levelHeight, gameObject.transform.position.z);

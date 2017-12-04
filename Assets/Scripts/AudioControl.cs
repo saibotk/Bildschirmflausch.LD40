@@ -3,8 +3,6 @@ using UnityEngine.Audio;
 
 public class AudioControl : MonoBehaviour
 {
-
-
     public AudioMixerSnapshot maintheme;
     public AudioMixerSnapshot lifttheme;
     public AudioSource elevatorpling;
@@ -18,11 +16,9 @@ public class AudioControl : MonoBehaviour
     void Start() {
         m_TransitionIn = 1;
         m_TransitionOut = 1;
-
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-
         if (col.CompareTag("Lift")) {
             if (col.isTrigger) {
                 lifttheme.TransitionTo(m_TransitionIn);
@@ -38,7 +34,7 @@ public class AudioControl : MonoBehaviour
         }
     }
 
-    void Pling(){
+	public void Pling(){
         elevatorpling.Play();
     }
 }
