@@ -21,10 +21,10 @@ public class Jobmanager
 		List<Job> tmpJobList = new List<Job> (jobList);
 		foreach (Job job in tmpJobList) {
 			if (Time.realtimeSinceStartup >= (job.GetJobStartTime () + job.GetJobTime ())) {
-				manager.addRandomJob ();
-				manager.addRandomJob ();
-				RemoveJob (job);
 				Debug.Log ("Failed Job " + job.GetTaskName() + ", you too late my son!");
+				RemoveJob (job);
+				manager.addRandomJob ();
+				manager.addRandomJob ();
 			}
 		}
 	}

@@ -7,15 +7,15 @@ public class CameraController : MonoBehaviour {
 	public GameObject player;
 	private Vector3 offset;
 
-	private BoxCollider2D collider;
+	//private BoxCollider2D ccollider;
 
 	void Start () {
 		offset = transform.position;// - player.transform.position;
-		collider = GetComponent<BoxCollider2D>();
+		//ccollider = GetComponent<BoxCollider2D>();
 	}
 
 	void LateUpdate () {
-		Bounds levelBounds = collider.bounds;
+		//Bounds levelBounds = ccollider.bounds;
 
 		var mapX = 100.0;
 		var mapY = 100.0;

@@ -83,25 +83,35 @@ public class GameController : MonoBehaviour {
 	}
 		
 	private List<GameObject> getAvailable(List<GameObject> li) {
-		return li.FindAll (x => 
-			x.GetComponent(typeof(IAvailable)) != null && 
-			(x.GetComponent(typeof(IAvailable)) as IAvailable).isAvailable());
+		if (li.Count == 0) {
+			return li;
+		} else {
+			return li.FindAll (x => 
+			x.GetComponent (typeof(IAvailable)) != null &&
+			(x.GetComponent (typeof(IAvailable)) as IAvailable).isAvailable ());
+		}
 	}
 	public void addRandomJob() {
-		addRandomJob (jobTypes [Random.Range (0, jobTypes.Count)]);
+		addRandomJob (jobTypes);
 	}
 
-	public void addRandomJob (string s) {
-		switch (s) {
+	public void addRandomJob (List<string> rjobtypes) {
+		if (rjobtypes.Count == 0)
+			return;
+		string jt = rjobtypes [Random.Range (0, rjobtypes.Count)];
+		switch (jt) {
 			case "delivery":
 				List<GameObject> aNPCs = getAvailable (questNPCs);
 				if(aNPCs.Count == 0) {
-					List<string> leftJobTypes = new List<string> (jobTypes);
-					leftJobTypes.Remove (s);
-					addRandomJob(leftJobTypes [Random.Range (0, leftJobTypes.Count)]);
+					List<string> leftJobTypes = new List<string> (rjobtypes);
+					leftJobTypes.Remove (jt);
+					if (leftJobTypes.Count == 0)
+						return;
+					addRandomJob(leftJobTypes);
+					return;
 				} 
 
-				GameObject npc = aNPCs [Random.Range (0, questNPCs.Count)];
+				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
 				if (npc.GetComponent<NPC> ().getFloor() <= floor) {
 					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager));
 					Debug.Log ("Job: Delivery!");
@@ -110,9 +120,12 @@ public class GameController : MonoBehaviour {
 			case "watering":
 				List<GameObject> aPlants = getAvailable (plants);	
 				if (plants.Count == 0 || aPlants.Count == 0) {
-					List<string> leftJobTypes = new List<string> (jobTypes);
-					leftJobTypes.Remove (s);
-					addRandomJob (leftJobTypes [Random.Range (0, leftJobTypes.Count)]);
+					List<string> leftJobTypes = new List<string> (rjobtypes);
+					leftJobTypes.Remove (jt);
+					if (leftJobTypes.Count == 0)
+						return;
+					addRandomJob (leftJobTypes);
+					return;
 				}
 				int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));
 				int count = (aPlants.Count >= 3) ? 3 : aPlants.Count;
@@ -121,13 +134,15 @@ public class GameController : MonoBehaviour {
 				Debug.Log ("Job: Waterings!");
 				break;
 			case "cleaning":
-				List<GameObject> aDirtSpots = getAvailable(new List<GameObject> (DirtSpots));
+				List<GameObject> aDirtSpots = getAvailable (new List<GameObject> (DirtSpots));
 				if (DirtSpots.Count == 0 || aDirtSpots.Count == 0) {
-					List<string> leftJobTypes = new List<string> (jobTypes);
-					leftJobTypes.Remove (s);
-					addRandomJob(leftJobTypes [Random.Range (0, leftJobTypes.Count)]);
-				}
-				
+					List<string> leftJobTypes = new List<string> (rjobtypes);
+					leftJobTypes.Remove (jt);
+					if (leftJobTypes.Count == 0)
+						return;
+					addRandomJob(leftJobTypes); 
+					return;
+					}
 				int cindex = Random.Range (0, Mathf.Max (0, aDirtSpots.Count - 3));
 				int ccount = (aDirtSpots.Count >= 3) ? 3 : aDirtSpots.Count;
 				jobmanager.AddJob (new CleaningJob (aDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager));
