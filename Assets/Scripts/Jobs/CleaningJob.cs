@@ -18,7 +18,7 @@ public class CleaningJob : Job {
 		this.broomSpawn = broomSpawn;
 		this.broomPrefab = broomPrefab;
 		this.manager = manager;
-
+		init ();
 	}
 
 	override public void init() {
@@ -30,7 +30,7 @@ public class CleaningJob : Job {
 				GameObject.Destroy(this.broomGO);
 			}
 		});
-
+		dirtSpotsGO = new List<GameObject> ();
 		foreach (Transform dirtSpot in dirtSpots) {
 			dirtSpotsGO.Add (GameObject.Instantiate (this.dirtSpotPrefab, dirtSpot.position, dirtSpot.rotation));
 		}
@@ -48,7 +48,6 @@ public class CleaningJob : Job {
 								Debug.Log("Removed Broom from Inventory");
 								this.finishJob ();
 							}
-							this.manager.GetGameController ().availableQuestDirtSpots.Add (dirtGo.transform);
 							GameObject.Destroy (dirtGo);
 						}
 					}
@@ -68,8 +67,10 @@ public class CleaningJob : Job {
 		if (dirtSpotsGO != null && dirtSpotsGO.Count != 0) {
 			List<GameObject> tmpDirtGO = new List<GameObject> (dirtSpotsGO);
 			foreach (GameObject dirtGo in tmpDirtGO) {
-				this.manager.GetGameController ().availableQuestDirtSpots.Add (dirtGo.transform);
 				GameObject.Destroy (dirtGo);
+			}
+			foreach (Transform t in dirtSpots) {
+				this.manager.GetGameController ().availableQuestDirtSpots.Add (t);
 			}
 		}
 	}
