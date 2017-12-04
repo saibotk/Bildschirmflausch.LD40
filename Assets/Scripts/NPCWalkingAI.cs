@@ -31,8 +31,12 @@ public class NPCWalkingAI : MonoBehaviour {
 				idleTime -= Time.deltaTime;
 			}
 		} else {
-			if (gameObject.transform.position.x < leftBoundary || gameObject.transform.position.x > rightBoundary) {
-				state *= -1;
+			if (gameObject.transform.position.x < leftBoundary) {
+				state = 1;
+				updateSprite ();
+			}
+			if  ( gameObject.transform.position.x > rightBoundary) {
+				state = -1;
 				updateSprite ();
 			}
 			if (walkingDistance <= 0) {
@@ -68,5 +72,4 @@ public class NPCWalkingAI : MonoBehaviour {
 			}
 		}
 	}
-
 }
