@@ -290,8 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5436f9d4b77a45e0b07c8baecf4b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBoundary: -1
-  rightBoundary: 4.7
   speed: 30
   NPCTexture: {fileID: 1812543327789284}
 --- !u!212 &212093718323959430

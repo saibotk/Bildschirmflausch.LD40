@@ -6,10 +6,8 @@ public class NPCWalkingAI : MonoBehaviour {
 
 	private float idleTime = 5;
 	private float walkingDistance = 0;
-	[SerializeField]
-	private float leftBoundary = 0;
-	[SerializeField]
-	private float rightBoundary = 5;
+	private float leftBoundary = -1f;
+	private float rightBoundary = 2.5f;
 	[SerializeField]
 	private float speed = 30; 
 	// state -1: moving left, state 0 : idle , state 1: moving right
