@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour {
 	private int movementSpeed = 2;
 	[SerializeField]
 	private GameObject graphics;
-
 	[SerializeField]
 	private GameObject playerTexture;
 	[SerializeField]
 	private GameObject rightHandTexture;
-
+	[SerializeField]
+	private Texture2D coffeePotLevels;
+	[SerializeField]
+	private Texture2D coffeePotUILevels;
 	[SerializeField]
 	private GameUI gui;
 	[SerializeField]
@@ -55,12 +57,39 @@ public class PlayerController : MonoBehaviour {
 				(iaclose.GetComponentInChildren (typeof(Interactable)) as Interactable).Interact (gameObject);
 
 				// TODO right position?
+				SetPlayerCoffeeTextures();
 				animator.SetBool("Coffee", (inv.coffeePot == null) ? false : true);
 			}
 		}
 		if (Input.GetKeyDown ("q")) {
 			inv.Swap ();
 		}
+	}
+
+	private void SetPlayerCoffeeTextures() {
+		if (inv.coffeePot == null) {
+			gui.SetCoffeePotEnabled (false);
+			return;
+		} else {
+			gui.SetCoffeePotEnabled (true);
+		}
+		float perc = inv.coffeePot.getFillLevel () / inv.coffeePot.getMaxFillLevel ();
+			if (perc > 0.86) {
+				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (0, 0, 12, 12), new Vector2 (6, 6)));
+				//rightHandTexture.GetComponent<SpriteRenderer>().sprite = ()
+			} else if (perc > 0.72) {
+				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (12, 0, 12, 12), new Vector2 (6, 6)));
+			} else if (perc > 0.58) {
+				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (24, 0, 12, 12), new Vector2 (6, 6)));
+			} else if (perc > 0.44) {
+				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (36, 0, 12, 12), new Vector2 (6, 6)));
+			} else if (perc > 0.30) {
+				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (48, 0, 12, 12), new Vector2 (6, 6)));
+			} else if (perc > 0.16) {
+				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (60, 0, 12, 12), new Vector2 (6, 6)));
+			} else {
+				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (72, 0, 12, 12), new Vector2 (6, 6)));
+			}
 	}
 
 	public void AddInteractable( GameObject inter ) {
