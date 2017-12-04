@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WateringJob : Job {
-	private List<JobInteraction> targets;
+	private List<JobEntitiy> targets;
 	private Jobmanager jobmanager;
 
-	public WateringJob(List<JobInteraction> targets, Jobmanager manager) : base ("Watering the plants", "Water em all!", 30f, 50) {
+	public WateringJob(List<JobEntitiy> targets, Jobmanager manager) : base ("Watering the plants", "Water em all!", 30f, 50) {
 		this.targets = targets;
 		this.jobmanager = manager;
 		init ();
 	}
 
 	override public void init() {
-		List<JobInteraction> tmptargets = new List<JobInteraction> (targets);
-		foreach (JobInteraction target in tmptargets) {
+		List<JobEntitiy> tmptargets = new List<JobEntitiy> (targets);
+		foreach (JobEntitiy target in tmptargets) {
+			target.setAvailable (false);
 			target.SetJob (this);
 			target.SetInteract (
 				delegate (GameObject player) {
@@ -39,10 +40,11 @@ public class WateringJob : Job {
 	}
 
 	override public void cleanup() {
-		foreach (JobInteraction target in targets) {
-			jobmanager.GetGameController ().MakePlantAvailable (target.gameObject);
+		foreach (JobEntitiy target in targets) {
+			target.setAvailable (true);
 			target.SetInteract (null);
 			target.SetJob (null);
+			target.setAvailable (true);
 		}
 		this.targets = null;
 		this.jobmanager = null;

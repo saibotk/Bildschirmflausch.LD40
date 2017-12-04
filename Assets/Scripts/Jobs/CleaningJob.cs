@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CleaningJob : Job {
 
-	private List<Transform> dirtSpots;
+	private List<GameObject> dirtSpots;
 	private GameObject dirtSpotPrefab;
 	private Transform broomSpawn;
 	private GameObject broomPrefab;
@@ -12,7 +12,7 @@ public class CleaningJob : Job {
 	private GameObject broomGO;
 	private List<GameObject> dirtSpotsGO;
 
-	public CleaningJob(List<Transform> dirtSpots, GameObject dirtSpotPrefab,Transform broomSpawn, GameObject broomPrefab, Jobmanager manager) : base ("Clean", "Clean all the dirtspots", 30f, 50) {
+	public CleaningJob(List<GameObject> dirtSpots, GameObject dirtSpotPrefab,Transform broomSpawn, GameObject broomPrefab, Jobmanager manager) : base ("Clean", "Clean all the dirtspots", 30f, 50) {
 		this.dirtSpots = dirtSpots;
 		this.dirtSpotPrefab = dirtSpotPrefab;
 		this.broomSpawn = broomSpawn;
@@ -23,22 +23,23 @@ public class CleaningJob : Job {
 
 	override public void init() {
 		this.broomGO = GameObject.Instantiate (this.broomPrefab, this.broomSpawn.position, this.broomSpawn.rotation);
-		this.broomGO.GetComponent<JobInteraction> ().SetJob (this);
-		this.broomGO.GetComponent<JobInteraction> ().SetInteract (delegate (GameObject player) {
+		this.broomGO.GetComponent<JobEntitiy> ().SetJob (this);
+		this.broomGO.GetComponent<JobEntitiy> ().SetInteract (delegate (GameObject player) {
 			bool added = player.GetComponent<PlayerController> ().GetInventory ().AddItem (new Broom (this));
 			if (added) {
 				GameObject.Destroy(this.broomGO);
 			}
 		});
 		dirtSpotsGO = new List<GameObject> ();
-		foreach (Transform dirtSpot in dirtSpots) {
-			dirtSpotsGO.Add (GameObject.Instantiate (this.dirtSpotPrefab, dirtSpot.position, dirtSpot.rotation));
+		foreach (GameObject dirtSpot in dirtSpots) {
+			dirtSpotsGO.Add (GameObject.Instantiate (this.dirtSpotPrefab, dirtSpot.transform.position, dirtSpot.transform.rotation));
+			(dirtSpot.GetComponent (typeof(IAvailable)) as IAvailable).setAvailable (false);
 		}
 
 
 		foreach (GameObject dirtGo in dirtSpotsGO) {
-			dirtGo.GetComponent<JobInteraction> ().SetJob (this);
-			dirtGo.GetComponent<JobInteraction> ().SetInteract (
+			dirtGo.GetComponent<JobEntitiy> ().SetJob (this);
+			dirtGo.GetComponent<JobEntitiy> ().SetInteract (
 				delegate(GameObject player) {
 					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is Broom) {
@@ -70,8 +71,8 @@ public class CleaningJob : Job {
 			foreach (GameObject dirtGo in tmpDirtGO) {
 				GameObject.Destroy (dirtGo);
 			}
-			foreach (Transform t in dirtSpots) {
-				this.manager.GetGameController ().availableQuestDirtSpots.Add (t);
+			foreach (GameObject t in dirtSpots) {
+				(t.GetComponent (typeof(IAvailable)) as IAvailable).setAvailable (true);
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class NPC : MonoBehaviour {
+public class NPC : JobEntitiy {
 
 	[SerializeField]
 	private int floor = 0;
@@ -11,13 +11,6 @@ public class NPC : MonoBehaviour {
 	private bool available; // If it can execute a job. Ignored if questNPC = false
 
 	public NPC ()	{
-	}
-
-	public void Start(){
-		
-	}
-
-	public void Update(){
 	}
 
 	public void setAvailable(bool available) {

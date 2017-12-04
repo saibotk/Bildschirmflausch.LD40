@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkersCoffeeNeeds : MonoBehaviour, Interactable {
+public class WorkersCoffeeNeeds : MonoBehaviour, IInteractable {
 	[SerializeField]
 	float coffeeTimer_init;
 	float coffeeTimer;

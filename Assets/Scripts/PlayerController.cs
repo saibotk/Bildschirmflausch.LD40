@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 					if (iaclose == null || Vector2.Distance (gameObject.transform.position, ia.transform.position) < Vector2.Distance (gameObject.transform.position, iaclose.transform.position))
 						iaclose = ia;
 				}
-				(iaclose.GetComponentInChildren (typeof(Interactable)) as Interactable).Interact (gameObject);
+				(iaclose.GetComponentInChildren (typeof(IInteractable)) as IInteractable).Interact (gameObject);
 
 				SetPlayerCoffeeTextures();
 			}
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
-		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
+		if (col.gameObject.GetComponent (typeof(IInteractable)) != null)
 			AddInteractable (col.gameObject);
 
 		if (col.CompareTag ("Lift")) {
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D( Collider2D col ) {
-		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
+		if (col.gameObject.GetComponent (typeof(IInteractable)) != null)
 			RemoveInteractable (col.gameObject);
 
 		if (col.CompareTag ("Lift")) {

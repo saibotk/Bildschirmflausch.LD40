@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoffeeMachine : MonoBehaviour, Interactable {
+public class CoffeeMachine : MonoBehaviour, IInteractable {
 	private CoffeePot cpot = null;
 	private Animator canimator;
 	private AudioSource caudio;
