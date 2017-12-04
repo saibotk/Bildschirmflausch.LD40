@@ -7,10 +7,13 @@ public class GameController : MonoBehaviour {
     private AudioSource gameoversound;
 	private int gamestate = 0;
 	private Jobmanager jobmanager;
+
 	[SerializeField]
 	private int jobTimeInterval = 40;
+
 	[SerializeField]
 	private GameObject player;
+
 	[SerializeField]
 	private List<GameObject> coffeeNPCs;
 
@@ -19,13 +22,28 @@ public class GameController : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject letterPrefab;
+
 	[SerializeField]
 	private Transform letterSpawnpoint;
 
 	[SerializeField]
+	private Transform broomSpawn;
+
+	[SerializeField]
+	private GameObject broomPrefab;
+
+	[SerializeField]
+	private List<Transform> questDirtSpots;
+
+	[SerializeField]
+	private GameObject dirtPrefab;
+
+	[SerializeField]
 	private List<GameObject> questNPCs;
-	private List<GameObject> availableQuestNPCs;
-	private List<GameObject> availableQuestPlants;
+
+	public List<GameObject> availableQuestNPCs;
+	public List<GameObject> availableQuestPlants;
+	public List<Transform> availableQuestDirtSpots;
 
 	private float lastJob;
 
@@ -43,6 +61,7 @@ public class GameController : MonoBehaviour {
 		//coffeeNPCs = new List<GameObject>();
 		availableQuestNPCs = new List<GameObject> (questNPCs);
 		availableQuestPlants = new List<GameObject> (plants);
+		availableQuestDirtSpots = new List<Transform> (questDirtSpots);
 		addRandomJob ();
 
         gameoversound = GetComponent<AudioSource>();
@@ -84,15 +103,22 @@ public class GameController : MonoBehaviour {
 		case "watering":
 			if (plants.Count == 0 || availableQuestPlants.Count == 0)
 				return; // Todo here should the code try to retrieve another job.
-			int index = Random.Range (0, Mathf.Max (0, plants.Count - 3));
-			int count = (plants.Count >= 3) ? 3 : plants.Count;
+			int index = Random.Range (0, Mathf.Max (0, availableQuestPlants.Count - 3));
+			int count = (availableQuestPlants.Count >= 3) ? 3 : availableQuestPlants.Count;
 			jobmanager.AddJob (new WateringJob (plants.ConvertAll<JobInteraction> (x => x.GetComponent<JobInteraction> ()).GetRange (index, count), this.jobmanager));
 			lastJob = Time.realtimeSinceStartup;
 			availableQuestPlants.RemoveRange (index, count);
 			Debug.Log ("Job: Waterings!");
 			break;
 		case "cleaning":
-			
+			if (questDirtSpots.Count == 0 || availableQuestDirtSpots.Count == 0)
+				return; // Todo here should the code try to retrieve another job.
+			int cindex = Random.Range (0, Mathf.Max (0, availableQuestDirtSpots.Count - 3));
+			int ccount = (availableQuestDirtSpots.Count >= 3) ? 3 : availableQuestDirtSpots.Count;
+			jobmanager.AddJob (new CleaningJob (availableQuestDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager));
+			lastJob = Time.realtimeSinceStartup;
+			availableQuestDirtSpots.RemoveRange (cindex, ccount);
+			Debug.Log ("Job: Cleaning!");
 			break;
 		}
 	}
