@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    AudioSource gameoversound;
+    private AudioSource gameoversound;
 	private int gamestate = 0;
 	private Jobmanager jobmanager;
 	[SerializeField]
