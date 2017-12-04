@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour {
 		} else {
 			return li.FindAll (x => 
 			x.GetComponent (typeof(IAvailable)) != null &&
-			(x.GetComponent (typeof(IAvailable)) as IAvailable).isAvailable ());
+			(x.GetComponent (typeof(IAvailable)) as IAvailable).IsAvailable (floor));
 		}
 	}
 
@@ -113,7 +113,7 @@ public class GameController : MonoBehaviour {
 				} 
 
 				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
-				if (npc.GetComponent<NPC> ().getFloor() <= floor) {
+				if (npc.GetComponent<NPC> ().GetFloor() <= floor) {
 					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager));
 					Debug.Log ("Job: Delivery!");
 				}
