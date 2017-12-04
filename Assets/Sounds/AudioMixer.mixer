@@ -38,6 +38,7 @@ AudioMixerController:
     - 404a12efc912e974b8bde8fad6cd2304
     - 4395ba1fd0cc10c408dd0f9ecede3a0f
     - f60c7939bed74bd4380517546411d67f
+    - ca66ad419872c0943b28d2078b049893
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 245209096600761262}
@@ -157,6 +158,7 @@ AudioMixerGroupController:
   - {fileID: 243689682036398810}
   - {fileID: 243367275395277564}
   - {fileID: 243595305419371392}
+  - {fileID: 243522036421699490}
   m_Volume: cc64e94694b2e8343aa65e3ba33ed344
   m_Pitch: 05be1504925d54e4ba15476c529899b7
   m_Effects:
@@ -200,6 +202,23 @@ AudioMixerGroupController:
   m_Pitch: 8fe3312d53eb71145a777c6078dd3914
   m_Effects:
   - {fileID: 244964213191618106}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243522036421699490
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Quest getto
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: ca66ad419872c0943b28d2078b049893
+  m_Children: []
+  m_Volume: 205a9d41285e33f40b789bc98bd435b9
+  m_Pitch: 9e74a817076188841a83d2dcf6de46d3
+  m_Effects:
+  - {fileID: 244041455743595242}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -340,6 +359,19 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &244041455743595242
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 98860e419c94bc648858a436e3591bb3
+  m_EffectName: Attenuation
+  m_MixLevel: 7956c3dc894c9b44b8ccd4d83a75d0d6
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &244126968474886382
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

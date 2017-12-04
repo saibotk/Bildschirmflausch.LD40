@@ -64,8 +64,9 @@ public class AudioControl : MonoBehaviour
     /* SFX List
      * 0 : Elevator
        1 : Coffe Danger
-       2 : Job accomplished
-       3 : Job failed */
+       2 : Job getto
+       3 : Job accomplished
+       4 : Job failed */
 	public void sfxplay(int sound){
         if(endstate == false)
             soundeffects[sound].Play();
