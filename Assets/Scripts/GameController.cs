@@ -113,7 +113,7 @@ public class GameController : MonoBehaviour {
 	private void addRandomJob (List<string> rjobtypes) {
 		if (rjobtypes.Count == 0)
 			return;
-		GameObject jobIndicator = Instantiate (this.indicator);
+		GameObject jobIndicator = this.indicator;
 		string jt = rjobtypes [Random.Range (0, Mathf.Min(floor+1, jobTypes.Count))];
 		switch (jt) {
 			case "delivery":
