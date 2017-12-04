@@ -25,12 +25,6 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
-      - serializedVersion: 2
-        time: 0.8
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -48,8 +42,6 @@ AnimationClip:
       value: {fileID: 21300004, guid: d1e0cc204b420124487aa1b2d58eaab9, type: 3}
     - time: 0.7
       value: {fileID: 21300002, guid: d1e0cc204b420124487aa1b2d58eaab9, type: 3}
-    - time: 0.8
-      value: {fileID: 21300000, guid: fd94f74aa332aae459c0ec0a978656c8, type: 3}
     attribute: m_Sprite
     path: Graphics/Texture
     classID: 212
@@ -80,13 +72,12 @@ AnimationClip:
     - {fileID: 21300002, guid: d1e0cc204b420124487aa1b2d58eaab9, type: 3}
     - {fileID: 21300004, guid: d1e0cc204b420124487aa1b2d58eaab9, type: 3}
     - {fileID: 21300002, guid: d1e0cc204b420124487aa1b2d58eaab9, type: 3}
-    - {fileID: 21300000, guid: fd94f74aa332aae459c0ec0a978656c8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.90000004
+    m_StopTime: 0.8
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -108,12 +99,6 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.8
-        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
