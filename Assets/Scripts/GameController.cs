@@ -160,6 +160,7 @@ public class GameController : MonoBehaviour {
 
 	public void AddScore(int score)  {
 		this.score += score;
+		gui.UpdateScore (this.score);
 		Debug.Log ("Score is: " + score);
 	}
 }

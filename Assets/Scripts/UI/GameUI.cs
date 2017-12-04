@@ -9,6 +9,8 @@ public class GameUI : MonoBehaviour {
 	private GameObject left;
 	[SerializeField]
 	private GameObject right;
+	[SerializeField]
+	private GameObject score;
 
 	public void SetPocketImage(Sprite sp) {
 		pocket.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
@@ -20,5 +22,9 @@ public class GameUI : MonoBehaviour {
 
 	public void SetRightHandImage(Sprite sp) {
 		right.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
+	}
+
+	public void UpdateScore(int score) {
+		this.score.GetComponentInChildren<UnityEngine.UI.Text>().text = score.ToString();
 	}
 }
