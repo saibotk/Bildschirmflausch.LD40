@@ -9,6 +9,8 @@ public class LiftController : MonoBehaviour {
 	[SerializeField]
 	private int floorCount;
 	[SerializeField]
+	private int minFloor;
+	[SerializeField]
 	public GameObject player;
 	private float height = 0;
 	private int nextFloor;
@@ -50,8 +52,8 @@ public class LiftController : MonoBehaviour {
 	public void MoveDown() {
 		if (height - nextFloor < 0.1)
 			nextFloor--;
-		if (nextFloor < 0)
-			nextFloor = 0;
+		if (nextFloor < minFloor)
+			nextFloor = minFloor;
 	}
 
 	public bool CanPlayerMove() {

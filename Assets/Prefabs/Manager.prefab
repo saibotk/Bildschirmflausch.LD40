@@ -40,6 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4415707492444932}
   - component: {fileID: 212354008165482762}
+  - component: {fileID: 95136218380919148}
+  - component: {fileID: 114500166963197462}
   m_Layer: 0
   m_Name: Textures
   m_TagString: Untagged
@@ -146,6 +148,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95136218380919148
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1812543327789284}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef8633a0e56a36e4c8d35ed97c846363, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114249146223609838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,6 +176,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61741307e121a47dbabf34ae3cdef9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114500166963197462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1812543327789284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869663e64e576724d9316b72d2882df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isManager: 1
 --- !u!114 &114697934280744318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,7 +257,7 @@ SpriteRenderer:
   m_Size: {x: 0.17, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!212 &212745899161546726
 SpriteRenderer:
