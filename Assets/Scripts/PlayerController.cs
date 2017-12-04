@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	private GameObject lift;
 	private int movementState; // -1 = left, 0 = idle, 1 = right
 	private Inventory inv;
-	private List<Interactable> interactivesInRange = new List<Interactable>();
+	private List<GameObject> interactivesInRange = new List<GameObject>();
 	private Animator animator;
 	private LiftController liftController;
 	public bool inLift = false;
@@ -39,7 +39,12 @@ public class PlayerController : MonoBehaviour {
 	private void PlayerInteract() {
 		if (Input.GetKeyDown ("e")) {
 			if (interactivesInRange.Count != 0) {
-				interactivesInRange [0].Interact (gameObject);
+				GameObject iaclose = null;
+				foreach (GameObject ia in interactivesInRange) {
+					if (iaclose == null || Vector2.Distance (gameObject.transform.position, ia.transform.position) < Vector2.Distance (gameObject.transform.position, iaclose.transform.position))
+						iaclose = ia;
+				}
+				(iaclose.GetComponentInChildren (typeof(Interactable)) as Interactable).Interact (gameObject);
 			}
 		}
 		if (Input.GetKeyDown ("q")) {
@@ -47,11 +52,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	public void AddInteractable( Interactable inter ) {
+	public void AddInteractable( GameObject inter ) {
 		interactivesInRange.Add (inter);
 	}
 
-	public void RemoveInteractable( Interactable inter ) {
+	public void RemoveInteractable( GameObject inter ) {
 		interactivesInRange.Remove (inter);
 	}
 
@@ -89,7 +94,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter2D( Collider2D col ) {
 		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
-			AddInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
+			AddInteractable (col.gameObject);
 
 		if (col.CompareTag ("Lift")) {
 			if (col.isTrigger) {
@@ -101,7 +106,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerExit2D( Collider2D col ) {
 		if (col.gameObject.GetComponent (typeof(Interactable)) != null)
-			RemoveInteractable (col.gameObject.GetComponent (typeof(Interactable)) as Interactable);
+			RemoveInteractable (col.gameObject);
 
 		if (col.CompareTag ("Lift")) {
 			if (col.isTrigger) {
