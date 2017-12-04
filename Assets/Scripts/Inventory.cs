@@ -13,17 +13,48 @@ public class Inventory {
 	}
 
 	public bool AddItem(Item item) {
-		if(leftHand == null) {
-			this.leftHand = item;
-			UpdateGUI ();
-			return true;
-		}
+		// TODO UGLY CODE!!!!
+		if (item is Letter) {
+			if (leftHand is LetterBundle) {
+				((LetterBundle)leftHand).Add ((Letter) item);
+				UpdateGUI ();
+				return true;
+			} else if (pocket is LetterBundle) {
+				((LetterBundle)pocket).Add ((Letter) item);
+				UpdateGUI ();
+				return true;
+			} else {
+				if (leftHand == null) {
+					LetterBundle lb = new LetterBundle ();
+					lb.Add ((Letter)item);
+					this.leftHand = lb;
+					UpdateGUI ();
+					return true;
+				}
 
-		if (pocket == null) {
-			pocket = leftHand;
-			leftHand = item;
-			UpdateGUI ();
-			return true;
+				if (pocket == null) {
+					pocket = leftHand;
+					LetterBundle lb = new LetterBundle ();
+					lb.Add ((Letter)item);
+					leftHand = lb;
+					UpdateGUI ();
+					return true;
+				}
+				return false;
+			}
+		} else {
+			if (leftHand == null) {
+				this.leftHand = item;
+				UpdateGUI ();
+				return true;
+			}
+
+			if (pocket == null) {
+				pocket = leftHand;
+				leftHand = item;
+				UpdateGUI ();
+				return true;
+			}
 		}
 		return false;
 	}

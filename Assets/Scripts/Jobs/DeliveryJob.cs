@@ -41,9 +41,10 @@ public class DeliveryJob : Job {
 		this.target.SetInteract (
 			delegate (GameObject player) {
 				if(player.GetComponent<PlayerController>().GetInventory().leftHand != null) {
-					if ( player.GetComponent<PlayerController>().GetInventory().leftHand is Letter ) {
-						if (((Letter) player.GetComponent<PlayerController>().GetInventory().leftHand).job == this) {
-							player.GetComponent<PlayerController>().GetInventory().leftHand = null;
+					if ( player.GetComponent<PlayerController>().GetInventory().leftHand is LetterBundle ) {
+						if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().leftHand).Contains(this.letter)) {
+							((LetterBundle) player.GetComponent<PlayerController>().GetInventory().leftHand).Remove(this.letter);
+							if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().leftHand).letters.Count == 0) player.GetComponent<PlayerController>().GetInventory().leftHand = null;
 							this.finishJob();
 						}
 					}
