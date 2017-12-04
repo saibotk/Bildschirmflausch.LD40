@@ -9,7 +9,6 @@ public class JobInteraction : MonoBehaviour, Interactable {
 	private Action<GameObject> interactMethod = null;
 
 	public void Interact(GameObject player) {
-
 		if (interactMethod != null) {
 			interactMethod (player);
 		}
@@ -22,5 +21,4 @@ public class JobInteraction : MonoBehaviour, Interactable {
 	public void SetJob(Job job) {
 		this.job = job;
 	}
-
 }

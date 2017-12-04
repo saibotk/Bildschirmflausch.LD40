@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61812460923893978}
   - component: {fileID: 114980833939801716}
   - component: {fileID: 114249146223609838}
+  - component: {fileID: 114697934280744318}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -156,6 +157,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61741307e121a47dbabf34ae3cdef9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114697934280744318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362652855635084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea90fbe67d700104b951f36fbfcaa264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floor: 0
+  questNPC: 1
 --- !u!114 &114980833939801716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,7 +226,7 @@ SpriteRenderer:
   m_Size: {x: 0.17, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212745899161546726
 SpriteRenderer:

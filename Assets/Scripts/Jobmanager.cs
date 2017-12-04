@@ -54,6 +54,7 @@ public class Jobmanager
 	public void finishedJob(Job job) {
 		GetGameController ().AddScore (job.GetScoreValue());
 		RemoveJob (job);
+		GetGameController ().addRandomJob ();
 	}
 
 	public GameController GetGameController() {

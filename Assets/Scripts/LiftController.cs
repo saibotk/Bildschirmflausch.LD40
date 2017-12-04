@@ -61,17 +61,4 @@ public class LiftController : MonoBehaviour {
 	public float PlayerHeight() {
 		return height * levelHeight;
 	}
-
-	/*void OnTriggerStay2D(Collider2D coll)
-	{
-		if (coll.CompareTag ("Player") && !CanPlayerMove ()) {
-			GameObject player = coll.GetComponent<GameObject> ();
-			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
-		}
-
-		if (coll.CompareTag ("Player") && CanPlayerMove ()) {
-			GameObject player = coll.GetComponent<GameObject> ();
-			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
-		}
-	}*/
 }
