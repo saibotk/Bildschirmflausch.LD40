@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
 		jobTypes.Add ("delivery");
 		jobTypes.Add ("cleaning");
 		// jobTypes.Add ("copying");
-
+		Time.timeScale = 1;
 		score = 0;
 
 		jobmanager = new Jobmanager (this);
@@ -73,17 +73,19 @@ public class GameController : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
-		jobmanager.checkJobTimes ();
-		CheckCoffeeNPCs ();
+		if (gamestate == 0) {
+			jobmanager.checkJobTimes ();
+			CheckCoffeeNPCs ();
 
-		// Unlock new floor
-		if ((floor < 1 && score >= 50)||
-			(floor < 2 && score >= 100) ||
-			(floor < 3 && score >= 200)){
-			floor++;
-			Debug.Log ("Unlocked floor " + floor);
-			player.GetComponent<AudioControl> ().AddLayer (floor);
-			// TODO notification
+			// Unlock new floor
+			if ((floor < 1 && score >= 50) ||
+			   (floor < 2 && score >= 100) ||
+			   (floor < 3 && score >= 200)) {
+				floor++;
+				Debug.Log ("Unlocked floor " + floor);
+				player.GetComponent<AudioControl> ().AddLayer (floor);
+				// TODO notification
+			}
 		}
 	}
 
@@ -170,6 +172,7 @@ public class GameController : MonoBehaviour {
             player.GetComponent<AudioControl>().gameoverplay();
 			Debug.Log ("----- GAME OVER. YOU CANT BEAT THE BOSS! ----------");
 		}
+		Time.timeScale = 0;
 		gui.showGameOver ();
 	}
 
