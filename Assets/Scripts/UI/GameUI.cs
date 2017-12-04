@@ -15,6 +15,8 @@ public class GameUI : MonoBehaviour {
 	private GameObject coffeePot;
 	[SerializeField]
 	private GameObject coffeePotFill;
+	[SerializeField]
+	private GameObject gameOverPanel;
 
 	public void SetPocketImage(Sprite sp) {
 		pocket.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
@@ -38,5 +40,9 @@ public class GameUI : MonoBehaviour {
 
 	public void SetCoffeePotFillImage(Sprite sp) {
 		coffeePotFill.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
+	}
+
+	public void showGameOver() {
+		gameOverPanel.SetActive (true);
 	}
 }
