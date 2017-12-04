@@ -7,13 +7,15 @@ public abstract class Job : IJob
 	private string jobDescription = "Missing jobDescription";			// jobdescription
 	private float jobStartTime = 0;
 	private float jobTime = 0; 											// in seconds
+	private int scoreValue = 0;
 
-	public Job(string taskName, string jobDescription, float jobTime)
+	public Job(string taskName, string jobDescription, float jobTime, int scoreValue)
 	{
 		this.taskName = taskName;
 		this.jobDescription = jobDescription;
 		this.jobStartTime = Time.realtimeSinceStartup;
 		this.jobTime = jobTime;
+		this.scoreValue = scoreValue;
 	}
 
 	// Getter
@@ -37,6 +39,10 @@ public abstract class Job : IJob
 
 	public float GetJobTime(){
 		return this.jobTime;
+	}
+
+	public int GetScoreValue() {
+		return this.scoreValue;
 	}
 
 	// Setter

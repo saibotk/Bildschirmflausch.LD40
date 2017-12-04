@@ -10,7 +10,7 @@ public class DeliveryJob : Job {
 	private Jobmanager jobmanager;
 	private Letter letter;
 
-	public DeliveryJob(JobInteraction target, Transform transform, GameObject prefab, Jobmanager manager) : base ("Delivery", "Deliver the item!", 30f) {
+	public DeliveryJob(JobInteraction target, Transform transform, GameObject prefab, Jobmanager manager) : base ("Delivery", "Deliver the item!", 30f, 30) {
 		this.target = target;
 		this.letter = new Letter(this);
 		this.interactableSpawnpoint = transform;
@@ -50,7 +50,7 @@ public class DeliveryJob : Job {
 
 	public void finishJob() {
 		Debug.Log("QUEST COMPLETED! U GENIUS");
-		this.jobmanager.RemoveJob(this);
+		this.jobmanager.finishedJob(this);
 	}
 
 	override public void cleanup() {
