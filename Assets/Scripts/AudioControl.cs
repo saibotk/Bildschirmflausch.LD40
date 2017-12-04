@@ -12,12 +12,16 @@ public class AudioControl : MonoBehaviour
     private float m_TransitionOut;
     private float m_QuarterNote;
     private int layerstate;
+    private int score;
+
+    private GameObject _GameControler;
 
     // Use this for initialization
     void Start() {
         m_TransitionIn = 1;
         m_TransitionOut = 1;
         layerstate = 0;
+        score = 0;
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -33,6 +37,16 @@ public class AudioControl : MonoBehaviour
             if (col.isTrigger) {
                 maintheme[layerstate].TransitionTo(m_TransitionOut);
             }
+        }
+    }
+
+    void AddLayer()
+    {
+        if((score + 35) == _GameControler.GetComponent<GameController>().getScore() )
+        {
+            score = _GameControler.GetComponent<GameController>().getScore();
+            layerstate++;
+            maintheme[layerstate].TransitionTo(50);
         }
     }
 
