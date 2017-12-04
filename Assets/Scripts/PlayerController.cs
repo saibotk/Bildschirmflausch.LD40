@@ -102,7 +102,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerMovement() {
 		if (liftController == null || !inLift || liftController.CanPlayerMove()) {
-			if (Input.GetKey ("d")) {
+            if (!(Input.GetKey("a") ^ Input.GetKey("d")))
+                movementState = 0;
+            else if (Input.GetKey ("d")) {
 				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != 1) {
 					movementState = 1;
@@ -110,16 +112,13 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 
-			if (Input.GetKey ("a")) {
+			else if (Input.GetKey ("a")) {
 				gameObject.transform.Translate (new Vector3 (-1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != -1) {
 					movementState = -1;
 					graphics.transform.eulerAngles = new Vector3 (0, 0, 0);
 				}
 			}
-
-			if (!(Input.GetKey ("a") ^ Input.GetKey ("d")))
-				movementState = 0;
 		}
 		if (liftController != null && inLift) {
 			if (Input.GetKey ("w") && !Input.GetKey ("s"))
