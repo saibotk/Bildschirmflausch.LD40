@@ -169,6 +169,7 @@ public class GameController : MonoBehaviour {
             player.GetComponent<AudioControl>().gameoverplay();
 			Debug.Log ("----- GAME OVER. YOU CANT BEAT THE BOSS! ----------");
 		}
+		gui.showGameOver ();
 	}
 
 	public void CheckCoffeeNPCs() {
