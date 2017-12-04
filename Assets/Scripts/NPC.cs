@@ -6,7 +6,7 @@ public class NPC : JobEntitiy {
 	[SerializeField]
 	private int floor = 0;
 	[SerializeField]
-	public bool questNPC;
+	public bool isQuestNPC;
 
 	private bool available; // If it can execute a job. Ignored if questNPC = false
 

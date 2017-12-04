@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private GameUI gui;
 
-
 	//Player related Objects
 	[Header("Player")]
 	[SerializeField]
@@ -21,7 +20,7 @@ public class GameController : MonoBehaviour {
 
 	[Header("Jobs")]
 	[SerializeField]
-	private List<GameObject> questNPCs;
+	private List<GameObject> questNPCs; // TODO merge both into one seperate by isQuestNPC()
 	[SerializeField]
 	private List<GameObject> coffeeNPCs;
 	[Space(5)]
@@ -65,7 +64,9 @@ public class GameController : MonoBehaviour {
 		jobTypes.Add ("cleaning");
 
 		score = 0;
+
 		jobmanager = new Jobmanager (this);
+
 		addRandomJob ();
 
         gameoversound = GetComponent<AudioSource>();
