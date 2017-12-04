@@ -22,6 +22,7 @@ public class Jobmanager
 		foreach (Job job in tmpJobList) {
 			if (Time.realtimeSinceStartup >= (job.GetJobStartTime () + job.GetJobTime ())) {
 				Debug.Log ("Failed Job " + job.GetTaskName() + ", you too late my son!");
+                GetGameController().GetPlayer().GetComponent<AudioControl>().sfxplay(3);
 				RemoveJob (job);
 				manager.addRandomJob ();
 				manager.addRandomJob ();
