@@ -14,6 +14,7 @@ public class DeliveryJob : Job {
 	public DeliveryJob(NPC target, Transform transform, GameObject prefab, Jobmanager manager, GameObject indicatorPrefab) : base ("Delivery", "Deliver the item!", 30f, 30) {
 		this.target = target;
 		this.indicatorPrefab = indicatorPrefab;
+		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = GetJobColor();
 		this.target.SetAvailable (false);
 		this.letter = new Letter(this);
 		this.interactableSpawnpoint = transform;
