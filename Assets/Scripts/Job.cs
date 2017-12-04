@@ -8,6 +8,7 @@ public abstract class Job : IJob
 	private float jobStartTime = 0;
 	private float jobTime = 0; 											// in seconds
 	private int scoreValue = 0;
+	private Color jobColor;
 
 	public Job(string taskName, string jobDescription, float jobTime, int scoreValue)
 	{
@@ -16,6 +17,7 @@ public abstract class Job : IJob
 		this.jobStartTime = Time.realtimeSinceStartup;
 		this.jobTime = jobTime;
 		this.scoreValue = scoreValue;
+		this.jobColor = new Color (Random.Range (0, 256), Random.Range (0, 256), Random.Range (0, 256), 255);
 	}
 
 	// Getter
@@ -43,6 +45,10 @@ public abstract class Job : IJob
 
 	public int GetScoreValue() {
 		return this.scoreValue;
+	}
+
+	public Color GetJobColor() {
+		return this.jobColor;
 	}
 
 	// Setter
