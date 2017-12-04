@@ -52,9 +52,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4755802075921798}
   - component: {fileID: 95091010134806690}
-  - component: {fileID: 114880317653382484}
   - component: {fileID: 61812460923893978}
   - component: {fileID: 114980833939801716}
+  - component: {fileID: 114249146223609838}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362652855635084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8477, y: 1.1, z: 0}
+  m_LocalPosition: {x: -2.1427, y: 3.3, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4840174585694910}
@@ -216,7 +216,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1835090682137434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.403, z: 0}
+  m_LocalPosition: {x: 0, y: 0.422, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4755802075921798}
@@ -264,7 +264,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114880317653382484
+--- !u!114 &114249146223609838
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -272,13 +272,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1362652855635084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bebc7ec8991ba3444813ae3b6e7a6450, type: 3}
+  m_Script: {fileID: 11500000, guid: 61741307e121a47dbabf34ae3cdef9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coffeeTimer_init: 24
-  coffeeMeter: {fileID: 1835090682137434}
-  coffeeMeter_spriteSheet: {fileID: 2800000, guid: 7355b4852a9f13e489dfedade0deefd8,
-    type: 3}
 --- !u!114 &114980833939801716
 MonoBehaviour:
   m_ObjectHideFlags: 1
