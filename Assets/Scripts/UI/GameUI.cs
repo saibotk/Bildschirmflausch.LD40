@@ -11,7 +11,7 @@ public class GameUI : MonoBehaviour {
 	private GameObject right;
 	[SerializeField]
 	private GameObject score;
-	[SerializedField]
+	[SerializeField]
 	private GameObject coffeePot;
 	[SerializeField]
 	private GameObject coffeePotFill;
