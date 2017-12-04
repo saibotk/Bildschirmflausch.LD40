@@ -113,6 +113,7 @@ public class GameController : MonoBehaviour {
 	private void addRandomJob (List<string> rjobtypes) {
 		if (rjobtypes.Count == 0)
 			return;
+		GameObject jobIndicator = new GameObject (this.indicator);
 		string jt = rjobtypes [Random.Range (0, Mathf.Min(floor+1, jobTypes.Count))];
 		switch (jt) {
 			case "delivery":
@@ -128,11 +129,12 @@ public class GameController : MonoBehaviour {
 
 				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
 				if (npc.GetComponent<NPC> ().GetFloor() <= floor) {
-					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager, this.indicator));
+				jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager, jobIndicator));
 					Debug.Log ("Job: Delivery!");
 				}
 				break;
 			case "watering":
+				
 				List<GameObject> aPlants = getAvailable (plants);	
 				if (plants.Count == 0 || aPlants.Count == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
@@ -145,7 +147,7 @@ public class GameController : MonoBehaviour {
 				int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));
 				int count = (aPlants.Count >= 3) ? 3 : aPlants.Count;
 				List<GameObject> cAPlants = new List<GameObject> (aPlants);
-				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager, this.indicator));
+				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager, jobIndicator));
 				Debug.Log ("Job: Waterings!");
 				break;
 			case "cleaning":
