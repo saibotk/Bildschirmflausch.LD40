@@ -51,6 +51,11 @@ public class Jobmanager
 		return jobList;
 	}
 
+	public void finishedJob(Job job) {
+		GetGameController ().AddScore (job.GetScoreValue());
+		RemoveJob (job);
+	}
+
 	public GameController GetGameController() {
 		return this.manager;
 	}

@@ -4,46 +4,55 @@ using UnityEngine.Audio;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
-	[SerializeField]
-	private GameUI gui;
 
-    private AudioSource gameoversound;
+	private AudioSource gameoversound;
 	private int gamestate = 0;
 	private Jobmanager jobmanager;
 
 	[SerializeField]
-	private int jobTimeInterval = 40;
+	private GameUI gui;
 
+
+	//Player related Objects
+	[Header("Player")]
 	[SerializeField]
 	private GameObject player;
+	[Space(5)]
 
+	[Header("Jobs")]
 	[SerializeField]
-	private List<GameObject> coffeeNPCs;
-
-	[SerializeField]
-	private List<GameObject> plants;
-
-	[SerializeField]
-	private GameObject letterPrefab;
-
-	[SerializeField]
-	private Transform letterSpawnpoint;
-
-	[SerializeField]
-	private Transform broomSpawn;
-
-	[SerializeField]
-	private GameObject broomPrefab;
-
-	[SerializeField]
-	private List<Transform> questDirtSpots;
-
-	[SerializeField]
-	private GameObject dirtPrefab;
-
+	private int jobTimeInterval = 40;
 	[SerializeField]
 	private List<GameObject> questNPCs;
+	[SerializeField]
+	private List<GameObject> coffeeNPCs;
+	[Space(5)]
 
+	[Header("Watering Job")]
+	[SerializeField]
+	private List<GameObject> plants;
+	[Space(5)]
+
+	[Header("Delivery Job")]
+	[SerializeField]
+	private GameObject letterPrefab;
+	[SerializeField]
+	private Transform letterSpawnpoint;
+	[Space(5)]
+
+	[Header("Cleaning Job")]
+	[SerializeField]
+	private Transform broomSpawn;
+	[SerializeField]
+	private GameObject broomPrefab;
+	[SerializeField]
+	private List<Transform> questDirtSpots;
+	[SerializeField]
+	private GameObject dirtPrefab;
+	[Space(10)]
+
+	private int score;
+	[Header("Don't touch")]
 	public List<GameObject> availableQuestNPCs;
 	public List<GameObject> availableQuestPlants;
 	public List<Transform> availableQuestDirtSpots;
@@ -60,6 +69,7 @@ public class GameController : MonoBehaviour {
 		jobTypes.Add ("watering");
 		jobTypes.Add ("cleaning");
 
+		score = 0;
 		lastJob = Time.realtimeSinceStartup;
 		jobmanager = new Jobmanager (this);
 		//coffeeNPCs = new List<GameObject>();
@@ -146,5 +156,10 @@ public class GameController : MonoBehaviour {
 		if (emptyCofeeCounter >= 3) {
 			GameOver ();
 		}
+	}
+
+	public void AddScore(int score)  {
+		this.score += score;
+		Debug.Log ("Score is: " + score);
 	}
 }

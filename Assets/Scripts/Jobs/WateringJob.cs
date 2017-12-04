@@ -6,7 +6,7 @@ public class WateringJob : Job {
 	private List<JobInteraction> targets;
 	private Jobmanager jobmanager;
 
-	public WateringJob(List<JobInteraction> targets, Jobmanager manager) : base ("Watering the plants", "Water em all!", 30f) {
+	public WateringJob(List<JobInteraction> targets, Jobmanager manager) : base ("Watering the plants", "Water em all!", 30f, 50) {
 		this.targets = targets;
 		this.jobmanager = manager;
 		init ();
@@ -35,7 +35,7 @@ public class WateringJob : Job {
 
 	public void finishJob() {
 		Debug.Log("QUEST COMPLETED! U GENIUS");
-		this.jobmanager.RemoveJob(this);
+		this.jobmanager.finishedJob(this);
 	}
 
 	override public void cleanup() {
