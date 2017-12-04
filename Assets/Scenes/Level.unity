@@ -5609,6 +5609,7 @@ GameObject:
   - component: {fileID: 784734120}
   - component: {fileID: 784734119}
   - component: {fileID: 784734121}
+  - component: {fileID: 784734122}
   m_Layer: 0
   m_Name: farn
   m_TagString: Untagged
@@ -5685,6 +5686,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
+--- !u!61 &784734122
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 784734118}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0.19817358}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.39634717}
+  m_EdgeRadius: 0
 --- !u!1001 &798078789
 Prefab:
   m_ObjectHideFlags: 0
@@ -6293,6 +6319,7 @@ GameObject:
   - component: {fileID: 868024717}
   - component: {fileID: 868024719}
   - component: {fileID: 868024718}
+  - component: {fileID: 868024720}
   m_Layer: 0
   m_Name: flower
   m_TagString: Untagged
@@ -6369,6 +6396,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &868024720
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868024716}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.45}
+    newSize: {x: 0.32, y: 0.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.45}
+  m_EdgeRadius: 0
 --- !u!1 &871922654
 GameObject:
   m_ObjectHideFlags: 0
@@ -7031,7 +7083,7 @@ MonoBehaviour:
   - {fileID: 910239772}
   - {fileID: 1050688563}
   plants:
-  - {fileID: 784734118}
+  - {fileID: 1770298290}
   - {fileID: 784734118}
   - {fileID: 1321467995}
   - {fileID: 868024716}
@@ -7609,8 +7661,8 @@ Transform:
   - {fileID: 1607454841}
   - {fileID: 158550864}
   - {fileID: 1770298292}
-  - {fileID: 2074511994}
   - {fileID: 2090628245}
+  - {fileID: 2074511994}
   - {fileID: 2002795098}
   - {fileID: 1858955799}
   - {fileID: 161075007}
@@ -13258,8 +13310,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1770298292}
   - component: {fileID: 1770298291}
-  - component: {fileID: 1770298294}
   - component: {fileID: 1770298293}
+  - component: {fileID: 1770298295}
   m_Layer: 0
   m_Name: farn
   m_TagString: Interactable
@@ -13338,7 +13390,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0.19817358}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -13352,7 +13404,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.39634717}
   m_EdgeRadius: 0
---- !u!114 &1770298294
+--- !u!114 &1770298295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -13360,9 +13412,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1770298290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61741307e121a47dbabf34ae3cdef9bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f14f8cd50e21a1428ce8a20a07300e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floor: 0
 --- !u!1 &1782648673
 GameObject:
   m_ObjectHideFlags: 0
@@ -16896,6 +16949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2038356976}
   - component: {fileID: 2038356975}
+  - component: {fileID: 2038356977}
   m_Layer: 0
   m_Name: weed
   m_TagString: Untagged
@@ -16960,6 +17014,31 @@ Transform:
   m_Father: {fileID: 51870820}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2038356977
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2038356974}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.5}
+    newSize: {x: 0.32, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!1 &2046078201
 GameObject:
   m_ObjectHideFlags: 0
@@ -17181,7 +17260,7 @@ Transform:
   - {fileID: 1830778543}
   - {fileID: 2046078202}
   m_Father: {fileID: 949710047}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2079560807
 Prefab:
@@ -17550,7 +17629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 949710047}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2103432973
 GameObject:

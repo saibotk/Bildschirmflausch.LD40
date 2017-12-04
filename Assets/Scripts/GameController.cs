@@ -106,8 +106,10 @@ public class GameController : MonoBehaviour {
 	public void addRandomJob() {
 		addRandomJob (jobTypes);
         player.GetComponent<AudioControl>().sfxplay(2);
-		if (jobmanager.GetAllJobs ().Count > 10)
+		if (jobmanager.GetAllJobs ().Count > 10) {
 			GameOver ();
+			Debug.Log ("You suck at multitasking");
+		}
 	}
 
 	private void addRandomJob (List<string> rjobtypes) {
@@ -134,7 +136,6 @@ public class GameController : MonoBehaviour {
 				}
 				break;
 			case "watering":
-				
 				List<GameObject> aPlants = getAvailable (plants);	
 				if (plants.Count == 0 || aPlants.Count == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
@@ -189,6 +190,7 @@ public class GameController : MonoBehaviour {
             player.GetComponent<AudioControl>().sfxplay(1);
         }
         if (emptyCofeeCounter >= 3) {
+			Debug.Log ("The company ran out of coffee");
 		    GameOver ();
 		}
 	}
