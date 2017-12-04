@@ -780,6 +780,74 @@ Transform:
   m_Father: {fileID: 2128641309}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &130198983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 130198984}
+  - component: {fileID: 130198986}
+  - component: {fileID: 130198985}
+  m_Layer: 5
+  m_Name: CoffeePotMain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &130198984
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130198983}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2144292116}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &130198985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130198983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300004, guid: aace101a6120c6840a78580d69736f1d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &130198986
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130198983}
 --- !u!1 &138711012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3726,12 +3794,12 @@ GameObject:
   - component: {fileID: 541011660}
   - component: {fileID: 541011659}
   m_Layer: 5
-  m_Name: ItemIcon
+  m_Name: CoffePotFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &541011658
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3739,7 +3807,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 541011657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.000004, y: 38.26001, z: 0}
+  m_LocalPosition: {x: -55.929996, y: 60.06, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2144292116}
@@ -3747,8 +3815,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8.239992}
-  m_SizeDelta: {x: 76.32, y: 76.32}
+  m_AnchoredPosition: {x: -5.93, y: 10.06}
+  m_SizeDelta: {x: 48.07, y: 48.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541011659
 MonoBehaviour:
@@ -6152,8 +6220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pocket: {fileID: 1656535274}
   left: {fileID: 429617246}
-  right: {fileID: 541011657}
-  score: {fileID: 0}
+  coffeePot: {fileID: 2144292115}
+  coffeePotFill: {fileID: 541011657}
 --- !u!1 &910239772 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1416518806471998, guid: a6a817bfc2b4abd4b92abb97caa23ac2,
@@ -7856,117 +7924,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4588094816712962, guid: 72638bc23bf45064fab9c9b19c898191,
     type: 2}
   m_PrefabInternal: {fileID: 1141978645}
---- !u!1 &1147219002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1147219006}
-  - component: {fileID: 1147219005}
-  - component: {fileID: 1147219004}
-  - component: {fileID: 1147219003}
-  m_Layer: 0
-  m_Name: wateringCan
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1147219003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1147219002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 212669fbe2fc0ad43b8f4190c6433939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &1147219004
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1147219002}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.15, y: 0.15}
-    newSize: {x: 0.15, y: 0.15}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.15}
-  m_EdgeRadius: 0
---- !u!212 &1147219005
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1147219002}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e19fd416b7e0247a599d0ee93a539aea, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.15, y: 0.15}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
---- !u!4 &1147219006
+--- !u!4 &1147219006 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1147219002}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.23, y: 0.075, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1035443057}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_PrefabParentObject: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1418208228}
 --- !u!1 &1166128630
 GameObject:
   m_ObjectHideFlags: 0
@@ -9406,6 +9368,48 @@ Transform:
   m_Father: {fileID: 2128641309}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1418208228
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1035443057}
+    m_Modifications:
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542443878219204, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d7f6880e773635c4282d6cd10f795bcc, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1428101523
 Prefab:
   m_ObjectHideFlags: 0
@@ -11958,6 +11962,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
+        type: 2}
+      propertyPath: elevatorpling
+      value: 
+      objectReference: {fileID: 1804951824}
     - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
         type: 2}
       propertyPath: gui
@@ -11968,9 +11977,9 @@ Prefab:
       propertyPath: lift
       value: 
       objectReference: {fileID: 1919195211}
-    - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
+    - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
         type: 2}
-      propertyPath: elevatorpling
+      propertyPath: coffeePotUILevels
       value: 
       objectReference: {fileID: 1804951824}
     - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
@@ -12003,6 +12012,7 @@ Prefab:
       value: 
       objectReference: {fileID: 245106453393161806, guid: 2409444387c3fce46a8895cb3a39496a,
         type: 2}
+      objectReference: {fileID: 2800000, guid: d586591d4cafc034088b643445ef9ba9, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
   m_IsPrefabParent: 0
@@ -16666,7 +16676,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2144292116}
   - component: {fileID: 2144292118}
-  - component: {fileID: 2144292117}
   m_Layer: 5
   m_Name: CoffeePot
   m_TagString: Untagged
@@ -16686,41 +16695,15 @@ RectTransform:
   m_Children:
   - {fileID: 1219103597}
   - {fileID: 541011658}
+  - {fileID: 130198984}
   m_Father: {fileID: 1289706230}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 93}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &2144292117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2144292115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300004, guid: aace101a6120c6840a78580d69736f1d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!222 &2144292118
 CanvasRenderer:
   m_ObjectHideFlags: 0

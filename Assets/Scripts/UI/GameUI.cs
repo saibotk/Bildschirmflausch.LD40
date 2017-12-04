@@ -11,6 +11,10 @@ public class GameUI : MonoBehaviour {
 	private GameObject right;
 	[SerializeField]
 	private GameObject score;
+	[SerializedField]
+	private GameObject coffeePot;
+	[SerializeField]
+	private GameObject coffeePotFill;
 
 	public void SetPocketImage(Sprite sp) {
 		pocket.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
@@ -21,10 +25,18 @@ public class GameUI : MonoBehaviour {
 	}
 
 	public void SetRightHandImage(Sprite sp) {
-		right.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
+		coffeePot.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
 	}
 
 	public void UpdateScore(int score) {
 		this.score.GetComponentInChildren<UnityEngine.UI.Text>().text = score.ToString();
+	}
+
+	public void SetCoffeePotEnabled(bool b) {
+		coffeePot.SetActive (b);
+	}
+
+	public void SetCoffeePotFillImage(Sprite sp) {
+		coffeePotFill.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
 	}
 }
