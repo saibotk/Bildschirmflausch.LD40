@@ -1907,7 +1907,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 272128864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.400002, y: -5.0599995, z: 0}
+  m_LocalPosition: {x: 15.780003, y: -3.1899996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 334116036}
@@ -2522,7 +2522,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 334116035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -488, y: 227.7, z: 0}
+  m_LocalPosition: {x: -315.6, y: 143.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 272128865}
@@ -3796,7 +3796,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 3213472f886649a488908c53e90aa2a0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &525852144
@@ -6346,7 +6347,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 902319841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 610, y: 253, z: 0}
+  m_LocalPosition: {x: 394.5, y: 159.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1289706230}
@@ -6411,7 +6412,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gui: {fileID: 902319846}
   player: {fileID: 545958729}
-  jobTimeInterval: 60
   questNPCs:
   - {fileID: 1534333544}
   - {fileID: 1697348269}
@@ -6448,7 +6448,6 @@ MonoBehaviour:
   - {fileID: 138711013}
   - {fileID: 1166128631}
   dirtPrefab: {fileID: 1760805179898806, guid: b8df4aec32647e249b3c73544c2bbabc, type: 2}
-  availableQuestNPCs: []
   availableQuestPlants: []
   availableQuestDirtSpots: []
   gameover: {fileID: 245289894540324194, guid: 2409444387c3fce46a8895cb3a39496a, type: 2}
@@ -7147,7 +7146,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 991409200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -610, y: 0, z: 0}
+  m_LocalPosition: {x: -394.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 828472510}
@@ -8734,7 +8733,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1289706229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -253, z: 0}
+  m_LocalPosition: {x: 0, y: -159.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 991409201}
@@ -9907,7 +9906,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1491259092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -454.3, y: 46.3, z: 0}
+  m_LocalPosition: {x: -238.79999, y: 46.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1082870979}
@@ -12021,6 +12020,18 @@ GameObject:
   m_PrefabParentObject: {fileID: 1362652855635084, guid: 3213472f886649a488908c53e90aa2a0,
     type: 2}
   m_PrefabInternal: {fileID: 521974148}
+--- !u!114 &1697348270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697348269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869663e64e576724d9316b72d2882df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isManager: 1
 --- !u!1001 &1698126719
 Prefab:
   m_ObjectHideFlags: 0
@@ -14482,6 +14493,7 @@ MonoBehaviour:
   levelHeight: 1.1
   speed: 0.05
   floorCount: 3
+  minFloor: -1
   player: {fileID: 545958729}
 --- !u!61 &1919195215
 BoxCollider2D:
@@ -16746,7 +16758,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2144292115}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 610, y: 0, z: 0}
+  m_LocalPosition: {x: 394.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1219103597}

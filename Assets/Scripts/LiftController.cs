@@ -9,6 +9,8 @@ public class LiftController : MonoBehaviour {
 	[SerializeField]
 	private int floorCount;
 	[SerializeField]
+	private int minFloor;
+	[SerializeField]
 	public GameObject player;
 	private float height = 0;
 	private int nextFloor;
@@ -50,8 +52,8 @@ public class LiftController : MonoBehaviour {
 	public void MoveDown() {
 		if (height - nextFloor < 0.1)
 			nextFloor--;
-		if (nextFloor < 0)
-			nextFloor = 0;
+		if (nextFloor < minFloor)
+			nextFloor = minFloor;
 	}
 
 	public bool CanPlayerMove() {
@@ -61,17 +63,4 @@ public class LiftController : MonoBehaviour {
 	public float PlayerHeight() {
 		return height * levelHeight;
 	}
-
-	/*void OnTriggerStay2D(Collider2D coll)
-	{
-		if (coll.CompareTag ("Player") && !CanPlayerMove ()) {
-			GameObject player = coll.GetComponent<GameObject> ();
-			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
-		}
-
-		if (coll.CompareTag ("Player") && CanPlayerMove ()) {
-			GameObject player = coll.GetComponent<GameObject> ();
-			player.GetComponent<PlayerController> ().BlockPlayerMovement ();
-		}
-	}*/
 }

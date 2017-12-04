@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114524321074359702}
   - component: {fileID: 61326492048323066}
   - component: {fileID: 114060289822648912}
+  - component: {fileID: 114908120042018364}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Untagged
@@ -204,6 +205,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869663e64e576724d9316b72d2882df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114908120042018364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416518806471998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea90fbe67d700104b951f36fbfcaa264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floor: 0
+  questNPC: 0
 --- !u!212 &212154608501352212
 SpriteRenderer:
   m_ObjectHideFlags: 1

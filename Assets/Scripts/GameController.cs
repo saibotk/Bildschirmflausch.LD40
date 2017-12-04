@@ -21,8 +21,6 @@ public class GameController : MonoBehaviour {
 
 	[Header("Jobs")]
 	[SerializeField]
-	private int jobTimeInterval = 40;
-	[SerializeField]
 	private List<GameObject> questNPCs;
 	[SerializeField]
 	private List<GameObject> coffeeNPCs;
@@ -53,14 +51,13 @@ public class GameController : MonoBehaviour {
 
 	private int score;
 	[Header("Don't touch")]
-	public List<GameObject> availableQuestNPCs;
 	public List<GameObject> availableQuestPlants;
 	public List<Transform> availableQuestDirtSpots;
     public AudioMixerSnapshot gameover;
 
-    private float lastJob;
-
 	private List<string> jobTypes = new List<string>();
+
+	private int floor = 4; // TODO start at 0 and count up with time.
 
 	// Use this for initialization
 	void Start () {
@@ -70,10 +67,8 @@ public class GameController : MonoBehaviour {
 		jobTypes.Add ("cleaning");
 
 		score = 0;
-		lastJob = Time.realtimeSinceStartup;
 		jobmanager = new Jobmanager (this);
 		//coffeeNPCs = new List<GameObject>();
-		availableQuestNPCs = new List<GameObject> (questNPCs);
 		availableQuestPlants = new List<GameObject> (plants);
 		availableQuestDirtSpots = new List<Transform> (questDirtSpots);
 		addRandomJob ();
@@ -87,16 +82,8 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.realtimeSinceStartup >= lastJob + jobTimeInterval) {
-		 	addRandomJob ();
-		}
-
 		jobmanager.checkJobTimes ();
 		CheckCoffeeNPCs ();
-	}
-
-	public void MakeNPCAvailable(GameObject obj) {
-		availableQuestNPCs.Add(obj);
 	}
 
 	public void MakePlantAvailable(GameObject obj) {
@@ -106,13 +93,14 @@ public class GameController : MonoBehaviour {
 	public void addRandomJob () {
 		switch (jobTypes[Random.Range (0, jobTypes.Count)]) {
 		case "delivery":
-			if (availableQuestNPCs.Count == 0)
-				return; // Todo here should the code try to retrieve another job.
-			int usedNpc = Random.Range (0, availableQuestNPCs.Count);
-			jobmanager.AddJob (new DeliveryJob (availableQuestNPCs [usedNpc].GetComponent<JobInteraction> (), letterSpawnpoint, letterPrefab, this.jobmanager));
-			lastJob = Time.realtimeSinceStartup;
-			Debug.Log ("Job: Delivery!");
-			availableQuestNPCs.RemoveAt(usedNpc);
+			for (int i = 0; i < 10; i++) {
+				GameObject npc = questNPCs [Random.Range (0, questNPCs.Count)];
+				if (npc.GetComponent<NPC> ().isAvailable() && npc.GetComponent<NPC> ().getFloor() <= floor) {
+					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<JobInteraction> (), letterSpawnpoint, letterPrefab, this.jobmanager));
+					Debug.Log ("Job: Delivery!");
+					break;
+				}
+			}
 			break;
 		case "watering":
 			if (plants.Count == 0 || availableQuestPlants.Count == 0)
@@ -120,7 +108,6 @@ public class GameController : MonoBehaviour {
 			int index = Random.Range (0, Mathf.Max (0, availableQuestPlants.Count - 3));
 			int count = (availableQuestPlants.Count >= 3) ? 3 : availableQuestPlants.Count;
 			jobmanager.AddJob (new WateringJob (plants.ConvertAll<JobInteraction> (x => x.GetComponent<JobInteraction> ()).GetRange (index, count), this.jobmanager));
-			lastJob = Time.realtimeSinceStartup;
 			availableQuestPlants.RemoveRange (index, count);
 			Debug.Log ("Job: Waterings!");
 			break;
@@ -130,7 +117,6 @@ public class GameController : MonoBehaviour {
 			int cindex = Random.Range (0, Mathf.Max (0, availableQuestDirtSpots.Count - 3));
 			int ccount = (availableQuestDirtSpots.Count >= 3) ? 3 : availableQuestDirtSpots.Count;
 			jobmanager.AddJob (new CleaningJob (availableQuestDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager));
-			lastJob = Time.realtimeSinceStartup;
 			availableQuestDirtSpots.RemoveRange (cindex, ccount);
 			Debug.Log ("Job: Cleaning!");
 			break;
@@ -165,7 +151,10 @@ public class GameController : MonoBehaviour {
 	}
 
     public int getScore()
+
     {
+
         return score;
+
     }
 }
