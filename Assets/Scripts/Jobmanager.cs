@@ -34,9 +34,7 @@ public class Jobmanager
 	// Adds the given job at the begin
 	public void AddJob(Job inputJob)
 	{
-		Debug.Log ("cAddJobbefore: " + jobList.Count);
 		jobList.Add(inputJob);
-		Debug.Log ("cAddJob: " + jobList.Count);
 		manager.getGui ().UpdateJobListUI (new List<Job>(jobList));
 	}
 
@@ -45,9 +43,7 @@ public class Jobmanager
 	public void RemoveJob(Job job)
 	{
 		job.cleanup();
-		Debug.Log ("cRemoveJobbefore: " + jobList.Count);
 		jobList.Remove(job);
-		Debug.Log ("cRemoveJobafter: " + jobList.Count);
 		manager.getGui ().UpdateJobListUI (new List<Job>(jobList));
 	}
 

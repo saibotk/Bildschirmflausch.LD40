@@ -35,8 +35,8 @@ public class CleaningJob : Job {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is Broom) {
 							this.dirtSpotsGO.Remove (dirtGo);
 							if (this.dirtSpotsGO.Count == 0) {
-								player.GetComponent<PlayerController>().GetInventory().leftHand = null;
-								Debug.Log("Removed Broom from Inventory");
+								//player.GetComponent<PlayerController>().GetInventory().leftHand = null;
+								//Debug.Log("Removed Broom from Inventory");
 								this.finishJob ();
 							}
 							GameObject.Destroy (dirtGo);

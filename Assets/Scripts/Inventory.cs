@@ -46,6 +46,8 @@ public class Inventory {
 				//return false;
 			}
 		} else {
+			if (leftHand == item || pocket == item)
+				return false;
 			// Place in left hand
 			if (leftHand == null) {
 				this.leftHand = item;
