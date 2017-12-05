@@ -55,7 +55,6 @@ public class GameUI : MonoBehaviour {
 		Debug.Log ("UpdateUI called");
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
-			Debug.Log ("count " + lrt.Count);
 			if (lrt.Count == 0 || lrt.Find (x => x.GetJob() != null && x.GetJob () == j) == null) {
 				GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
 				go.GetComponent<QuestQueueItem> ().SetJob (j);

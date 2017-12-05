@@ -51,7 +51,8 @@ public class PlayerController : MonoBehaviour {
 			if (interactivesInRange.Count != 0) {
 				GameObject iaclose = null;
 				foreach (GameObject ia in interactivesInRange) {
-					if (iaclose == null || Vector2.Distance (gameObject.transform.position, ia.transform.position) < Vector2.Distance (gameObject.transform.position, iaclose.transform.position))
+					bool closer = iaclose != null && (Vector2.Distance (gameObject.transform.position, ia.transform.position) < Vector2.Distance (gameObject.transform.position, iaclose.transform.position));
+					if (iaclose == null || ia.GetComponent(typeof(JobEntitiy)) != null && ( iaclose.GetComponent(typeof(JobEntitiy)) == null || closer ) || ia.GetComponent(typeof(JobEntitiy)) == null && closer)
 						iaclose = ia;
 				}
 				(iaclose.GetComponentInChildren (typeof(IInteractable)) as IInteractable).Interact (gameObject);
