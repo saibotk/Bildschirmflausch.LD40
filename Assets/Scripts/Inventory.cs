@@ -14,6 +14,7 @@ public class Inventory {
 
 	public bool AddItem(Item item) {
 		// TODO UGLY CODE!!!!
+		// And it got worse
 		if (item is Letter) {
 			if (leftHand is LetterBundle) {
 				((LetterBundle)leftHand).Add ((Letter) item);
@@ -32,7 +33,8 @@ public class Inventory {
 					return true;
 				}
 
-				if (pocket == null) {
+				//if (pocket == null)
+				{
 					pocket = leftHand;
 					LetterBundle lb = new LetterBundle ();
 					lb.Add ((Letter)item);
@@ -40,16 +42,41 @@ public class Inventory {
 					UpdateGUI ();
 					return true;
 				}
-				return false;
+
+				//return false;
 			}
 		} else {
+			// Place in left hand
 			if (leftHand == null) {
 				this.leftHand = item;
 				UpdateGUI ();
 				return true;
 			}
 
+			// Place in pocket
 			if (pocket == null) {
+				pocket = leftHand;
+				leftHand = item;
+				UpdateGUI ();
+				return true;
+			}
+
+			bool hasLetterLeft = (leftHand is Letter) || (leftHand is LetterBundle) ;
+			bool hasLetterPocket = (pocket is Letter) || (pocket is LetterBundle);
+			if (hasLetterLeft) {
+				pocket = leftHand;
+				leftHand = item;
+				UpdateGUI ();
+				return true;
+			}
+			if (hasLetterPocket) {
+				leftHand = item;
+				UpdateGUI ();
+				return true;
+			}
+
+			if ((pocket is WateringCan && item is WateringCan) || (pocket is Broom && item is Broom)
+				|| (pocket is WateringCan && leftHand is WateringCan) || (pocket is Broom && leftHand is Broom)) {
 				pocket = leftHand;
 				leftHand = item;
 				UpdateGUI ();
