@@ -56,7 +56,7 @@ public class Jobmanager
 
 	public void finishedJob(Job job) {
 		GetGameController ().AddScore (job.GetScoreValue());
-        GetGameController().GetPlayer().GetComponent<AudioControl>().sfxplay(4);
+        GetGameController().GetPlayer().GetComponent<AudioControl>().sfxplay(3);
         RemoveJob (job);
 		GetGameController ().addRandomJob ();
 	}
