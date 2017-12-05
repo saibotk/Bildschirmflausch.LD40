@@ -11,7 +11,7 @@ public class CopyJob : Job {
 	private Jobmanager jobmanager;
 	private Document document;
 
-	public CopyJob(NPC boss, IInteractable copyMashine, GameObject prefab, Jobmanager manager) : base ("Copy", "Copy that document!", 30f, 70) {
+	public CopyJob(NPC boss, IInteractable copyMashine, GameObject prefab, Jobmanager manager) : base ("Copy", "Copy that document!", 30f, 70, (Resources.Load("letter") as Sprite)) {
 		this.target = boss;
 		this.target.SetAvailable (false);
 		this.document = new Document(this);

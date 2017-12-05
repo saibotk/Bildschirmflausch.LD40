@@ -8,17 +8,18 @@ public abstract class Job : IJob
 	private float jobStartTime = 0;
 	private float jobTime = 0; 											// in seconds
 	private int scoreValue = 0;
+	private Sprite jobIcon;
 	private Color jobColor;
 
-	public Job(string taskName, string jobDescription, float jobTime, int scoreValue)
+	public Job(string taskName, string jobDescription, float jobTime, int scoreValue, Sprite jobIcon)
 	{
 		this.taskName = taskName;
 		this.jobDescription = jobDescription;
 		this.jobStartTime = Time.realtimeSinceStartup;
 		this.jobTime = jobTime;
 		this.scoreValue = scoreValue;
+		this.jobIcon = jobIcon;
 		this.jobColor = new Color (Random.Range (0.0F, 1.0F), Random.Range (0.0F, 1.0F), Random.Range (0.0F, 1.0F), 1);
-		Debug.Log (this.jobColor);
 	}
 
 	// Getter
@@ -50,6 +51,10 @@ public abstract class Job : IJob
 
 	public Color GetJobColor() {
 		return this.jobColor;
+	}
+
+	public Sprite GetJobIcon() {
+		return this.jobIcon;
 	}
 
 	// Setter

@@ -17,6 +17,10 @@ public class GameUI : MonoBehaviour {
 	private GameObject coffeePotFill;
 	[SerializeField]
 	private GameObject gameOverPanel;
+	[SerializeField]
+	private GameObject questPanel;
+	[SerializeField]
+	private GameObject questQueueItemPrefab;
 
 	public void SetPocketImage(Sprite sp) {
 		pocket.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
@@ -47,6 +51,23 @@ public class GameUI : MonoBehaviour {
 	}
 
 	public void UpdateJobListUI(List<Job> jobList) {
-
+		int i = 0;
+		foreach (Job j in jobList) {
+			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
+			Debug.Log ("count " + lrt.Count);
+			if (lrt.Count == 0 || lrt.Find (x => x.GetJob() != null && x.GetJob () != j) == null) {
+				GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
+				go.GetComponent<QuestQueueItem> ().SetJob (j);
+				go.transform.localPosition = new Vector3 (0, -i * ((RectTransform)questQueueItemPrefab.transform).rect.width);
+				Debug.Log ("Added Hint");
+			}
+			i++;
+		}
+		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
+			if (jobList.Find (x => x == rt.GetJob ()) == null) {
+				Debug.Log ("Removed Hint for job: " + rt.GetJob());
+				Destroy (rt.gameObject);
+			}
+		}
 	}
 }

@@ -7,7 +7,7 @@ public class WateringJob : Job {
 	private Jobmanager jobmanager;
 	private GameObject indicatorPrefab;
 
-	public WateringJob(List<JobEntitiy> targets, Jobmanager manager, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 30f, 50) {
+	public WateringJob(List<JobEntitiy> targets, Jobmanager manager, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 30f, 50, Resources.Load<Sprite>("wateringCan")) {
 		this.targets = targets;
 		this.jobmanager = manager;
 		this.indicatorPrefab = indicatorPrefab;

@@ -34,17 +34,17 @@ public class Jobmanager
 	// Adds the given job at the begin
 	public void AddJob(Job inputJob)
 	{
-		manager.getGui ().UpdateJobListUI (jobList);
 		jobList.Add(inputJob);
+		manager.getGui ().UpdateJobListUI (jobList);
 	}
 
 	// RemoveJob: integer -> void
 	// Removes the job with the given number, starting with 0
 	public void RemoveJob(Job job)
 	{
-		manager.getGui ().UpdateJobListUI (jobList);
 		job.cleanup();
 		jobList.Remove(job);
+		manager.getGui ().UpdateJobListUI (jobList);
 	}
 
 	// GetAllJob: void -> List<Job>

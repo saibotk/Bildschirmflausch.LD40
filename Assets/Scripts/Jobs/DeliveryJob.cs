@@ -11,7 +11,7 @@ public class DeliveryJob : Job {
 	private Jobmanager jobmanager;
 	private Letter letter;
 
-	public DeliveryJob(NPC target, Transform transform, GameObject prefab, Jobmanager manager, GameObject indicatorPrefab) : base ("Delivery", "Deliver the item!", 30f, 30) {
+	public DeliveryJob(NPC target, Transform transform, GameObject prefab, Jobmanager manager, GameObject indicatorPrefab) : base ("Delivery", "Deliver the item!", 30f, 30, Resources.Load<Sprite>("letter")) {
 		this.target = target;
 		this.indicatorPrefab = indicatorPrefab;
 		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = GetJobColor();

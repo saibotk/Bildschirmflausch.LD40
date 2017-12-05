@@ -5,7 +5,7 @@ using UnityEngine;
 public class LetterBundle : Item {
 	public readonly List<Letter> letters;
 
-	public LetterBundle (List<Letter> l) : base ("Letter Bundle", Resources.Load<Sprite>("letter")) {
+	public LetterBundle (List<Letter> l) : base ("Letter Bundle", Resources.Load<Sprite>("letters")) {
 		this.letters = l;
 	}
 
