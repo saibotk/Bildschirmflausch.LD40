@@ -67,8 +67,6 @@ public class GameController : MonoBehaviour {
 		score = 0;
 
 		jobmanager = new Jobmanager (this);
-
-		addRandomJob ();
 	}
 		
 	// Update is called once per frame
@@ -87,6 +85,8 @@ public class GameController : MonoBehaviour {
 				// TODO notification
 			}
 		}
+		if (jobmanager.GetAllJobs ().Count == 0 && Random.value > 0.995)
+			addRandomJob ();
 	}
 
 	public PlayerController GetPlayer() {
@@ -104,17 +104,17 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void addRandomJob() {
-		addRandomJob (jobTypes);
-        player.GetComponent<AudioControl>().sfxplay(2);
+		if (addRandomJob (jobTypes))
+	        player.GetComponent<AudioControl>().sfxplay(2);
 		if (jobmanager.GetAllJobs ().Count > 10) {
 			GameOver ();
 			Debug.Log ("You suck at multitasking");
 		}
 	}
 
-	private void addRandomJob (List<string> rjobtypes) {
+	private bool addRandomJob (List<string> rjobtypes) {
 		if (rjobtypes.Count == 0)
-			return;
+			return false;
 		GameObject jobIndicator = this.indicator;
 		string jt = rjobtypes [Random.Range (0, Mathf.Min(floor+1, jobTypes.Count))];
 		switch (jt) {
@@ -124,9 +124,9 @@ public class GameController : MonoBehaviour {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
 					if (leftJobTypes.Count == 0)
-						return;
+						return false;
 					addRandomJob(leftJobTypes);
-					return;
+					return false;
 				} 
 
 				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
@@ -141,9 +141,9 @@ public class GameController : MonoBehaviour {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
 					if (leftJobTypes.Count == 0)
-						return;
+						return false;
 					addRandomJob (leftJobTypes);
-					return;
+					return false;
 				}
 				int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));
 				int count = (aPlants.Count >= 3) ? 3 : aPlants.Count;
@@ -157,9 +157,9 @@ public class GameController : MonoBehaviour {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
 					if (leftJobTypes.Count == 0)
-						return;
+					return false;
 					addRandomJob(leftJobTypes); 
-					return;
+					return false;
 					}
 				int cindex = Random.Range (0, Mathf.Max (0, aDirtSpots.Count - 3));
 				int ccount = (aDirtSpots.Count >= 3) ? 3 : aDirtSpots.Count;
@@ -167,6 +167,7 @@ public class GameController : MonoBehaviour {
 				Debug.Log ("Job: Cleaning!");
 				break;
 		}
+		return true;
 	}
 
 	private void GameOver() {
