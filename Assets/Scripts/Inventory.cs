@@ -64,9 +64,13 @@ public class Inventory {
 				return true;
 			}
 				
-			if ((pocket is WateringCan && item is WateringCan) || (pocket is Broom && item is Broom)
-				|| (pocket is WateringCan && leftHand is WateringCan) || (pocket is Broom && leftHand is Broom)) {
+			if ((pocket is WateringCan && item is Broom) || (pocket is Broom && item is WateringCan)) {
 				pocket = leftHand;
+				leftHand = item;
+				UpdateGUI ();
+				return true;
+			}
+			if ((leftHand is WateringCan && item is Broom) || (leftHand is Broom && item is WateringCan)) {
 				leftHand = item;
 				UpdateGUI ();
 				return true;
