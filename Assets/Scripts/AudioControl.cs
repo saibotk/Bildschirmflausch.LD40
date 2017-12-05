@@ -19,8 +19,8 @@ public class AudioControl : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        m_TransitionIn = 0.5f;
-        m_TransitionOut = 1;
+        m_TransitionIn = 0.3f;
+        m_TransitionOut = 0.3f;
         endstate = false;
 		AddLayer (0);
     }
@@ -30,7 +30,7 @@ public class AudioControl : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.CompareTag("Lift") && endstate == false) {
+        if (col.CompareTag("Liftmusic") && endstate == false) {
             if (col.isTrigger) {
                 lifttheme.TransitionTo(m_TransitionIn);
             }
@@ -38,7 +38,7 @@ public class AudioControl : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D col) {
-        if (col.CompareTag("Lift") && endstate == false) {
+        if (col.CompareTag("Liftmusic") && endstate == false) {
             if (col.isTrigger) {
 				maintheme[floor].TransitionTo(m_TransitionOut);
             }
@@ -54,10 +54,7 @@ public class AudioControl : MonoBehaviour
     }
 
 	public void AddLayer(int floor) {
-		if (floor > 0)
-			maintheme[floor+1].TransitionTo(7);
-		else
-			maintheme[floor].TransitionTo(7);
+		maintheme[floor].TransitionTo(1);
 		this.floor = floor;
     }
 
