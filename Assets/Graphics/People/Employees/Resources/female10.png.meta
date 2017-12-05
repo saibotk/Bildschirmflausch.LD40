@@ -1,9 +1,12 @@
 fileFormatVersion: 2
-guid: be1627e6c06c9c54db87c0ed69e13920
-timeCreated: 1512222556
+guid: d1c58155eb16b48749ff3b64839839f2
+timeCreated: 1512346946
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: female10_0
+    21300002: female10_1
+    21300004: female10_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -83,23 +86,52 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline:
-    - - {x: -72, y: 9.5}
-      - {x: -72, y: -9.5}
-      - {x: 72, y: -9.5}
-      - {x: 72, y: 9.5}
+    sprites:
+    - serializedVersion: 2
+      name: female10_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 13
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: female10_1
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 13
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: female10_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 13
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
     physicsShape: []
   spritePackingTag: 
   userData: 
