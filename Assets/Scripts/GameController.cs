@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
 	private int gamestate = 0;
+    private bool coffeesound = false;
 	private Jobmanager jobmanager;
 
 	[SerializeField]
@@ -73,7 +74,7 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		if (gamestate == 0) {
 			jobmanager.checkJobTimes ();
-			CheckCoffeeNPCs ();
+			CheckCoffeeNPCs();
 
 			// Unlock new floor
 			if ((floor < 1 && score >= 50) ||
@@ -182,13 +183,27 @@ public class GameController : MonoBehaviour {
 
 	public void CheckCoffeeNPCs() {
 		int emptyCofeeCounter = 0;
+        int almostemptyCofeeCounter = 0;
 		foreach (GameObject NPC in coffeeNPCs) {
 			if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer () == 0) {
 				emptyCofeeCounter++;
 			}
+            if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer() < 15)
+            {
+                almostemptyCofeeCounter++;
+            }
 		}
-        if (emptyCofeeCounter == 2) {
+        
+        if ((emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) && coffeesound == false)
+        {
+            coffeesound = true;
             player.GetComponent<AudioControl>().sfxplay(1);
+            Debug.Log("Almost empty");
+        }
+        else if (!(emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2))
+        {
+            player.GetComponent<AudioControl>().sfxstop(1);
+            coffeesound = false;
         }
         if (emptyCofeeCounter >= 3) {
 			Debug.Log ("The company ran out of coffee");
