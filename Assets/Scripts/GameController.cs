@@ -131,7 +131,7 @@ public class GameController : MonoBehaviour {
 
 				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
 				if (npc.GetComponent<NPC> ().GetFloor() <= floor) {
-				jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager, jobIndicator));
+					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager, jobIndicator));
 					Debug.Log ("Job: Delivery!");
 				}
 				break;
@@ -140,8 +140,9 @@ public class GameController : MonoBehaviour {
 				if (plants.Count == 0 || aPlants.Count == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
-					if (leftJobTypes.Count == 0)
+					if (leftJobTypes.Count == 0) {
 						return false;
+					}
 					addRandomJob (leftJobTypes);
 					return false;
 				}
@@ -153,14 +154,15 @@ public class GameController : MonoBehaviour {
 				break;
 			case "cleaning":
 				List<GameObject> aDirtSpots = getAvailable (new List<GameObject> (DirtSpots));
-			if (DirtSpots.Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
+				if (DirtSpots.Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
-					if (leftJobTypes.Count == 0)
-					return false;
+					if (leftJobTypes.Count == 0) {
+						return false;
+					}
 					addRandomJob(leftJobTypes); 
 					return false;
-					}
+				}
 				int cindex = Random.Range (0, Mathf.Max (0, aDirtSpots.Count - 3));
 				int ccount = (aDirtSpots.Count >= 3) ? 3 : aDirtSpots.Count;
 				jobmanager.AddJob (new CleaningJob (aDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager));

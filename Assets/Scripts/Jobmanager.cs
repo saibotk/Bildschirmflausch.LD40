@@ -34,8 +34,10 @@ public class Jobmanager
 	// Adds the given job at the begin
 	public void AddJob(Job inputJob)
 	{
+		Debug.Log ("cAddJobbefore: " + jobList.Count);
 		jobList.Add(inputJob);
-		manager.getGui ().UpdateJobListUI (jobList);
+		Debug.Log ("cAddJob: " + jobList.Count);
+		manager.getGui ().UpdateJobListUI (new List<Job>(jobList));
 	}
 
 	// RemoveJob: integer -> void
@@ -43,8 +45,10 @@ public class Jobmanager
 	public void RemoveJob(Job job)
 	{
 		job.cleanup();
+		Debug.Log ("cRemoveJobbefore: " + jobList.Count);
 		jobList.Remove(job);
-		manager.getGui ().UpdateJobListUI (jobList);
+		Debug.Log ("cRemoveJobafter: " + jobList.Count);
+		manager.getGui ().UpdateJobListUI (new List<Job>(jobList));
 	}
 
 	// GetAllJob: void -> List<Job>
@@ -58,7 +62,7 @@ public class Jobmanager
 		GetGameController ().AddScore (job.GetScoreValue());
         GetGameController().GetPlayer().GetComponent<AudioControl>().sfxplay(3);
         RemoveJob (job);
-		GetGameController ().addRandomJob ();
+		manager.addRandomJob ();
 	}
 
 	public GameController GetGameController() {

@@ -52,6 +52,7 @@ public class GameUI : MonoBehaviour {
 
 	public void UpdateJobListUI(List<Job> jobList) {
 		int i = 0;
+		Debug.Log ("UpdateUI called");
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
 			Debug.Log ("count " + lrt.Count);
