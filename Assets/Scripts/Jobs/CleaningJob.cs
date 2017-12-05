@@ -22,21 +22,11 @@ public class CleaningJob : Job {
 	}
 
 	override public void init() {
-		this.broomGO = GameObject.Instantiate (this.broomPrefab, this.broomSpawn.position, this.broomSpawn.rotation);
-		this.broomGO.GetComponent<JobEntitiy> ().SetJob (this);
-		this.broomGO.GetComponent<JobEntitiy> ().SetInteract (delegate (GameObject player) {
-			bool added = player.GetComponent<PlayerController> ().GetInventory ().AddItem (new Broom (this));
-			if (added) {
-				GameObject.Destroy(this.broomGO);
-			}
-		});
 		dirtSpotsGO = new List<GameObject> ();
 		foreach (GameObject dirtSpot in dirtSpots) {
 			dirtSpotsGO.Add (GameObject.Instantiate (this.dirtSpotPrefab, dirtSpot.transform.position, dirtSpot.transform.rotation));
 			(dirtSpot.GetComponent (typeof(IAvailable)) as IAvailable).SetAvailable (false);
 		}
-
-
 		foreach (GameObject dirtGo in dirtSpotsGO) {
 			dirtGo.GetComponent<JobEntitiy> ().SetJob (this);
 			dirtGo.GetComponent<JobEntitiy> ().SetInteract (
@@ -68,13 +58,12 @@ public class CleaningJob : Job {
 		this.manager.GetGameController ().GetPlayer ().GetInventory ().RemoveItem (new Broom (this));
 		if (dirtSpotsGO != null && dirtSpotsGO.Count != 0) {
 			List<GameObject> tmpDirtGO = new List<GameObject> (dirtSpotsGO);
-			foreach (GameObject dirtGo in tmpDirtGO) {
-				GameObject.Destroy (dirtGo);
-			}
+			//foreach (GameObject dirtGo in tmpDirtGO) {
+			//	GameObject.Destroy (dirtGo);
+			//}
 			foreach (GameObject t in dirtSpots) {
 				(t.GetComponent (typeof(IAvailable)) as IAvailable).SetAvailable (true);
 			}
 		}
 	}
-
 }

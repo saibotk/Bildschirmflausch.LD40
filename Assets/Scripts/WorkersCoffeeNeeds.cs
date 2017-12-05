@@ -8,6 +8,8 @@ public class WorkersCoffeeNeeds : MonoBehaviour, IInteractable {
 	float coffeeTimer;
 
 	[SerializeField]
+	private GameController controller;
+	[SerializeField]
 	GameObject coffeeMeter;
 	[SerializeField]
 	Texture2D coffeeMeter_spriteSheet;
@@ -19,9 +21,10 @@ public class WorkersCoffeeNeeds : MonoBehaviour, IInteractable {
 	
 	// Update is called once per frame
 	void Update () {
-		if (coffeeTimer >= Time.deltaTime)
-			coffeeTimer -= Time.deltaTime;
-		else
+		if (coffeeTimer >= Time.deltaTime) {
+			if (GetComponent<NPC>().IsAvailable(controller.GetFloor()))
+				coffeeTimer -= Time.deltaTime;
+		} else
 			coffeeTimer = 0;
 
 		SpriteRenderer render = coffeeMeter.GetComponent<SpriteRenderer>();

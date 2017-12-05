@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4595657163330088}
   - component: {fileID: 212153640392696856}
   - component: {fileID: 61548499584533368}
-  - component: {fileID: 114800602335874284}
+  - component: {fileID: 114454263284723662}
   m_Layer: 0
   m_Name: Broom
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.15}
   m_EdgeRadius: 0
---- !u!114 &114800602335874284
+--- !u!114 &114454263284723662
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,9 +75,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1545327276700708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f14f8cd50e21a1428ce8a20a07300e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 212669fbe2fc0ad43b8f4190c6433939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBroom: 1
 --- !u!212 &212153640392696856
 SpriteRenderer:
   m_ObjectHideFlags: 1
