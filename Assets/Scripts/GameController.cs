@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour {
 	public void addRandomJob() {
 		if (addRandomJob (jobTypes))
 	        player.GetComponent<AudioControl>().sfxplay(2);
-		if (jobmanager.GetAllJobs ().Count > 10) {
+		if (jobmanager.GetAllJobs ().Count > 5) {
 			GameOver ();
 			Debug.Log ("You suck at multitasking");
 		}

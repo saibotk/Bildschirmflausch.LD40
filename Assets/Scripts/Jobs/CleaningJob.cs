@@ -12,7 +12,7 @@ public class CleaningJob : Job {
 	private GameObject broomGO;
 	private List<GameObject> dirtSpotsGO;
 
-	public CleaningJob(List<GameObject> dirtSpots, GameObject dirtSpotPrefab,Transform broomSpawn, GameObject broomPrefab, Jobmanager manager) : base ("Clean", "Clean all the dirtspots", 30f, 50, Resources.Load<Sprite>("broom")) {
+	public CleaningJob(List<GameObject> dirtSpots, GameObject dirtSpotPrefab,Transform broomSpawn, GameObject broomPrefab, Jobmanager manager) : base ("Clean", "Clean all the dirtspots", 50f, 50, Resources.Load<Sprite>("broom")) {
 		this.dirtSpots = dirtSpots;
 		this.dirtSpotPrefab = dirtSpotPrefab;
 		this.broomSpawn = broomSpawn;
@@ -55,12 +55,12 @@ public class CleaningJob : Job {
 
 	override public void cleanup() {
 		GameObject.Destroy (this.broomGO);
-		this.manager.GetGameController ().GetPlayer ().GetInventory ().RemoveItem (new Broom (this));
+		//this.manager.GetGameController ().GetPlayer ().GetInventory ().RemoveItem (new Broom (this));
 		if (dirtSpotsGO != null && dirtSpotsGO.Count != 0) {
 			List<GameObject> tmpDirtGO = new List<GameObject> (dirtSpotsGO);
-			//foreach (GameObject dirtGo in tmpDirtGO) {
-			//	GameObject.Destroy (dirtGo);
-			//}
+			foreach (GameObject dirtGo in tmpDirtGO) {
+				GameObject.Destroy (dirtGo);
+			}
 			foreach (GameObject t in dirtSpots) {
 				(t.GetComponent (typeof(IAvailable)) as IAvailable).SetAvailable (true);
 			}
