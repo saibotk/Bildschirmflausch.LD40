@@ -40,7 +40,7 @@ AudioMixerController:
     - ca66ad419872c0943b28d2078b049893
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 245289894540324194}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -82,7 +82,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 8c0f53b3d4d63974e961866ed4061b88
   m_FloatValues:
-    1289149124ea1d943a07f842f975b5f2: 7.3797894
+    1289149124ea1d943a07f842f975b5f2: -15.421314
     2baa7b950bf23d947b8a7a4a9d1837fe: 3.704152
     cc64e94694b2e8343aa65e3ba33ed344: -7.436929
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
@@ -534,7 +534,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 21c83373e74a42e4d86b1c8c1d6eecb7
   m_FloatValues:
-    1289149124ea1d943a07f842f975b5f2: -10.867776
+    1289149124ea1d943a07f842f975b5f2: -17.29471
     330bc5731c5ec474d8eec511cafcc4c7: -80
     98a24ce4c40b06b428f3b40dd68134ae: -80
     2baa7b950bf23d947b8a7a4a9d1837fe: 9.757735
@@ -554,6 +554,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: e494bf250e983504780909240106a6ff
   m_FloatValues:
+    1289149124ea1d943a07f842f975b5f2: -16.035946
     2baa7b950bf23d947b8a7a4a9d1837fe: 9.925883
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     fd285d2af5ac090438bc1c47b2c68492: -80
@@ -572,6 +573,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 2537c7d11e37c98428af58298de81d3d
   m_FloatValues:
+    1289149124ea1d943a07f842f975b5f2: -14.816608
     2baa7b950bf23d947b8a7a4a9d1837fe: 9.925883
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     fd285d2af5ac090438bc1c47b2c68492: -80
@@ -624,7 +626,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 6c6209ce77da6f54bab6bb501d083ede
   m_FloatValues:
-    1289149124ea1d943a07f842f975b5f2: 7.3797894
+    1289149124ea1d943a07f842f975b5f2: -19.928473
     2baa7b950bf23d947b8a7a4a9d1837fe: 9.925883
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     efd11d2a9470ba240af5f800a9e899dd: -80
