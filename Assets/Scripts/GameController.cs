@@ -68,6 +68,8 @@ public class GameController : MonoBehaviour {
 		score = 0;
 
 		jobmanager = new Jobmanager (this);
+
+		addRandomJob ();
 	}
 		
 	// Update is called once per frame
@@ -164,7 +166,7 @@ public class GameController : MonoBehaviour {
 				}
 				int cindex = Random.Range (0, Mathf.Max (0, aDirtSpots.Count - 3));
 				int ccount = (aDirtSpots.Count >= 3) ? 3 : aDirtSpots.Count;
-				jobmanager.AddJob (new CleaningJob (aDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager));
+				jobmanager.AddJob (new CleaningJob (aDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager, jobIndicator));
 				Debug.Log ("Job: Cleaning!");
 				break;
 		}
@@ -197,11 +199,13 @@ public class GameController : MonoBehaviour {
         if ((emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) && coffeesound == false)
         {
             coffeesound = true;
+			gui.SetCoffeeWarningVisible (true);
             player.GetComponent<AudioControl>().sfxplay(1);
             Debug.Log("Almost empty");
         }
         else if (!(emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2))
         {
+			gui.SetCoffeeWarningVisible (false);
             player.GetComponent<AudioControl>().sfxstop(1);
             coffeesound = false;
         }

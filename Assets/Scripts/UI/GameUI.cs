@@ -21,6 +21,8 @@ public class GameUI : MonoBehaviour {
 	private GameObject questPanel;
 	[SerializeField]
 	private GameObject questQueueItemPrefab;
+	[SerializeField]
+	private GameObject LowCoffeeHint;
 
 	public void SetPocketImage(Sprite sp) {
 		pocket.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
@@ -32,6 +34,10 @@ public class GameUI : MonoBehaviour {
 
 	public void SetRightHandImage(Sprite sp) {
 		coffeePot.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
+	}
+
+	public void SetCoffeeWarningVisible(bool b) {
+		LowCoffeeHint.SetActive (b);
 	}
 
 	public void UpdateScore(int score) {
@@ -51,23 +57,39 @@ public class GameUI : MonoBehaviour {
 	}
 
 	public void UpdateJobListUI(List<Job> jobList) {
-		int i = 0;
+		
 		Debug.Log ("UpdateUI called");
+
+		int i = 0;
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
-			if (lrt.Count == 0 || lrt.Find (x => x.GetJob() != null && x.GetJob () == j) == null) {
+			if (lrt.Count == 0 || lrt.Find (x => x.GetJob () != null && x.GetJob () == j) == null) {
 				GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
 				go.GetComponent<QuestQueueItem> ().SetJob (j);
 				go.transform.localPosition = new Vector3 (0, -i * ((RectTransform)questQueueItemPrefab.transform).rect.height);
 				Debug.Log ("Added Hint");
+				Debug.Log ("i: " + i);
 			}
+
+			
 			i++;
 		}
+
+
 		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
 			if (jobList.Find (x => x == rt.GetJob ()) == null) {
 				Debug.Log ("Removed Hint for job: " + rt.GetJob());
-				Destroy (rt.gameObject);
+				DestroyImmediate (rt.gameObject);
 			}
 		}
+			
+		int i2 = 0;
+		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
+			rt.gameObject.transform.localPosition = new Vector3 (0, -i2 * ((RectTransform)questQueueItemPrefab.transform).rect.height);
+			Debug.Log ("i2: " + i2);
+			Debug.Log ("this Items job: " + rt.GetJob ().GetTaskName ());
+			i2++;
+		}
+
 	}
 }

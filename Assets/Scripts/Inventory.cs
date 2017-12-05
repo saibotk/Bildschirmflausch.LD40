@@ -46,7 +46,8 @@ public class Inventory {
 				//return false;
 			}
 		} else {
-			if (leftHand == item || pocket == item)
+			// !!! NO UNIQUE ITEMS POSSIBLE -> JUST FOR WATERING CAN N STUFF
+			if (leftHand != null && leftHand.GetType() == item.GetType() || pocket != null && pocket.GetType() == item.GetType())
 				return false;
 			// Place in left hand
 			if (leftHand == null) {
@@ -62,21 +63,7 @@ public class Inventory {
 				UpdateGUI ();
 				return true;
 			}
-
-			bool hasLetterLeft = (leftHand is Letter) || (leftHand is LetterBundle) ;
-			bool hasLetterPocket = (pocket is Letter) || (pocket is LetterBundle);
-			if (hasLetterLeft) {
-				pocket = leftHand;
-				leftHand = item;
-				UpdateGUI ();
-				return true;
-			}
-			if (hasLetterPocket) {
-				leftHand = item;
-				UpdateGUI ();
-				return true;
-			}
-
+				
 			if ((pocket is WateringCan && item is WateringCan) || (pocket is Broom && item is Broom)
 				|| (pocket is WateringCan && leftHand is WateringCan) || (pocket is Broom && leftHand is Broom)) {
 				pocket = leftHand;
@@ -89,10 +76,22 @@ public class Inventory {
 	}
 
 	public void RemoveItem(Item item) {
-		if (leftHand != null && leftHand.Equals (item))
+		if (leftHand != null && (leftHand is LetterBundle) && (item is Letter)) {
+			((LetterBundle)leftHand).Remove ((Letter)item);
+			if (((LetterBundle) leftHand).letters.Count == 0)
+				leftHand = null;
+		}
+		if (pocket != null && (pocket is LetterBundle) && (item is Letter)) {
+			((LetterBundle) pocket).Remove ((Letter)item);
+			if (((LetterBundle) pocket).letters.Count == 0)
+				pocket = null;
+		}
+		if (leftHand != null && leftHand.Equals (item)) {
 			leftHand = null;
-		if (pocket != null && pocket.Equals (item))
+		}
+		if (pocket != null && pocket.Equals (item)) {
 			pocket = null;
+		}
 		UpdateGUI ();
 	}
 
