@@ -123,8 +123,6 @@ public class GameController : MonoBehaviour {
 			if(aNPCs.Count == 0 || floor == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
-					if (leftJobTypes.Count == 0)
-						return false;
 					addRandomJob(leftJobTypes);
 					return false;
 				} 
@@ -140,8 +138,6 @@ public class GameController : MonoBehaviour {
 				if (plants.Count == 0 || aPlants.Count == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
-					if (leftJobTypes.Count == 0)
-						return false;
 					addRandomJob (leftJobTypes);
 					return false;
 				}
@@ -156,8 +152,6 @@ public class GameController : MonoBehaviour {
 			if (DirtSpots.Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
-					if (leftJobTypes.Count == 0)
-					return false;
 					addRandomJob(leftJobTypes); 
 					return false;
 					}

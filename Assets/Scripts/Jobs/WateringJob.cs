@@ -27,6 +27,8 @@ public class WateringJob : Job {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is WateringCan) {
 							Debug.Log ("Used Watering Can");
 							target.SetInteract (null);
+							target.SetJob (null);
+							target.SetAvailable (true);
 							GameObject.Destroy(target.GetIndicator());
 							targets.Remove(target);
 							if(this.targets.Count == 0) {
@@ -44,8 +46,9 @@ public class WateringJob : Job {
 		this.jobmanager.finishedJob(this);
 	}
 
-	override public void cleanup() {
+	override public void cleanup() {		
 		foreach (JobEntitiy target in targets) {
+			// Dead code, replaced by delegate above
 			target.SetInteract (null);
 			target.SetJob (null);
 			target.SetAvailable (true);
