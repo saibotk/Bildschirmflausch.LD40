@@ -56,10 +56,10 @@ public class GameUI : MonoBehaviour {
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
 			Debug.Log ("count " + lrt.Count);
-			if (lrt.Count == 0 || lrt.Find (x => x.GetJob() != null && x.GetJob () != j) == null) {
+			if (lrt.Count == 0 || lrt.Find (x => x.GetJob() != null && x.GetJob () == j) == null) {
 				GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
 				go.GetComponent<QuestQueueItem> ().SetJob (j);
-				go.transform.localPosition = new Vector3 (0, -i * ((RectTransform)questQueueItemPrefab.transform).rect.width);
+				go.transform.localPosition = new Vector3 (0, -i * ((RectTransform)questQueueItemPrefab.transform).rect.height);
 				Debug.Log ("Added Hint");
 			}
 			i++;
