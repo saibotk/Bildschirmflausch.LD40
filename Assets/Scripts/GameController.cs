@@ -120,7 +120,7 @@ public class GameController : MonoBehaviour {
 		switch (jt) {
 			case "delivery":
 				List<GameObject> aNPCs = getAvailable (questNPCs);
-				if(aNPCs.Count == 0) {
+			if(aNPCs.Count == 0 || floor == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
 					if (leftJobTypes.Count == 0)
@@ -153,7 +153,7 @@ public class GameController : MonoBehaviour {
 				break;
 			case "cleaning":
 				List<GameObject> aDirtSpots = getAvailable (new List<GameObject> (DirtSpots));
-				if (DirtSpots.Count == 0 || aDirtSpots.Count == 0) {
+			if (DirtSpots.Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
 					if (leftJobTypes.Count == 0)

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212461172755957190}
   - component: {fileID: 95536130216649854}
   - component: {fileID: 114703396628219164}
+  - component: {fileID: 114314285970247098}
   m_Layer: 0
   m_Name: Texture
   m_TagString: Untagged
@@ -84,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416518806471998}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5523, y: 2.200046, z: 0}
+  m_LocalPosition: {x: 0.65226996, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4208498111462800}
@@ -116,7 +117,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.185}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,6 +162,18 @@ MonoBehaviour:
   speed: 50
   canIdle: 0
   NPCTexture: {fileID: 1348086939805166}
+--- !u!114 &114314285970247098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348086939805166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f14f8cd50e21a1428ce8a20a07300e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floor: 0
 --- !u!114 &114524321074359702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coffeeTimer_init: 60
+  controller: {fileID: 0}
   coffeeMeter: {fileID: 1811111276271364}
   coffeeMeter_spriteSheet: {fileID: 2800000, guid: 7355b4852a9f13e489dfedade0deefd8,
     type: 3}
