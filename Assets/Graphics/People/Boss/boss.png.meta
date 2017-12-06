@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a1e23e51842238d4db4f5d79440d3c93
-timeCreated: 1512393754
+timeCreated: 1512566609
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -106,7 +106,7 @@ TextureImporter:
       name: boss_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 41
         y: 0
         width: 40
         height: 70

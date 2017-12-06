@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bbb06c2f8eda04cbba88c90eb4b0a873
-timeCreated: 1512400543
+timeCreated: 1512566507
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -137,7 +137,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 180
+        y: 185
         width: 17
         height: 36
       alignment: 7
@@ -150,8 +150,8 @@ TextureImporter:
       name: manager_1
       rect:
         serializedVersion: 2
-        x: 17
-        y: 180
+        x: 18
+        y: 185
         width: 17
         height: 36
       alignment: 7
@@ -164,8 +164,8 @@ TextureImporter:
       name: manager_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 180
+        x: 36
+        y: 185
         width: 17
         height: 36
       alignment: 7
@@ -178,8 +178,8 @@ TextureImporter:
       name: manager_3
       rect:
         serializedVersion: 2
-        x: 51
-        y: 180
+        x: 54
+        y: 185
         width: 17
         height: 36
       alignment: 7
@@ -192,8 +192,8 @@ TextureImporter:
       name: manager_4
       rect:
         serializedVersion: 2
-        x: 68
-        y: 180
+        x: 72
+        y: 185
         width: 17
         height: 36
       alignment: 7
@@ -206,8 +206,8 @@ TextureImporter:
       name: manager_5
       rect:
         serializedVersion: 2
-        x: 85
-        y: 180
+        x: 90
+        y: 185
         width: 17
         height: 36
       alignment: 7
@@ -221,7 +221,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
+        y: 148
         width: 17
         height: 36
       alignment: 7
@@ -234,8 +234,8 @@ TextureImporter:
       name: manager_7
       rect:
         serializedVersion: 2
-        x: 17
-        y: 144
+        x: 18
+        y: 148
         width: 17
         height: 36
       alignment: 7
@@ -248,8 +248,8 @@ TextureImporter:
       name: manager_8
       rect:
         serializedVersion: 2
-        x: 34
-        y: 144
+        x: 36
+        y: 148
         width: 17
         height: 36
       alignment: 7
@@ -262,8 +262,8 @@ TextureImporter:
       name: manager_9
       rect:
         serializedVersion: 2
-        x: 51
-        y: 144
+        x: 54
+        y: 148
         width: 17
         height: 36
       alignment: 7
@@ -276,8 +276,8 @@ TextureImporter:
       name: manager_10
       rect:
         serializedVersion: 2
-        x: 68
-        y: 144
+        x: 72
+        y: 148
         width: 17
         height: 36
       alignment: 7
@@ -290,8 +290,8 @@ TextureImporter:
       name: manager_11
       rect:
         serializedVersion: 2
-        x: 85
-        y: 144
+        x: 90
+        y: 148
         width: 17
         height: 36
       alignment: 7
@@ -305,7 +305,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 108
+        y: 111
         width: 17
         height: 36
       alignment: 7
@@ -318,8 +318,8 @@ TextureImporter:
       name: manager_13
       rect:
         serializedVersion: 2
-        x: 17
-        y: 108
+        x: 18
+        y: 111
         width: 17
         height: 36
       alignment: 7
@@ -332,8 +332,8 @@ TextureImporter:
       name: manager_14
       rect:
         serializedVersion: 2
-        x: 34
-        y: 108
+        x: 36
+        y: 111
         width: 17
         height: 36
       alignment: 7
@@ -346,8 +346,8 @@ TextureImporter:
       name: manager_15
       rect:
         serializedVersion: 2
-        x: 51
-        y: 108
+        x: 54
+        y: 111
         width: 17
         height: 36
       alignment: 7
@@ -360,8 +360,8 @@ TextureImporter:
       name: manager_16
       rect:
         serializedVersion: 2
-        x: 68
-        y: 108
+        x: 72
+        y: 111
         width: 17
         height: 36
       alignment: 7
@@ -374,8 +374,8 @@ TextureImporter:
       name: manager_17
       rect:
         serializedVersion: 2
-        x: 85
-        y: 108
+        x: 90
+        y: 111
         width: 17
         height: 36
       alignment: 7
@@ -389,7 +389,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 72
+        y: 74
         width: 17
         height: 36
       alignment: 7
@@ -402,8 +402,8 @@ TextureImporter:
       name: manager_19
       rect:
         serializedVersion: 2
-        x: 17
-        y: 72
+        x: 18
+        y: 74
         width: 17
         height: 36
       alignment: 7
@@ -416,8 +416,8 @@ TextureImporter:
       name: manager_20
       rect:
         serializedVersion: 2
-        x: 34
-        y: 72
+        x: 36
+        y: 74
         width: 17
         height: 36
       alignment: 7
@@ -430,8 +430,8 @@ TextureImporter:
       name: manager_21
       rect:
         serializedVersion: 2
-        x: 51
-        y: 72
+        x: 54
+        y: 74
         width: 17
         height: 36
       alignment: 7
@@ -444,8 +444,8 @@ TextureImporter:
       name: manager_22
       rect:
         serializedVersion: 2
-        x: 68
-        y: 72
+        x: 72
+        y: 74
         width: 17
         height: 36
       alignment: 7
@@ -458,8 +458,8 @@ TextureImporter:
       name: manager_23
       rect:
         serializedVersion: 2
-        x: 85
-        y: 72
+        x: 90
+        y: 74
         width: 17
         height: 36
       alignment: 7
@@ -473,7 +473,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 36
+        y: 37
         width: 17
         height: 36
       alignment: 7
@@ -486,8 +486,8 @@ TextureImporter:
       name: manager_25
       rect:
         serializedVersion: 2
-        x: 17
-        y: 36
+        x: 18
+        y: 37
         width: 17
         height: 36
       alignment: 7
@@ -500,8 +500,8 @@ TextureImporter:
       name: manager_26
       rect:
         serializedVersion: 2
-        x: 34
-        y: 36
+        x: 36
+        y: 37
         width: 17
         height: 36
       alignment: 7
@@ -514,8 +514,8 @@ TextureImporter:
       name: manager_27
       rect:
         serializedVersion: 2
-        x: 51
-        y: 36
+        x: 54
+        y: 37
         width: 17
         height: 36
       alignment: 7
@@ -528,8 +528,8 @@ TextureImporter:
       name: manager_28
       rect:
         serializedVersion: 2
-        x: 68
-        y: 36
+        x: 72
+        y: 37
         width: 17
         height: 36
       alignment: 7
@@ -542,8 +542,8 @@ TextureImporter:
       name: manager_29
       rect:
         serializedVersion: 2
-        x: 85
-        y: 36
+        x: 90
+        y: 37
         width: 17
         height: 36
       alignment: 7
@@ -570,7 +570,7 @@ TextureImporter:
       name: manager_31
       rect:
         serializedVersion: 2
-        x: 17
+        x: 18
         y: 0
         width: 17
         height: 36
@@ -584,7 +584,7 @@ TextureImporter:
       name: manager_32
       rect:
         serializedVersion: 2
-        x: 34
+        x: 36
         y: 0
         width: 17
         height: 36
@@ -598,7 +598,7 @@ TextureImporter:
       name: manager_33
       rect:
         serializedVersion: 2
-        x: 51
+        x: 54
         y: 0
         width: 17
         height: 36
@@ -612,7 +612,7 @@ TextureImporter:
       name: manager_34
       rect:
         serializedVersion: 2
-        x: 68
+        x: 72
         y: 0
         width: 17
         height: 36
@@ -626,7 +626,7 @@ TextureImporter:
       name: manager_35
       rect:
         serializedVersion: 2
-        x: 85
+        x: 90
         y: 0
         width: 17
         height: 36
