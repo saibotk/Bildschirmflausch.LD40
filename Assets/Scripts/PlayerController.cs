@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour {
 	[SerializeField]
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void PlayerInteract() {
-		if (Input.GetKeyDown ("e")) {
+		if (CrossPlatformInputManager.GetButtonDown("Use")) {
 			if (interactivesInRange.Count != 0) {
 				GameObject iaclose = null;
 				foreach (GameObject ia in interactivesInRange) {
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 				SetPlayerCoffeeTextures();
 			}
 		}
-		if (Input.GetKeyDown ("q")) {
+		if (CrossPlatformInputManager.GetButtonDown("Swap")) {
 			inv.Swap ();
 		}
 	}
@@ -108,9 +109,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerMovement() {
 		if (liftController == null || !inLift || liftController.CanPlayerMove()) {
-            if (!(Input.GetKey("a") ^ Input.GetKey("d")))
+			if (CrossPlatformInputManager.GetAxis("Horizontal") < 0.20 && CrossPlatformInputManager.GetAxis("Horizontal") > -0.20)
                 movementState = 0;
-            else if (Input.GetKey ("d")) {
+			else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0.2) {
 				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != 1) {
 					movementState = 1;
@@ -118,7 +119,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 
-			else if (Input.GetKey ("a")) {
+			else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < -0.2) {
 				gameObject.transform.Translate (new Vector3 (-1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != -1) {
 					movementState = -1;
@@ -127,9 +128,9 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		if (liftController != null && inLift) {
-			if (Input.GetKey ("w") && !Input.GetKey ("s"))
+			if (CrossPlatformInputManager.GetAxisRaw("Vertical") > 0.5)
 				liftController.MoveUp ();
-			if (Input.GetKey ("s") && !Input.GetKey ("w"))
+			if (CrossPlatformInputManager.GetAxisRaw("Vertical") < -0.5)
 				liftController.MoveDown ();
 			if (!liftController.CanPlayerMove ())
 				movementState = 0;
