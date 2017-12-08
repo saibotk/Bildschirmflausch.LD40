@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0738860a776ec40b69da4a9d8e9f729d
-timeCreated: 1512347006
+timeCreated: 1512736960
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -107,7 +107,7 @@ TextureImporter:
       name: male11_1
       rect:
         serializedVersion: 2
-        x: 13
+        x: 14
         y: 0
         width: 13
         height: 37
@@ -121,7 +121,7 @@ TextureImporter:
       name: male11_2
       rect:
         serializedVersion: 2
-        x: 26
+        x: 28
         y: 0
         width: 13
         height: 37
