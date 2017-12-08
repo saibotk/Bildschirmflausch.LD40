@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c17b9926bbadfce419cda1c3ce226ba1
-timeCreated: 1512750602
+timeCreated: 1512752461
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -132,9 +132,9 @@ TextureImporter:
       name: coffeeWarning_2
       rect:
         serializedVersion: 2
-        x: 27
+        x: 26
         y: 0
-        width: 10
+        width: 12
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -146,9 +146,9 @@ TextureImporter:
       name: coffeeWarning_3
       rect:
         serializedVersion: 2
-        x: 40
+        x: 39
         y: 0
-        width: 10
+        width: 12
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -160,9 +160,9 @@ TextureImporter:
       name: coffeeWarning_4
       rect:
         serializedVersion: 2
-        x: 53
+        x: 52
         y: 0
-        width: 10
+        width: 12
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
