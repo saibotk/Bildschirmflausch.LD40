@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerMovement() {
 		if (liftController == null || !inLift || liftController.CanPlayerMove()) {
-			Debug.Log (CrossPlatformInputManager.GetAxis ("Horizontal"));
+			//Debug.Log (CrossPlatformInputManager.GetAxis ("Horizontal"));
 			if ( CrossPlatformInputManager.GetAxisRaw("Horizontal") == 0 ) // TODO Fix player moving when both keys pressed
                 movementState = 0;
 			else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0) {
