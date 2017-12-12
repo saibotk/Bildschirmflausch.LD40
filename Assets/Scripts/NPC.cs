@@ -4,8 +4,9 @@ using UnityEngine;
 public class NPC : JobEntitiy {
 
 	[SerializeField]
-	public bool isQuestNPC;
+	public bool QuestNPC;
 
-	public NPC ()	{
+	public bool isQuestNPC() {
+		return QuestNPC;
 	}
 }

@@ -27,9 +27,7 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private GameObject indicator;
 	[SerializeField]
-	private List<GameObject> questNPCs; // TODO merge both into one seperate by isQuestNPC()
-	[SerializeField]
-	private List<GameObject> coffeeNPCs;
+	private List<GameObject> npcs;
 	[Space(5)]
 
 	[Header("Watering Job")]
@@ -124,7 +122,7 @@ public class GameController : MonoBehaviour {
 		string jt = rjobtypes [Random.Range (0, Mathf.Min(floor+1, jobTypes.Count))];
 		switch (jt) {
 			case "delivery":
-				List<GameObject> aNPCs = getAvailable (questNPCs);
+			List<GameObject> aNPCs = getAvailable (getQuestNPCs());
 			if(aNPCs.Count == 0 || floor == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
@@ -184,14 +182,14 @@ public class GameController : MonoBehaviour {
 	public void CheckCoffeeNPCs() {
 		int emptyCofeeCounter = 0;
         int almostemptyCofeeCounter = 0;
-		foreach (GameObject NPC in coffeeNPCs) {
+		foreach (GameObject NPC in getCoffeeNPCs()) {
 			if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer () == 0) {
 				emptyCofeeCounter++;
 			}
-            if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer() < 15)
-            {
-                almostemptyCofeeCounter++;
-            }
+	        if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer() < 15)
+	        {
+	            almostemptyCofeeCounter++;
+	        }
 		}
         
         if ((emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) && coffeesound == false)
@@ -209,6 +207,16 @@ public class GameController : MonoBehaviour {
         if (emptyCofeeCounter >= 3) {
 		    GameOver ();
 		}
+	}
+
+	private List<GameObject> getCoffeeNPCs() {
+		return npcs.FindAll (x => 
+			x.GetComponent<NPC> ().isQuestNPC());
+	}
+
+	private List<GameObject> getQuestNPCs() {
+		return npcs.FindAll (x => 
+			!(x.GetComponent<NPC> ().isQuestNPC()));
 	}
 
 	public void AddScore(int score)  {
