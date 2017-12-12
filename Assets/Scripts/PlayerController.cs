@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		movementState =  0;
-		inv = new Inventory (gui);
+		inv = new Inventory ();
 		inv.coffeePot = new CoffeePot (6);
 
 		animator = GetComponentInChildren<Animator>();
@@ -115,9 +115,10 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerMovement() {
 		if (liftController == null || !inLift || liftController.CanPlayerMove()) {
-			if (CrossPlatformInputManager.GetAxis("Horizontal") < 0.20 && CrossPlatformInputManager.GetAxis("Horizontal") > -0.20)
+			Debug.Log (CrossPlatformInputManager.GetAxis ("Horizontal"));
+			if ( CrossPlatformInputManager.GetAxisRaw("Horizontal") == 0 ) // TODO Fix player moving when both keys pressed
                 movementState = 0;
-			else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0.2) {
+			else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0) {
 				gameObject.transform.Translate (new Vector3 (1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != 1) {
 					movementState = 1;
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 
-			else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < -0.2) {
+			else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0) {
 				gameObject.transform.Translate (new Vector3 (-1 * movementSpeed * Time.deltaTime, 0));
 				if (movementState != -1) {
 					movementState = -1;

@@ -6,11 +6,6 @@ public class Inventory {
 	public Item leftHand = null;
 	public Item pocket = null;
 	public CoffeePot coffeePot = null;
-	private GameUI gui;
-
-	public Inventory(GameUI ui) {
-		this.gui = ui;
-	}
 
 	public bool AddItem(Item item) {
 		// TODO UGLY CODE!!!!
@@ -100,8 +95,8 @@ public class Inventory {
 	}
 
 	private void UpdateGUI() {
-		gui.SetLeftHandImage (((leftHand == null) ? null : leftHand.icon));
-		gui.SetPocketImage (((pocket == null) ? null : pocket.icon));
+		GameUI.instance.SetLeftHandImage (((leftHand == null) ? null : leftHand.icon));
+		GameUI.instance.SetPocketImage (((pocket == null) ? null : pocket.icon));
 		//gui.SetRightHandImage ();
 	}
 
@@ -110,6 +105,5 @@ public class Inventory {
 		this.leftHand = pocket;
 		this.pocket = tmp;
 		UpdateGUI ();
-		Debug.Log ("Swapped Item to " + ((leftHand != null) ? leftHand.name : "null"));
 	}
 }
