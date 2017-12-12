@@ -63,9 +63,6 @@ public class GameUI : MonoBehaviour {
 	}
 
 	public void UpdateJobListUI(List<Job> jobList) {
-		
-		Debug.Log ("UpdateUI called");
-
 		int i = 0;
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
@@ -73,18 +70,13 @@ public class GameUI : MonoBehaviour {
 				GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
 				go.GetComponent<QuestQueueItem> ().SetJob (j);
 				go.transform.localPosition = new Vector3 (0, -i * ((RectTransform)questQueueItemPrefab.transform).rect.height);
-				Debug.Log ("Added Hint");
-				Debug.Log ("i: " + i);
 			}
-
-			
 			i++;
 		}
 
 
 		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
 			if (jobList.Find (x => x == rt.GetJob ()) == null) {
-				Debug.Log ("Removed Hint for job: " + rt.GetJob());
 				DestroyImmediate (rt.gameObject);
 			}
 		}
@@ -92,8 +84,6 @@ public class GameUI : MonoBehaviour {
 		int i2 = 0;
 		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
 			rt.gameObject.transform.localPosition = new Vector3 (0, -i2 * ((RectTransform)questQueueItemPrefab.transform).rect.height);
-			Debug.Log ("i2: " + i2);
-			Debug.Log ("this Items job: " + rt.GetJob ().GetTaskName ());
 			i2++;
 		}
 
