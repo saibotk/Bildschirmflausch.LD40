@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private GameObject playerTexture;
 	[SerializeField]
+	private GameObject cornerTexture;
+	[SerializeField]
 	private GameObject rightHandTexture;
 	[SerializeField]
 	private Texture2D coffeePotLevels;
@@ -100,6 +102,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void AddInteractable( GameObject inter ) {
+		GameObject corner = GameObject.Instantiate (this.cornerTexture, inter.transform.position, inter.transform.rotation);
 		interactivesInRange.Add (inter);
 	}
 
