@@ -192,17 +192,14 @@ public class GameController : MonoBehaviour {
 	        }
 		}
         
-        if ((emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) && coffeesound == false)
-        {
-            coffeesound = true;
+        if (emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) {
 			GameUI.instance.SetCoffeeWarningVisible (true);
-            player.GetComponent<AudioControl>().sfxplay(1);
+            if(player.GetComponent<AudioControl>().sfxplaying(1))
+                player.GetComponent<AudioControl>().sfxplay(1); 
         }
-        else if (!(emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2))
-        {
+        else {
 			GameUI.instance.SetCoffeeWarningVisible (false);
             player.GetComponent<AudioControl>().sfxstop(1);
-            coffeesound = false;
         }
         if (emptyCofeeCounter >= 3) {
 		    GameOver ();

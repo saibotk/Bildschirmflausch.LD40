@@ -18,53 +18,38 @@ public class AudioControl : MonoBehaviour
     public GameObject _GameControler;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         m_TransitionIn = 0.3f;
         m_TransitionOut = 0.3f;
         endstate = false;
         AddLayer(0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Liftmusic") && endstate == false)
-        {
-            if (col.isTrigger)
-            {
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.CompareTag("Liftmusic") && endstate == false) {
+            if (col.isTrigger) {
                 lifttheme.TransitionTo(m_TransitionIn);
             }
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.CompareTag("Liftmusic") && endstate == false)
-        {
-            if (col.isTrigger)
-            {
+    void OnTriggerExit2D(Collider2D col) {
+        if (col.CompareTag("Liftmusic") && endstate == false) {
+            if (col.isTrigger) 
                 maintheme[floor].TransitionTo(m_TransitionOut);
-            }
+            
         }
     }
 
-    public void gameoverplay()
-    {
-        if (endstate == false)
-        {
+    public void gameoverplay() {
+        if (endstate == false) {
             end.TransitionTo(0f);
             gameovers.Play();
             endstate = true;
         }
     }
 
-    public void AddLayer(int floor)
-    {
+    public void AddLayer(int floor) {
         maintheme[floor].TransitionTo(1);
         this.floor = floor;
     }
@@ -75,13 +60,14 @@ public class AudioControl : MonoBehaviour
        2 : Job getto
        3 : Job accomplished
        4 : Job failed */
-    public void sfxplay(int sound)
-    {
+    public void sfxplay(int sound) {
             soundeffects[sound].Play();
     }
 
-    public void sfxstop(int sound)
-    {
+    public void sfxstop(int sound) {
             soundeffects[sound].Stop();
+    }
+    public bool sfxplaying(int sound) {
+        return soundeffects[sound].isPlaying;
     }
 }
