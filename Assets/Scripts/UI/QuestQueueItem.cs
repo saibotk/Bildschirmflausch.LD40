@@ -23,27 +23,28 @@ public class QuestQueueItem : MonoBehaviour {
 	}
 
 	void Update() {
-		float timestate = (Time.realtimeSinceStartup - job.GetJobStartTime()) / job.GetJobTime() * 9;
-		if (timestate < 1) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(0, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else if (timestate < 2) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(16, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else if (timestate < 3) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(32, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else if (timestate < 4) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(48, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else if (timestate < 5) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(64, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else if (timestate < 6) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(80, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else if (timestate < 7) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(96, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else if (timestate < 8.5f) {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(112, 0, 15, 15), new Vector2(0.5f, 0.5f));
-		} else {
-			timer.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texTimer, new Rect(128, 0, 15, 15), new Vector2(0.5f, 0.5f));
+		if (job != null) {
+			float timestate = (Time.realtimeSinceStartup - job.GetJobStartTime ()) / job.GetJobTime () * 9;
+			if (timestate < 1) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (0, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else if (timestate < 2) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (16, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else if (timestate < 3) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (32, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else if (timestate < 4) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (48, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else if (timestate < 5) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (64, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else if (timestate < 6) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (80, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else if (timestate < 7) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (96, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else if (timestate < 8.5f) {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (112, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			} else {
+				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (128, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			}
 		}
-
 	}
 
 	public void SetJob(Job j) {
