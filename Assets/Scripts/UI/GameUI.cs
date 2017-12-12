@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameUI : MonoBehaviour {
+	public static GameUI instance;
+
 	[SerializeField]
 	private GameObject pocket;
 	[SerializeField]
@@ -23,6 +25,10 @@ public class GameUI : MonoBehaviour {
 	private GameObject questQueueItemPrefab;
 	[SerializeField]
 	private GameObject LowCoffeeHint;
+
+	public GameUI() {
+		GameUI.instance = this;
+	}
 
 	public void SetPocketImage(Sprite sp) {
 		pocket.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;

@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+	public static GameController instance;
+
 	private int gamestate = 0;
-    private bool coffeesound = false;
+	private int score;
+	private int floor = 0;
+
 	private Jobmanager jobmanager;
 
-	[SerializeField]
-	private GameUI gui;
+	private List<string> jobTypes = new List<string>();
+
+    private bool coffeesound = false;
 
 	//Player related Objects
 	[Header("Player")]
@@ -48,14 +53,11 @@ public class GameController : MonoBehaviour {
 	private List<GameObject> DirtSpots;
 	[SerializeField]
 	private GameObject dirtPrefab;
-	[Space(10)]
 
-	private int score;
-	[Header("Don't touch")]
-
-	private List<string> jobTypes = new List<string>();
-
-	private int floor = 0; // TODO start at 0 and count up with time.
+	// SINGLETON
+	public GameController() {
+		GameController.instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -67,7 +69,7 @@ public class GameController : MonoBehaviour {
 		Time.timeScale = 1;
 		score = 0;
 
-		jobmanager = new Jobmanager (this);
+		jobmanager = new Jobmanager ();
 
 		addRandomJob ();
 	}
@@ -78,6 +80,7 @@ public class GameController : MonoBehaviour {
 			jobmanager.checkJobTimes ();
 			CheckCoffeeNPCs();
 
+			// TODO Convert too Hook
 			// Unlock new floor
 			if ((floor < 1 && score >= 50) ||
 			   (floor < 2 && score >= 100) ||
@@ -111,7 +114,6 @@ public class GameController : MonoBehaviour {
 	        player.GetComponent<AudioControl>().sfxplay(2);
 		if (jobmanager.GetAllJobs ().Count > 5) {
 			GameOver ();
-			Debug.Log ("You suck at multitasking");
 		}
 	}
 
@@ -133,7 +135,6 @@ public class GameController : MonoBehaviour {
 				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
 				if (npc.GetComponent<NPC> ().GetFloor() <= floor) {
 					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager, jobIndicator));
-					Debug.Log ("Job: Delivery!");
 				}
 				break;
 			case "watering":
@@ -151,7 +152,6 @@ public class GameController : MonoBehaviour {
 				int count = (aPlants.Count >= 3) ? 3 : aPlants.Count;
 				List<GameObject> cAPlants = new List<GameObject> (aPlants);
 				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager, jobIndicator));
-				Debug.Log ("Job: Waterings!");
 				break;
 			case "cleaning":
 				List<GameObject> aDirtSpots = getAvailable (new List<GameObject> (DirtSpots));
@@ -167,7 +167,6 @@ public class GameController : MonoBehaviour {
 				int cindex = Random.Range (0, Mathf.Max (0, aDirtSpots.Count - 3));
 				int ccount = (aDirtSpots.Count >= 3) ? 3 : aDirtSpots.Count;
 				jobmanager.AddJob (new CleaningJob (aDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager, jobIndicator));
-				Debug.Log ("Job: Cleaning!");
 				break;
 		}
 		return true;
@@ -177,10 +176,9 @@ public class GameController : MonoBehaviour {
 		if (gamestate != 1) {
 			gamestate = 1;
             player.GetComponent<AudioControl>().gameoverplay();
-			Debug.Log ("----- GAME OVER. YOU CANT BEAT THE BOSS! ----------");
 		}
 		Time.timeScale = 0;
-		gui.showGameOver ();
+		GameUI.instance.showGameOver ();
 	}
 
 	public void CheckCoffeeNPCs() {
@@ -199,25 +197,23 @@ public class GameController : MonoBehaviour {
         if ((emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) && coffeesound == false)
         {
             coffeesound = true;
-			gui.SetCoffeeWarningVisible (true);
+			GameUI.instance.SetCoffeeWarningVisible (true);
             player.GetComponent<AudioControl>().sfxplay(1);
-            Debug.Log("Almost empty");
         }
         else if (!(emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2))
         {
-			gui.SetCoffeeWarningVisible (false);
+			GameUI.instance.SetCoffeeWarningVisible (false);
             player.GetComponent<AudioControl>().sfxstop(1);
             coffeesound = false;
         }
         if (emptyCofeeCounter >= 3) {
-			Debug.Log ("The company ran out of coffee");
 		    GameOver ();
 		}
 	}
 
 	public void AddScore(int score)  {
 		this.score += score;
-		gui.UpdateScore (this.score);
+		GameUI.instance.UpdateScore (this.score);
 		Debug.Log ("Score is: " + score);
 	}
 
@@ -227,9 +223,5 @@ public class GameController : MonoBehaviour {
 
 	public int GetFloor() {
 		return floor;
-	}
-
-	public GameUI getGui() {
-		return gui;
 	}
 }

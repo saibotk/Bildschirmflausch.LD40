@@ -142,9 +142,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D( Collider2D col ) {
-		if (col.gameObject.GetComponent (typeof(IInteractable)) != null)
-			AddInteractable (col.gameObject);
-
+		if (col.gameObject.GetComponent (typeof(IInteractable)) != null) {
+			// TODO Right position?
+			if (((col.gameObject.GetComponent (typeof(IInteractable))) as IInteractable).CanInteract (this.gameObject)) {
+				AddInteractable (col.gameObject);
+			}
+		}
 		if (col.CompareTag ("Lift")) {
 			if (col.isTrigger) {
 				inLift = true;

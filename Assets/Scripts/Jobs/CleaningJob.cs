@@ -40,8 +40,6 @@ public class CleaningJob : Job {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is Broom) {
 							this.dirtSpotsGO.Remove (dirtGo);
 							if (this.dirtSpotsGO.Count == 0) {
-								//player.GetComponent<PlayerController>().GetInventory().leftHand = null;
-								//Debug.Log("Removed Broom from Inventory");
 								this.finishJob ();
 							}
 							GameObject.Destroy(dirtGo.GetComponent<JobEntitiy>().GetIndicator());
@@ -55,13 +53,11 @@ public class CleaningJob : Job {
 	}
 
 	public void finishJob() {
-		Debug.Log ("QUEST COMPLETED! U AQUAMAN!");
 		this.manager.finishedJob (this);
 	}
 
 	override public void cleanup() {
 		GameObject.Destroy (this.broomGO);
-		//this.manager.GetGameController ().GetPlayer ().GetInventory ().RemoveItem (new Broom (this));
 		if (dirtSpotsGO != null && dirtSpotsGO.Count != 0) {
 			List<GameObject> tmpDirtGO = new List<GameObject> (dirtSpotsGO);
 			foreach (GameObject dirtGo in tmpDirtGO) {

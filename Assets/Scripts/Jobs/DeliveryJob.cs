@@ -54,12 +54,11 @@ public class DeliveryJob : Job {
 	}
 
 	public void finishJob() {
-		Debug.Log("QUEST COMPLETED! U GENIUS");
 		this.jobmanager.finishedJob(this);
 	}
 
 	override public void cleanup() {
-		this.jobmanager.GetGameController().GetPlayer().GetInventory().RemoveItem(this.letter);
+		GameController.instance.GetPlayer().GetInventory().RemoveItem(this.letter);
 		this.target.SetInteract (null);
 		this.target.SetJob (null);
 		this.target.SetAvailable (true);

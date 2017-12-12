@@ -10,6 +10,7 @@ public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
 	private Job job = null;
 	private GameObject indicator;
 	private Action<GameObject> interactMethod = null;
+	private Func<GameObject, bool> canInteractMethod = null;
 	private bool available = true;
 
 	public void Interact(GameObject player) {
@@ -18,8 +19,23 @@ public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
 		}
 	}
 
+	public bool CanInteract(GameObject player) {
+		if (interactMethod != null) {
+			if (canInteractMethod != null) {
+				return canInteractMethod (player);
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public void SetInteract(Action<GameObject> interact) {
-		interactMethod = interact;
+		this.interactMethod = interact;
+	}
+
+	public void SetCanInteract(Func<GameObject, bool> canInteract) {
+		this.canInteractMethod = canInteract;
 	}
 
 	public void SetJob(Job job) {

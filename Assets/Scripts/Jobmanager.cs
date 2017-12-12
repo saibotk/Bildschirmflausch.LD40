@@ -4,11 +4,6 @@ using UnityEngine;
 public class Jobmanager
 {
 	private List<Job> jobList = new List<Job>();
-	private GameController manager;
-
-	public Jobmanager(GameController manager) {
-		this.manager = manager;
-	}
 
 	// GetJobAt: integer -> Jobmanager
 	// Returns the job at the given position, starting at 0
@@ -21,11 +16,10 @@ public class Jobmanager
 		List<Job> tmpJobList = new List<Job> (jobList);
 		foreach (Job job in tmpJobList) {
 			if (Time.realtimeSinceStartup >= (job.GetJobStartTime () + job.GetJobTime ())) {
-				Debug.Log ("Failed Job " + job.GetTaskName() + ", you too late my son!");
-                GetGameController().GetPlayer().GetComponent<AudioControl>().sfxplay(4);
+				GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(4);
 				RemoveJob (job);
-				manager.addRandomJob ();
-				manager.addRandomJob ();
+				GameController.instance.addRandomJob ();
+				GameController.instance.addRandomJob ();
 			}
 		}
 	}
@@ -35,7 +29,7 @@ public class Jobmanager
 	public void AddJob(Job inputJob)
 	{
 		jobList.Add(inputJob);
-		manager.getGui ().UpdateJobListUI (new List<Job>(jobList));
+		GameUI.instance.UpdateJobListUI (new List<Job>(jobList));
 	}
 
 	// RemoveJob: integer -> void
@@ -44,7 +38,7 @@ public class Jobmanager
 	{
 		job.cleanup();
 		jobList.Remove(job);
-		manager.getGui ().UpdateJobListUI (new List<Job>(jobList));
+		GameUI.instance.UpdateJobListUI (new List<Job>(jobList));
 	}
 
 	// GetAllJob: void -> List<Job>
@@ -55,13 +49,10 @@ public class Jobmanager
 	}
 
 	public void finishedJob(Job job) {
-		GetGameController ().AddScore (job.GetScoreValue());
-        GetGameController().GetPlayer().GetComponent<AudioControl>().sfxplay(3);
+		GameController.instance.AddScore (job.GetScoreValue());
+        GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(3);
         RemoveJob (job);
-		manager.addRandomJob ();
+		GameController.instance.addRandomJob ();
 	}
-
-	public GameController GetGameController() {
-		return this.manager;
-	}
+		
 }

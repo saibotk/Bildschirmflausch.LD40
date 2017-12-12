@@ -33,6 +33,11 @@ public class CoffeeMachine : MonoBehaviour, IInteractable {
 		}
 	}
 
+	public bool CanInteract( GameObject player ) {
+		CoffeePot pcpot = player.GetComponent<PlayerController>().GetInventory ().coffeePot;
+		return ( ( pcpot != null && pcpot.getFillLevel() != pcpot.getMaxFillLevel() && cpot == null ) ^ ( cpot != null && currentBrewingTime <= 0 && pcpot == null) );
+	}
+
 	// Define what to do when a player interacts with the coffeemachine
 	public void Interact( GameObject player ) {
 		Inventory inv = player.GetComponent<PlayerController> ().GetInventory ();

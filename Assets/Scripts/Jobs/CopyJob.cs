@@ -54,7 +54,7 @@ public class CopyJob : Job {
 	}
 
 	override public void cleanup() {
-		this.jobmanager.GetGameController().GetPlayer().GetInventory().RemoveItem(this.document);
+		GameController.instance.GetPlayer().GetInventory().RemoveItem(this.document);
 		this.target.SetInteract (null);
 		this.target.SetJob (null);
 		this.target.SetAvailable (true);

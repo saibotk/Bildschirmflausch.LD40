@@ -25,7 +25,6 @@ public class WateringJob : Job {
 				delegate (GameObject player) {
 					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is WateringCan) {
-							Debug.Log ("Used Watering Can");
 							target.SetInteract (null);
 							target.SetJob (null);
 							target.SetAvailable (true);
@@ -42,7 +41,6 @@ public class WateringJob : Job {
 	}
 
 	public void finishJob() {
-		Debug.Log("QUEST COMPLETED! U GENIUS");
 		this.jobmanager.finishedJob(this);
 	}
 

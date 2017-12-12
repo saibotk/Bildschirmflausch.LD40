@@ -43,6 +43,11 @@ public class WorkersCoffeeNeeds : MonoBehaviour, IInteractable {
 			render.sprite = Sprite.Create (coffeeMeter_spriteSheet, new Rect (0, 0, 3, 7), new Vector2 (0.5f, 0.5f));
 	}
 
+	public bool CanInteract( GameObject player ) {
+		CoffeePot pcpot = player.GetComponent<PlayerController> ().GetInventory ().coffeePot;
+		return pcpot != null && pcpot.getFillLevel() != 0f && this.coffeeTimer <= this.coffeeTimer_init * 0.95;
+	}
+
 	public void Interact( GameObject player ) {
 		if (player.GetComponent<PlayerController> ().GetInventory ().coffeePot == null)
 			return;
