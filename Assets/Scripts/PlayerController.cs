@@ -33,10 +33,11 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		movementState =  0;
 		inv = new Inventory (gui);
-		inv.coffeePot = new CoffeePot (0);
+		inv.coffeePot = new CoffeePot (6);
 
 		animator = GetComponentInChildren<Animator>();
 		liftController = lift.GetComponent<LiftController> (); // could be null!
+		SetPlayerCoffeeTextures ();
 	}
 	
 	// Update is called once per frame
@@ -76,29 +77,31 @@ public class PlayerController : MonoBehaviour {
 			animator.SetBool ("Coffee", true);
 			gui.SetCoffeePotEnabled (true);
 		}
+
 		float perc = inv.coffeePot.getFillLevel () / inv.coffeePot.getMaxFillLevel ();
-			if (perc > 0.86) {
-				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (0, 0, 12, 12), new Vector2 (6, 6)));
-				rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(60, 0, 10, 9), new Vector2(0.5f, 0.5f));
-			} else if (perc > 0.72) {
-				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (12, 0, 12, 12), new Vector2 (6, 6)));
-				rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(50, 0, 10, 9), new Vector2(0.5f, 0.5f));
-			} else if (perc > 0.58) {
-				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (24, 0, 12, 12), new Vector2 (6, 6)));
-				rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(40, 0, 10, 9), new Vector2(0.5f, 0.5f));
-			} else if (perc > 0.44) {
-				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (36, 0, 12, 12), new Vector2 (6, 6)));
-				rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(30, 0, 10, 9), new Vector2(0.5f, 0.5f));
-			} else if (perc > 0.30) {
-				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (48, 0, 12, 12), new Vector2 (6, 6)));
-				rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(20, 0, 10, 9), new Vector2(0.5f, 0.5f));
-			} else if (perc > 0.16) {
-				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (60, 0, 12, 12), new Vector2 (6, 6)));
-				rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(10, 0, 10, 9), new Vector2(0.5f, 0.5f));
-			} else {
-				gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (72, 0, 12, 12), new Vector2 (6, 6)));
-				rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(0, 0, 10, 9), new Vector2(0.5f, 0.5f));
-			}
+
+		if (perc > 0.86) {
+			gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (0, 0, 12, 12), new Vector2 (6, 6)));
+			rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(60, 0, 10, 9), new Vector2(0.5f, 0.5f));
+		} else if (perc > 0.72) {
+			gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (12, 0, 12, 12), new Vector2 (6, 6)));
+			rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(50, 0, 10, 9), new Vector2(0.5f, 0.5f));
+		} else if (perc > 0.58) {
+			gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (24, 0, 12, 12), new Vector2 (6, 6)));
+			rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(40, 0, 10, 9), new Vector2(0.5f, 0.5f));
+		} else if (perc > 0.44) {
+			gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (36, 0, 12, 12), new Vector2 (6, 6)));
+			rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(30, 0, 10, 9), new Vector2(0.5f, 0.5f));
+		} else if (perc > 0.30) {
+			gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (48, 0, 12, 12), new Vector2 (6, 6)));
+			rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(20, 0, 10, 9), new Vector2(0.5f, 0.5f));
+		} else if (perc > 0.16) {
+			gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (60, 0, 12, 12), new Vector2 (6, 6)));
+			rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(10, 0, 10, 9), new Vector2(0.5f, 0.5f));
+		} else {
+			gui.SetCoffeePotFillImage(Sprite.Create (coffeePotUILevels, new Rect (72, 0, 12, 12), new Vector2 (6, 6)));
+			rightHandTexture.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (coffeePotLevels, new Rect(0, 0, 10, 9), new Vector2(0.5f, 0.5f));
+		}
 	}
 
 	public void AddInteractable( GameObject inter ) {

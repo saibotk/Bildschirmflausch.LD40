@@ -6,8 +6,9 @@ public class CoffeePot : Item {
 	private float fillLevel;
 	private float maxFillLevel = 6;
 
-	public CoffeePot (float level) : base ("Coffee Pot", null) {
-		this.fillLevel = level;
+	public CoffeePot (float maxLevel) : base ("Coffee Pot", null) {
+		this.maxFillLevel = maxLevel;
+		this.fillLevel = maxFillLevel;
 	}
 
 	// Fills the Coffeecup, 
