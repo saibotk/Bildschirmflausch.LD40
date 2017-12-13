@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour {
 
 	private Dictionary<string, List<GameObject>> jobObjects = new Dictionary<string, List<GameObject>>();
 
+	[SerializeField]
+	private GameObject gameObject;
+
 	//Player related Objects
 	[Header("Player")]
 	[SerializeField]
@@ -99,16 +102,6 @@ public class GameController : MonoBehaviour {
 	public PlayerController GetPlayer() {
 		return player.GetComponent<PlayerController>();
 	}
-		
-	private List<GameObject> getAvailable(List<GameObject> li) {
-		if (li.Count == 0) {
-			return li;
-		} else {
-			return li.FindAll (x => 
-			x.GetComponent (typeof(IAvailable)) != null &&
-			(x.GetComponent (typeof(IAvailable)) as IAvailable).IsAvailable (floor));
-		}
-	}
 
 	public void addRandomJob() {
 		if (addRandomJob (jobTypes))
@@ -125,7 +118,7 @@ public class GameController : MonoBehaviour {
 		string jt = rjobtypes [Random.Range (0, Mathf.Min(1, jobTypes.Count))];
 		switch (jt) {
 			case "delivery":
-			List<GameObject> aNPCs = getAvailable (getQuestNPCs());
+			List<GameObject> aNPCs = JobType<Job>.getAvailable (getQuestNPCs());
 			if(aNPCs.Count == 0 || floor == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
@@ -139,7 +132,7 @@ public class GameController : MonoBehaviour {
 				}
 				break;
 			case "watering":
-				List<GameObject> aPlants = getAvailable (new List<GameObject> (jobObjects["WateringPlants"]));	
+			List<GameObject> aPlants = JobType<Job>.getAvailable (new List<GameObject> (jobObjects["WateringPlants"]));	
 				if (jobObjects.ContainsKey("WateringPlants") && jobObjects["WateringPlants"].Count == 0 || aPlants.Count == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
@@ -155,7 +148,7 @@ public class GameController : MonoBehaviour {
 				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager, jobIndicator));
 				break;
 			case "cleaning":
-				List<GameObject> aDirtSpots = getAvailable (new List<GameObject> (jobObjects["DirtSpawnpoints"]));
+			List<GameObject> aDirtSpots = JobType<Job>.getAvailable (new List<GameObject> (jobObjects["DirtSpawnpoints"]));
 				if (!jobObjects.ContainsKey("DirtSpawnpoints") && jobObjects["DirtSpawnpoints"].Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
@@ -234,5 +227,14 @@ public class GameController : MonoBehaviour {
 
 	public int GetFloor() {
 		return floor;
+	}
+
+	// Maybe make private
+	public GameObject GetGameObject() {
+		return gameObject;
+	}
+
+	public GameObject GetPrefab(string name) {
+		return gameObject.transform.Find (name).gameObject;
 	}
 }

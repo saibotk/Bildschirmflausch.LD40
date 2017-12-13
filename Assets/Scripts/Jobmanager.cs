@@ -26,16 +26,14 @@ public class Jobmanager
 
 	// AddJob: Job -> void
 	// Adds the given job at the begin
-	public void AddJob(Job inputJob)
-	{
+	public void AddJob(Job inputJob) {
 		jobList.Add(inputJob);
 		GameUI.instance.UpdateJobListUI (new List<Job>(jobList));
 	}
 
 	// RemoveJob: integer -> void
 	// Removes the job with the given number, starting with 0
-	public void RemoveJob(Job job)
-	{
+	public void RemoveJob(Job job) {
 		job.cleanup();
 		jobList.Remove(job);
 		GameUI.instance.UpdateJobListUI (new List<Job>(jobList));
@@ -43,8 +41,7 @@ public class Jobmanager
 
 	// GetAllJob: void -> List<Job>
 	// Returns all jobs
-	public List<Job> GetAllJobs()
-	{
+	public List<Job> GetAllJobs() {
 		return jobList;
 	}
 
@@ -54,5 +51,4 @@ public class Jobmanager
         RemoveJob (job);
 		GameController.instance.addRandomJob ();
 	}
-		
 }

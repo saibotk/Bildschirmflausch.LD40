@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Job : IJob
+public abstract class Job
 {
 	private bool completed = false;												// true = active, false = inactiv (done, aborted)
 	private string taskName = "Missing taskName";						// name of the task / headline
