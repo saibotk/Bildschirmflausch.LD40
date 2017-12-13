@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WateringJobType : JobType<WateringJob> {
 
-	public WateringJobType (GameController controller, Jobmanager manager) : base ("WateringPlants", controller, manager) {
+	public WateringJobType (GameController controller, Jobmanager manager) : base ("watering", controller, manager) {
 	}
 
 	override public WateringJob CreateJob() {
-		List<GameObject> aPlants = getAvailable (new List<GameObject> (getGameObjects ("WateringPlants")));
+		List<GameObject> aPlants = getAvailable (getGameObjects ("WateringPlants"));
 		if (aPlants.Count == 0)
 			return null;
 		int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));

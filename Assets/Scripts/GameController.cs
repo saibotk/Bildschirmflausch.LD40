@@ -234,6 +234,7 @@ public class GameController : MonoBehaviour {
 		return gameObject;
 	}
 
+	/** Returns one of the direct children of the _Gamecontroller object by its name. */
 	public GameObject GetPrefab(string name) {
 		return gameObject.transform.Find (name).gameObject;
 	}

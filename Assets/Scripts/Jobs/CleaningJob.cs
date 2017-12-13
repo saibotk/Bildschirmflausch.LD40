@@ -13,7 +13,7 @@ public class CleaningJob : Job {
 	private GameObject broomGO;
 	private List<GameObject> dirtSpotsGO;
 
-	public CleaningJob(List<GameObject> dirtSpots, GameObject dirtSpotPrefab,Transform broomSpawn, GameObject broomPrefab, Jobmanager manager, GameObject indicatorPrefab) : base ("Clean", "Clean all the dirtspots", 50f, 50, Resources.Load<Sprite>("broom")) {
+	public CleaningJob(List<GameObject> dirtSpots, GameObject dirtSpotPrefab, Transform broomSpawn, GameObject broomPrefab, Jobmanager manager, GameObject indicatorPrefab) : base ("Clean", "Clean all the dirtspots", 50f, 50, Resources.Load<Sprite>("broom")) {
 		this.dirtSpots = dirtSpots;
 		this.dirtSpotPrefab = dirtSpotPrefab;
 		this.indicatorPrefab = indicatorPrefab;
