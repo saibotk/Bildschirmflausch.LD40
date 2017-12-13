@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkersCoffeeNeeds : MonoBehaviour, IInteractable {
+public class CoffeeNPC : NPC {
 	[SerializeField]
 	float coffeeTimer_init;
 	float coffeeTimer;
 
-	[SerializeField]
-	private GameController controller;
 	[SerializeField]
 	GameObject coffeeMeter;
 	[SerializeField]
@@ -17,16 +15,17 @@ public class WorkersCoffeeNeeds : MonoBehaviour, IInteractable {
 	// Use this for initialization
 	void Start () {
 		coffeeTimer = coffeeTimer_init;
+		base.Init ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (coffeeTimer >= Time.deltaTime) {
-			if (GetComponent<NPC>().IsAvailable(controller.GetFloor()))
+			if (GetComponent<NPC> ().IsAvailable (GameController.instance.GetFloor ()))
 				coffeeTimer -= Time.deltaTime;
-		} else
+		} else {
 			coffeeTimer = 0;
-
+		}
 		SpriteRenderer render = coffeeMeter.GetComponent<SpriteRenderer>();
 
 		if (coffeeTimer < coffeeTimer_init / 6 * 1)
@@ -43,12 +42,12 @@ public class WorkersCoffeeNeeds : MonoBehaviour, IInteractable {
 			render.sprite = Sprite.Create (coffeeMeter_spriteSheet, new Rect (0, 0, 3, 7), new Vector2 (0.5f, 0.5f));
 	}
 
-	public bool CanInteract( GameObject player ) {
+	public override bool CanInteract( GameObject player ) {
 		CoffeePot pcpot = player.GetComponent<PlayerController> ().GetInventory ().coffeePot;
 		return pcpot != null && pcpot.getFillLevel() != 0f && this.coffeeTimer <= this.coffeeTimer_init * 0.95;
 	}
 
-	public void Interact( GameObject player ) {
+	public override void Interact( GameObject player ) {
 		if (player.GetComponent<PlayerController> ().GetInventory ().coffeePot == null)
 			return;
 		float neededCoffee = 1 - (coffeeTimer / coffeeTimer_init);

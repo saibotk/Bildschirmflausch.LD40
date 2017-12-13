@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
+  jobEntityListName: 
 --- !u!212 &212282903850004910
 SpriteRenderer:
   m_ObjectHideFlags: 1

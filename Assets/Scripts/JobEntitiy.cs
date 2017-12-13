@@ -7,19 +7,32 @@ public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
 
 	[SerializeField]
 	private int floor = 0;
+	[SerializeField]
+	protected string jobEntityListName;
+
 	private Job job = null;
 	private GameObject indicator;
 	private Action<GameObject> interactMethod = null;
 	private Func<GameObject, bool> canInteractMethod = null;
 	private bool available = true;
 
-	public void Interact(GameObject player) {
+	void Start() {
+		Init ();
+	}
+		
+	protected void Init() {
+		if (jobEntityListName != null) {
+			GameController.instance.AddJobObject (jobEntityListName, this.gameObject);
+		}
+	}
+
+	public virtual void Interact(GameObject player) {
 		if (interactMethod != null) {
 			interactMethod (player);
 		}
 	}
 
-	public bool CanInteract(GameObject player) {
+	public virtual bool CanInteract(GameObject player) {
 		if (interactMethod != null) {
 			if (canInteractMethod != null) {
 				return canInteractMethod (player);

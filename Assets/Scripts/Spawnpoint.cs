@@ -8,6 +8,15 @@ public class Spawnpoint : MonoBehaviour, IAvailable {
 	[SerializeField]
 	private int floor = 0;
 
+	[SerializeField]
+	protected string EntityListName;
+
+	void Start() {
+		if (EntityListName != null) {
+			GameController.instance.AddJobObject (EntityListName, this.gameObject);
+		}
+	}
+
 	public void SetAvailable(bool b) {
 		this.available = b;
 	}

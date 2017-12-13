@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCWalkingAI : MonoBehaviour {
-
+	// TODO Merge into NPC class
 	private float idleTime = 5;
 	private float walkingDistance = 0;
 	private float leftBoundary = -1f;

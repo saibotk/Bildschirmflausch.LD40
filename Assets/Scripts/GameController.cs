@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
 
 	private List<string> jobTypes = new List<string>();
 
-    private bool coffeesound = false;
+	private Dictionary<string, List<GameObject>> jobObjects = new Dictionary<string, List<GameObject>>();
 
 	//Player related Objects
 	[Header("Player")]
@@ -26,14 +26,8 @@ public class GameController : MonoBehaviour {
 	[Header("Jobs")]
 	[SerializeField]
 	private GameObject indicator;
-	[SerializeField]
-	private List<GameObject> npcs;
 	[Space(5)]
 
-	[Header("Watering Job")]
-	[SerializeField]
-	private List<GameObject> plants;
-	[Space(5)]
 
 	[Header("Delivery Job")]
 	[SerializeField]
@@ -48,8 +42,6 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private GameObject broomPrefab;
 	[SerializeField]
-	private List<GameObject> DirtSpots;
-	[SerializeField]
 	private GameObject dirtPrefab;
 
 	// SINGLETON
@@ -60,6 +52,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// JOB TYPES INIT
+		// TODO Change to ENUM
 		jobTypes.Add ("watering");
 		jobTypes.Add ("delivery");
 		jobTypes.Add ("cleaning");
@@ -93,6 +86,16 @@ public class GameController : MonoBehaviour {
 			addRandomJob ();
 	}
 
+	public void AddJobObject(string name, GameObject go) {
+		if (jobObjects.ContainsKey (name)) {
+			jobObjects [name].Add (go);
+		} else {
+			List<GameObject> li = new List<GameObject> ();
+			li.Add (go);
+			jobObjects.Add(name, li);
+		}
+	}
+
 	public PlayerController GetPlayer() {
 		return player.GetComponent<PlayerController>();
 	}
@@ -119,7 +122,7 @@ public class GameController : MonoBehaviour {
 		if (rjobtypes.Count == 0)
 			return false;
 		GameObject jobIndicator = this.indicator;
-		string jt = rjobtypes [Random.Range (0, Mathf.Min(floor+1, jobTypes.Count))];
+		string jt = rjobtypes [Random.Range (0, Mathf.Min(1, jobTypes.Count))];
 		switch (jt) {
 			case "delivery":
 			List<GameObject> aNPCs = getAvailable (getQuestNPCs());
@@ -136,8 +139,8 @@ public class GameController : MonoBehaviour {
 				}
 				break;
 			case "watering":
-				List<GameObject> aPlants = getAvailable (plants);	
-				if (plants.Count == 0 || aPlants.Count == 0) {
+				List<GameObject> aPlants = getAvailable (new List<GameObject> (jobObjects["WateringPlants"]));	
+				if (jobObjects.ContainsKey("WateringPlants") && jobObjects["WateringPlants"].Count == 0 || aPlants.Count == 0) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
 					if (leftJobTypes.Count == 0) {
@@ -152,8 +155,8 @@ public class GameController : MonoBehaviour {
 				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager, jobIndicator));
 				break;
 			case "cleaning":
-				List<GameObject> aDirtSpots = getAvailable (new List<GameObject> (DirtSpots));
-				if (DirtSpots.Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
+				List<GameObject> aDirtSpots = getAvailable (new List<GameObject> (jobObjects["DirtSpawnpoints"]));
+				if (!jobObjects.ContainsKey("DirtSpawnpoints") && jobObjects["DirtSpawnpoints"].Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
 					List<string> leftJobTypes = new List<string> (rjobtypes);
 					leftJobTypes.Remove (jt);
 					if (leftJobTypes.Count == 0) {
@@ -183,10 +186,10 @@ public class GameController : MonoBehaviour {
 		int emptyCofeeCounter = 0;
         int almostemptyCofeeCounter = 0;
 		foreach (GameObject NPC in getCoffeeNPCs()) {
-			if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer () == 0) {
+			if (NPC.GetComponent<CoffeeNPC> ().GetCoffeeTimer () == 0) {
 				emptyCofeeCounter++;
 			}
-	        if (NPC.GetComponent<WorkersCoffeeNeeds> ().GetCoffeeTimer() < 15)
+	        if (NPC.GetComponent<CoffeeNPC> ().GetCoffeeTimer() < 15)
 	        {
 	            almostemptyCofeeCounter++;
 	        }
@@ -207,13 +210,16 @@ public class GameController : MonoBehaviour {
 	}
 
 	private List<GameObject> getCoffeeNPCs() {
-		return npcs.FindAll (x => 
-			x.GetComponent<NPC> ().isQuestNPC());
+		if (jobObjects.ContainsKey ("CoffeeNPCs")) 
+			return jobObjects["CoffeeNPCs"];
+		return new List<GameObject> ();
+
 	}
 
 	private List<GameObject> getQuestNPCs() {
-		return npcs.FindAll (x => 
-			!(x.GetComponent<NPC> ().isQuestNPC()));
+		if (jobObjects.ContainsKey ("DeliveryNPCs")) 
+			return jobObjects["DeliveryNPCs"];
+		return new List<GameObject> ();
 	}
 
 	public void AddScore(int score)  {

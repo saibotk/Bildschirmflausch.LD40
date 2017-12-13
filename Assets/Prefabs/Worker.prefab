@@ -38,9 +38,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4600071276986998}
-  - component: {fileID: 114524321074359702}
   - component: {fileID: 61326492048323066}
-  - component: {fileID: 114908120042018364}
+  - component: {fileID: 114524321074359702}
   - component: {fileID: 114030831665245380}
   m_Layer: 0
   m_Name: Worker
@@ -85,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416518806471998}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.65226996, y: 0, z: 0}
+  m_LocalPosition: {x: -1.7777, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4208498111462800}
@@ -174,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
+  jobEntityListName: 
 --- !u!114 &114524321074359702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,11 +182,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1416518806471998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bebc7ec8991ba3444813ae3b6e7a6450, type: 3}
+  m_Script: {fileID: 11500000, guid: 4521e889765ea84409804a028baa6989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floor: 0
+  jobEntityListName: CoffeeNPCs
+  QuestNPC: 0
   coffeeTimer_init: 60
-  controller: {fileID: 0}
   coffeeMeter: {fileID: 1811111276271364}
   coffeeMeter_spriteSheet: {fileID: 2800000, guid: 7355b4852a9f13e489dfedade0deefd8,
     type: 3}
@@ -202,19 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isManager: 0
---- !u!114 &114908120042018364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1416518806471998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea90fbe67d700104b951f36fbfcaa264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floor: 0
-  QuestNPC: 0
 --- !u!212 &212154608501352212
 SpriteRenderer:
   m_ObjectHideFlags: 1
