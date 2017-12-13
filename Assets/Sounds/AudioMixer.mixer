@@ -24,23 +24,23 @@ AudioMixerController:
   m_AudioMixerGroupViews:
   - guids:
     - bd1a3af2dae2ac54b9b3882e2161aeb1
+    - d01bef45e2c0daa438d94e290553fc69
     - d562b1d0252f4ca458c9dcde77d5e331
-    - 4a8fb6de34806ff4da3dd8f01ae1891a
-    - 62546bea1ef859f4e97a8f7b661ecf0c
-    - 93ea0eac4e69fd34e899b44d557b0268
     - 71d0d102c56546b488e3806267d0218a
     - f6e2f1d294767a642b85ead3a23b400e
     - 115909b3f6db1af4aa282d041c01f102
     - 11782feb437b8a04599acf2c6324e259
-    - d01bef45e2c0daa438d94e290553fc69
+    - 4a8fb6de34806ff4da3dd8f01ae1891a
+    - 62546bea1ef859f4e97a8f7b661ecf0c
     - ad0c7063b6b11814a89b64ab652d41c2
+    - 93ea0eac4e69fd34e899b44d557b0268
     - 404a12efc912e974b8bde8fad6cd2304
     - 4395ba1fd0cc10c408dd0f9ecede3a0f
     - f60c7939bed74bd4380517546411d67f
     - ca66ad419872c0943b28d2078b049893
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: 245042827025066818}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -83,13 +83,13 @@ AudioMixerSnapshotController:
   m_SnapshotID: 8c0f53b3d4d63974e961866ed4061b88
   m_FloatValues:
     1289149124ea1d943a07f842f975b5f2: -15.421314
-    2baa7b950bf23d947b8a7a4a9d1837fe: 3.704152
-    cc64e94694b2e8343aa65e3ba33ed344: -7.436929
+    2baa7b950bf23d947b8a7a4a9d1837fe: 6.7923827
+    cc64e94694b2e8343aa65e3ba33ed344: -0.025776558
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     efd11d2a9470ba240af5f800a9e899dd: -80
     fd285d2af5ac090438bc1c47b2c68492: -80
     e005c72b9604159459011ea24a2ef170: -80
-    6f3421bb9208842439d479fe079ecf49: -16.660433
+    6f3421bb9208842439d479fe079ecf49: -24.900742
     76ee612d6f2aa3842a65a72685eb5d3d: -19.255655
     fb7318ed0ae0be94aa324780795fc1e1: -80
   m_TransitionOverrides: {}
@@ -203,6 +203,7 @@ AudioMixerGroupController:
   m_Pitch: 8fe3312d53eb71145a777c6078dd3914
   m_Effects:
   - {fileID: 244964213191618106}
+  - {fileID: 244320828893886436}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -382,6 +383,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &244320828893886436
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 8b7e56550ffa6d24b92b54f8a40ed32c
+  m_EffectName: ParamEQ
+  m_MixLevel: 41590caa43af4d44fac015711033c7e1
+  m_Parameters:
+  - m_ParameterName: Center freq
+    m_GUID: f28840143b71f994ba0880518d41b1fa
+  - m_ParameterName: Octave range
+    m_GUID: fd221fcd7dfc97e43a7a4c363419cb90
+  - m_ParameterName: Frequency gain
+    m_GUID: 28a069fb514c25646bbe36abd05ea80a
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &244366517626611310
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -534,14 +554,14 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 21c83373e74a42e4d86b1c8c1d6eecb7
   m_FloatValues:
-    1289149124ea1d943a07f842f975b5f2: -17.29471
+    1289149124ea1d943a07f842f975b5f2: -14.816608
     330bc5731c5ec474d8eec511cafcc4c7: -80
     98a24ce4c40b06b428f3b40dd68134ae: -80
-    2baa7b950bf23d947b8a7a4a9d1837fe: 9.757735
+    2baa7b950bf23d947b8a7a4a9d1837fe: 6.648677
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     efd11d2a9470ba240af5f800a9e899dd: -80
     fd285d2af5ac090438bc1c47b2c68492: -80
-    6f3421bb9208842439d479fe079ecf49: -18.592384
+    6f3421bb9208842439d479fe079ecf49: -24.900742
     76ee612d6f2aa3842a65a72685eb5d3d: -20.610773
     fb7318ed0ae0be94aa324780795fc1e1: -80
   m_TransitionOverrides: {}
@@ -555,14 +575,14 @@ AudioMixerSnapshotController:
   m_SnapshotID: e494bf250e983504780909240106a6ff
   m_FloatValues:
     1289149124ea1d943a07f842f975b5f2: -16.035946
-    2baa7b950bf23d947b8a7a4a9d1837fe: 9.925883
+    2baa7b950bf23d947b8a7a4a9d1837fe: 6.7923827
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     fd285d2af5ac090438bc1c47b2c68492: -80
     e005c72b9604159459011ea24a2ef170: -80
-    6f3421bb9208842439d479fe079ecf49: -16.03595
+    6f3421bb9208842439d479fe079ecf49: -24.900745
     76ee612d6f2aa3842a65a72685eb5d3d: -21.302511
     fb7318ed0ae0be94aa324780795fc1e1: -80
-    b16fe88e37167d84eac68e5827172295: -5.3230715
+    b16fe88e37167d84eac68e5827172295: -0.08374829
   m_TransitionOverrides: {}
 --- !u!245 &245209096600761262
 AudioMixerSnapshotController:
@@ -574,11 +594,11 @@ AudioMixerSnapshotController:
   m_SnapshotID: 2537c7d11e37c98428af58298de81d3d
   m_FloatValues:
     1289149124ea1d943a07f842f975b5f2: -14.816608
-    2baa7b950bf23d947b8a7a4a9d1837fe: 9.925883
+    2baa7b950bf23d947b8a7a4a9d1837fe: 6.7923827
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     fd285d2af5ac090438bc1c47b2c68492: -80
     e005c72b9604159459011ea24a2ef170: -80
-    6f3421bb9208842439d479fe079ecf49: -16.035946
+    6f3421bb9208842439d479fe079ecf49: -24.900742
     76ee612d6f2aa3842a65a72685eb5d3d: -19.928473
     fb7318ed0ae0be94aa324780795fc1e1: 0.025578512
   m_TransitionOverrides: {}
@@ -608,12 +628,12 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: bde4605c36d3fd24399d4c75252dc74f
   m_FloatValues:
-    1289149124ea1d943a07f842f975b5f2: -10.345207
-    2baa7b950bf23d947b8a7a4a9d1837fe: 9.925883
+    1289149124ea1d943a07f842f975b5f2: -14.816613
+    2baa7b950bf23d947b8a7a4a9d1837fe: 7.3797894
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     fd285d2af5ac090438bc1c47b2c68492: 0.10800299
     e005c72b9604159459011ea24a2ef170: -80
-    6f3421bb9208842439d479fe079ecf49: -18.592384
+    6f3421bb9208842439d479fe079ecf49: -24.900742
     76ee612d6f2aa3842a65a72685eb5d3d: -20.610773
     fb7318ed0ae0be94aa324780795fc1e1: 0.025578512
   m_TransitionOverrides: {}
@@ -627,12 +647,12 @@ AudioMixerSnapshotController:
   m_SnapshotID: 6c6209ce77da6f54bab6bb501d083ede
   m_FloatValues:
     1289149124ea1d943a07f842f975b5f2: -19.928473
-    2baa7b950bf23d947b8a7a4a9d1837fe: 9.925883
+    2baa7b950bf23d947b8a7a4a9d1837fe: 7.3797894
     1be7e2f81cc781d40a4b00e8c4c5ceb0: -80
     efd11d2a9470ba240af5f800a9e899dd: -80
     fd285d2af5ac090438bc1c47b2c68492: -80
     e005c72b9604159459011ea24a2ef170: -80
-    6f3421bb9208842439d479fe079ecf49: -19.255655
+    6f3421bb9208842439d479fe079ecf49: -24.900742
     76ee612d6f2aa3842a65a72685eb5d3d: -19.255655
     fb7318ed0ae0be94aa324780795fc1e1: -80
   m_TransitionOverrides: {}

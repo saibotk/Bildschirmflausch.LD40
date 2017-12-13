@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.Audio;
 
 public class AudioControl : MonoBehaviour
@@ -19,7 +20,7 @@ public class AudioControl : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        m_TransitionIn = 0.3f;
+        m_TransitionIn = 1.2f;
         m_TransitionOut = 0.3f;
         endstate = false;
         AddLayer(0);
@@ -27,18 +28,22 @@ public class AudioControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Liftmusic") && endstate == false) {
-            if (col.isTrigger) {
-                lifttheme.TransitionTo(m_TransitionIn);
-            }
+            if(col.isTrigger)
+                StartCoroutine("changebgm");
         }
     }
 
     void OnTriggerExit2D(Collider2D col) {
         if (col.CompareTag("Liftmusic") && endstate == false) {
-            if (col.isTrigger) 
+            if (col.isTrigger) {
                 maintheme[floor].TransitionTo(m_TransitionOut);
-            
+                StopCoroutine("changebgm");
+            }    
         }
+    }
+    private IEnumerator changebgm() {
+        yield return new WaitForSeconds(2);
+        lifttheme.TransitionTo(m_TransitionIn);
     }
 
     public void gameoverplay() {
