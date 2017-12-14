@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class NPC : JobEntitiy {
+public class NPC : JobEntity {
 
 	[SerializeField]
 	public bool QuestNPC;

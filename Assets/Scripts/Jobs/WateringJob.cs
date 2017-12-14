@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WateringJob : Job {
-	private List<JobEntitiy> targets;
+	private List<JobEntity> targets;
 	private Jobmanager jobmanager;
 	private GameObject indicatorPrefab;
 
-	public WateringJob(List<JobEntitiy> targets, Jobmanager manager, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 20f, 25, Resources.Load<Sprite>("wateringCan")) {
+	public WateringJob(List<JobEntity> targets, Jobmanager manager, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 20f, 25, Resources.Load<Sprite>("wateringCan")) {
 		this.targets = targets;
 		this.jobmanager = manager;
 		this.indicatorPrefab = indicatorPrefab;
 		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = GetJobColor();
-		init ();
 	}
 
 	override public void init() {
-		List<JobEntitiy> tmptargets = new List<JobEntitiy> (targets);
-		foreach (JobEntitiy target in tmptargets) {
+		foreach (JobEntity target in targets) {
 			target.SetAvailable (false);
 			target.SetJob (this);
 			GameObject indicator = GameObject.Instantiate (indicatorPrefab, target.transform);
@@ -27,14 +25,10 @@ public class WateringJob : Job {
 				delegate (GameObject player) {
 					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is WateringCan) {
-							target.SetInteract (null);
-							target.SetJob (null);
-							target.SetAvailable (true);
-							GameObject.Destroy(target.GetIndicator());
+							cleanupPlant(target);
 							targets.Remove(target);
-							if(this.targets.Count == 0) {
-								this.finishJob ();
-							}
+							if(this.targets.Count == 0)
+								this.FinishJob ();
 						}
 					}
 				}
@@ -42,21 +36,22 @@ public class WateringJob : Job {
 		}
 	}
 
-	public void finishJob() {
-		this.jobmanager.finishedJob(this);
+	private void cleanupPlant(JobEntity target) {
+		target.SetInteract (null);
+		target.SetJob (null);
+		target.SetAvailable (true);
+		GameObject.Destroy (target.GetIndicator ());
 	}
 
-	override public void cleanup() {		
-		foreach (JobEntitiy target in targets) {
-			// Dead code, replaced by delegate above
-			target.SetInteract (null);
-			target.SetJob (null);
-			target.SetAvailable (true);
-			GameObject.Destroy (target.GetIndicator ());
-		}
+	public void FinishJob() {
+		this.jobmanager.FinishedJob(this);
+	}
+
+	override public void cleanup() {
+		targets.ForEach (cleanupPlant);
+		targets.Clear ();
 		this.indicatorPrefab = null;
 		this.targets = null;
 		this.jobmanager = null;
 	}
-
 }

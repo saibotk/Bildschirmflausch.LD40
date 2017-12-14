@@ -23,8 +23,8 @@ public class CopyJob : Job {
 
 	override public void init() {
 		this.documentGO = GameObject.Instantiate(this.documentPrefab, this.interactableSpawnpoint.position, this.interactableSpawnpoint.rotation);
-		this.documentGO.GetComponent<JobEntitiy>().SetJob(this);
-		this.documentGO.GetComponent<JobEntitiy>().SetInteract(
+		this.documentGO.GetComponent<JobEntity>().SetJob(this);
+		this.documentGO.GetComponent<JobEntity>().SetInteract(
 			delegate (GameObject player) {
 				bool added = player.GetComponent<PlayerController>().GetInventory().AddItem(this.document);
 				if (added) {
@@ -50,7 +50,7 @@ public class CopyJob : Job {
 
 	public void finishJob() {
 		Debug.Log("QUEST COMPLETED! U GENIUS");
-		this.jobmanager.finishedJob(this);
+		this.jobmanager.FinishedJob(this);
 	}
 
 	override public void cleanup() {

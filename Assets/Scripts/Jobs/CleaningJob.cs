@@ -21,7 +21,6 @@ public class CleaningJob : Job {
 		this.broomSpawn = broomSpawn;
 		this.broomPrefab = broomPrefab;
 		this.manager = manager;
-		init ();
 	}
 
 	override public void init() {
@@ -31,9 +30,9 @@ public class CleaningJob : Job {
 			(dirtSpot.GetComponent (typeof(IAvailable)) as IAvailable).SetAvailable (false);
 		}
 		foreach (GameObject dirtGo in dirtSpotsGO) {
-			dirtGo.GetComponent<JobEntitiy> ().SetJob (this);
-			dirtGo.GetComponent<JobEntitiy> ().SetIndicator (GameObject.Instantiate(indicatorPrefab, dirtGo.transform));
-			dirtGo.GetComponent<JobEntitiy> ().SetInteract (
+			dirtGo.GetComponent<JobEntity> ().SetJob (this);
+			dirtGo.GetComponent<JobEntity> ().SetIndicator (GameObject.Instantiate(indicatorPrefab, dirtGo.transform));
+			dirtGo.GetComponent<JobEntity> ().SetInteract (
 				delegate(GameObject player) {
 					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is Broom) {
@@ -41,7 +40,7 @@ public class CleaningJob : Job {
 							if (this.dirtSpotsGO.Count == 0) {
 								this.finishJob ();
 							}
-							GameObject.Destroy(dirtGo.GetComponent<JobEntitiy>().GetIndicator());
+							GameObject.Destroy(dirtGo.GetComponent<JobEntity>().GetIndicator());
 							GameObject.Destroy (dirtGo);
 						}
 					}
@@ -52,7 +51,7 @@ public class CleaningJob : Job {
 	}
 
 	public void finishJob() {
-		this.manager.finishedJob (this);
+		this.manager.FinishedJob (this);
 	}
 
 	override public void cleanup() {
@@ -60,7 +59,7 @@ public class CleaningJob : Job {
 		if (dirtSpotsGO != null && dirtSpotsGO.Count != 0) {
 			List<GameObject> tmpDirtGO = new List<GameObject> (dirtSpotsGO);
 			foreach (GameObject dirtGo in tmpDirtGO) {
-				GameObject.Destroy(dirtGo.GetComponent<JobEntitiy>().GetIndicator());
+				GameObject.Destroy(dirtGo.GetComponent<JobEntity>().GetIndicator());
 				GameObject.Destroy (dirtGo);
 			}
 			foreach (GameObject t in dirtSpots) {

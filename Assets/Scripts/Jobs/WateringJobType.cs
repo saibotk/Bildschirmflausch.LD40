@@ -8,12 +8,14 @@ public class WateringJobType : JobType {
 	}
 
 	override public Job CreateJob() {
-		List<GameObject> aPlants = getAvailable (controller.GetJobObjects ("WateringPlants"));
+		List<GameObject> aPlants = GetAvailable (controller.GetJobObjects ("WateringPlants"));
+		if (aPlants.Count == 0)
+			Debug.Log ("Not enough plants; " + controller.GetJobObjects ("WateringPlants").Count + " available");
 		if (aPlants.Count == 0)
 			return null;
 		int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));
 		int count = (aPlants.Count >= 3) ? 3 : aPlants.Count;
 		List<GameObject> cAPlants = new List<GameObject> (aPlants);
-		return new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), manager, controller.GetPrefab("Indicator_0"));
+		return new WateringJob (cAPlants.ConvertAll<JobEntity> (x => x.GetComponent<JobEntity> ()).GetRange (index, count), manager, controller.GetPrefab("Indicator_0"));
 	}
 }

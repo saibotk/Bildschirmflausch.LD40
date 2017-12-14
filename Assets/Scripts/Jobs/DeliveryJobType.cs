@@ -8,7 +8,7 @@ public class DeliveryJobType : JobType {
 	}
 
 	override public Job CreateJob() {
-		List<GameObject> aNPCs = getAvailable (controller.GetJobObjects ("DeliveryNPCs"));
+		List<GameObject> aNPCs = GetAvailable (controller.GetJobObjects ("DeliveryNPCs"));
 		if (aNPCs.Count == 0)
 			return null;
 

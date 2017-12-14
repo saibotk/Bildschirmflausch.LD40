@@ -46,7 +46,6 @@ public class GameController : MonoBehaviour {
 	// SINGLETON
 	public GameController() {
 		GameController.instance = this;
-		jobmanager = new Jobmanager (this);
 	}
 
 	// Use this for initialization
@@ -54,6 +53,7 @@ public class GameController : MonoBehaviour {
 		Time.timeScale = 1;
 		score = 0;
 
+		jobmanager = new Jobmanager (this);
 		jobmanager.addRandomJob ();
 	}
 		

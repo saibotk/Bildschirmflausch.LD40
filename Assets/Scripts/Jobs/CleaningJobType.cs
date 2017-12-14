@@ -8,8 +8,8 @@ public class CleaningJobType : JobType {
 	}
 
 	override public Job CreateJob() {
-		List<GameObject> aDirtSpots = getAvailable (controller.GetJobObjects ("DirtSpawnpoints"));
-		if (aDirtSpots.Count == 0)
+		List<GameObject> aDirtSpots = GetAvailable (controller.GetJobObjects ("DirtSpawnpoints"));
+		if (aDirtSpots.Count == 0 || controller.GetFloor() < 2)
 			return null;
 
 		int cindex = Random.Range (0, Mathf.Max (0, aDirtSpots.Count - 3));

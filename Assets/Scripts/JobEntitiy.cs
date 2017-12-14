@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JobEntitiy : MonoBehaviour, IInteractable, IAvailable {
+public class JobEntity : MonoBehaviour, IInteractable, IAvailable {
 
 	[SerializeField]
 	private int floor = 0;
