@@ -75,11 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1673743791074690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f14f8cd50e21a1428ce8a20a07300e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6df180800f0c6ba4f82c15873852c0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
-  jobEntityListName: WateringPlants
+  jobEntityListName: 1
 --- !u!212 &212132577502260434
 SpriteRenderer:
   m_ObjectHideFlags: 1

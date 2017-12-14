@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 2
-  jobEntityListName: DeliveryNPCs
+  jobEntityListName: 5
   QuestNPC: 0
 --- !u!114 &114980833939801716
 MonoBehaviour:

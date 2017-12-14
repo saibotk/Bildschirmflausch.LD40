@@ -8,10 +8,9 @@ public class DeliveryJob : Job {
 	private GameObject letterPrefab;
 	private GameObject indicatorPrefab;
 	private GameObject letterGO;
-	private Jobmanager jobmanager;
 	private Letter letter;
 
-	public DeliveryJob(NPC deliveryTarget, Transform transform, GameObject prefab, Jobmanager manager, GameObject indicatorPrefab)
+	public DeliveryJob(NPC deliveryTarget, Transform transform, GameObject prefab, GameObject indicatorPrefab)
 												: base ("Delivery", "Deliver the item!", 30f, 30, Resources.Load<Sprite>("letter")) {
 		this.deliveryTarget = deliveryTarget;
 		this.indicatorPrefab = indicatorPrefab;
@@ -19,7 +18,6 @@ public class DeliveryJob : Job {
 		this.letter = new Letter(this);
 		this.interactableSpawnpoint = transform;
 		this.letterPrefab = prefab;
-		this.jobmanager = manager;
 	}
 
 	override public void init() {
@@ -58,7 +56,7 @@ public class DeliveryJob : Job {
 	}
 
 	public void finishJob() {
-		this.jobmanager.FinishedJob(this);
+		GameController.instance.GetJobManager().FinishedJob(this);
 	}
 
 	override public void cleanup() {

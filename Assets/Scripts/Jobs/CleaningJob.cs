@@ -9,18 +9,16 @@ public class CleaningJob : Job {
 	private Transform broomSpawn;
 	private GameObject broomPrefab;
 	private GameObject indicatorPrefab;
-	private Jobmanager manager;
 	private GameObject broomGO;
 	private List<GameObject> dirtSpotsGO;
 
-	public CleaningJob(List<GameObject> dirtSpots, GameObject dirtSpotPrefab, Transform broomSpawn, GameObject broomPrefab, Jobmanager manager, GameObject indicatorPrefab) : base ("Clean", "Clean all the dirtspots", 50f, 50, Resources.Load<Sprite>("broom")) {
+	public CleaningJob(List<GameObject> dirtSpots, GameObject dirtSpotPrefab, Transform broomSpawn, GameObject broomPrefab, GameObject indicatorPrefab) : base ("Clean", "Clean all the dirtspots", 50f, 50, Resources.Load<Sprite>("broom")) {
 		this.dirtSpots = dirtSpots;
 		this.dirtSpotPrefab = dirtSpotPrefab;
 		this.indicatorPrefab = indicatorPrefab;
 		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = GetJobColor();
 		this.broomSpawn = broomSpawn;
 		this.broomPrefab = broomPrefab;
-		this.manager = manager;
 	}
 
 	override public void init() {
@@ -38,7 +36,7 @@ public class CleaningJob : Job {
 						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is Broom) {
 							this.dirtSpotsGO.Remove (dirtGo);
 							if (this.dirtSpotsGO.Count == 0) {
-								this.finishJob ();
+								this.FinishJob ();
 							}
 							GameObject.Destroy(dirtGo.GetComponent<JobEntity>().GetIndicator());
 							GameObject.Destroy (dirtGo);
@@ -50,8 +48,8 @@ public class CleaningJob : Job {
 
 	}
 
-	public void finishJob() {
-		this.manager.FinishedJob (this);
+	public void FinishJob() {
+		GameController.instance.GetJobManager().FinishedJob (this);
 	}
 
 	override public void cleanup() {

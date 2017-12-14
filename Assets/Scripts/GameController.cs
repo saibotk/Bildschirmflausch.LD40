@@ -13,9 +13,6 @@ public class GameController : MonoBehaviour {
 
 	private Jobmanager jobmanager;
 
-	[SerializeField]
-	private GameObject gameObject;
-
 	//Player related Objects
 	[Header("Player")]
 	[SerializeField]
@@ -27,17 +24,12 @@ public class GameController : MonoBehaviour {
 	private GameObject indicator;
 	[Space(5)]
 
-
 	[Header("Delivery Job")]
 	[SerializeField]
 	private GameObject letterPrefab;
-	[SerializeField]
-	private Transform letterSpawnpoint;
 	[Space(5)]
 
 	[Header("Cleaning Job")]
-	[SerializeField]
-	private Transform broomSpawn;
 	[SerializeField]
 	private GameObject broomPrefab;
 	[SerializeField]
@@ -53,7 +45,7 @@ public class GameController : MonoBehaviour {
 		Time.timeScale = 1;
 		score = 0;
 
-		jobmanager = new Jobmanager (this);
+		jobmanager = new Jobmanager (indicator, letterPrefab, dirtPrefab, broomPrefab);
 		jobmanager.addRandomJob ();
 	}
 		
@@ -92,7 +84,7 @@ public class GameController : MonoBehaviour {
 	public void CheckCoffeeNPCs() {
 		int emptyCofeeCounter = 0;
         int almostemptyCofeeCounter = 0;
-		foreach (GameObject NPC in GetJobObjects ("CoffeeNPCs")) {
+		foreach (GameObject NPC in jobmanager.GetJobObjects (Jobmanager.ENTITYLISTNAMES.COFFEENPCS)) {
 			if (NPC.GetComponent<CoffeeNPC> ().GetCoffeeTimer () == 0) {
 				emptyCofeeCounter++;
 			}
@@ -130,36 +122,12 @@ public class GameController : MonoBehaviour {
 		return floor;
 	}
 
-	public Jobmanager getJobManager() {
+	public Jobmanager GetJobManager() {
 		return jobmanager;
 	}
 
 	// Maybe make private
 	public GameObject GetGameObject() {
 		return gameObject;
-	}
-
-	/** Returns one of the direct children of the _Gamecontroller object by its name. */
-	public GameObject GetPrefab(string name) {
-		return gameObject.transform.Find (name).gameObject;
-	}
-
-	protected Dictionary<string, List<GameObject>> jobObjects = new Dictionary<string, List<GameObject>> ();
-
-	public void AddJobObject(string name, GameObject go) {
-		if (jobObjects.ContainsKey (name)) {
-			jobObjects [name].Add (go);
-		} else {
-			List<GameObject> li = new List<GameObject> ();
-			li.Add (go);
-			jobObjects.Add(name, li);
-		}
-	}
-
-	public List<GameObject> GetJobObjects(string name) {
-		if (jobObjects.ContainsKey (name))
-			return jobObjects [name];
-		else
-			return new List<GameObject> ();
 	}
 }

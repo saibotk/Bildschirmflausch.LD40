@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4537414270019562}
   - component: {fileID: 212282903850004910}
   - component: {fileID: 61640041218776196}
-  - component: {fileID: 114034001276891276}
+  - component: {fileID: 114985517205244590}
   m_Layer: 0
   m_Name: Dirt
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &114034001276891276
+--- !u!114 &114985517205244590
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,11 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760805179898806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f14f8cd50e21a1428ce8a20a07300e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6df180800f0c6ba4f82c15873852c0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
-  jobEntityListName: 
+  jobEntityListName: 0
 --- !u!212 &212282903850004910
 SpriteRenderer:
   m_ObjectHideFlags: 1

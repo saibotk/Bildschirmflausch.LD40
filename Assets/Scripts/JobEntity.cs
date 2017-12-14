@@ -8,7 +8,7 @@ public class JobEntity : MonoBehaviour, IInteractable, IAvailable {
 	[SerializeField]
 	private int floor = 0;
 	[SerializeField]
-	protected string jobEntityListName;
+	protected Jobmanager.ENTITYLISTNAMES jobEntityListName;
 
 	private Job job = null;
 	private GameObject indicator;
@@ -21,8 +21,8 @@ public class JobEntity : MonoBehaviour, IInteractable, IAvailable {
 	}
 		
 	protected void Init() {
-		if (jobEntityListName != null) {
-			GameController.instance.AddJobObject (jobEntityListName, this.gameObject);
+		if (jobEntityListName != Jobmanager.ENTITYLISTNAMES.UNDEFINED) {
+			GameController.instance.GetJobManager().AddJobObject (jobEntityListName, this.gameObject);
 		}
 	}
 

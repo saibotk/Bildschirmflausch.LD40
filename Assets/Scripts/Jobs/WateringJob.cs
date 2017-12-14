@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class WateringJob : Job {
 	private List<JobEntity> targets;
-	private Jobmanager jobmanager;
 	private GameObject indicatorPrefab;
 
-	public WateringJob(List<JobEntity> targets, Jobmanager manager, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 20f, 25, Resources.Load<Sprite>("wateringCan")) {
+	public WateringJob(List<JobEntity> targets, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 20f, 25, Resources.Load<Sprite>("wateringCan")) {
 		this.targets = targets;
-		this.jobmanager = manager;
 		this.indicatorPrefab = indicatorPrefab;
 		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = GetJobColor();
 	}
@@ -44,7 +42,7 @@ public class WateringJob : Job {
 	}
 
 	public void FinishJob() {
-		this.jobmanager.FinishedJob(this);
+		GameController.instance.GetJobManager().FinishedJob(this);
 	}
 
 	override public void cleanup() {
@@ -52,6 +50,5 @@ public class WateringJob : Job {
 		targets.Clear ();
 		this.indicatorPrefab = null;
 		this.targets = null;
-		this.jobmanager = null;
 	}
 }

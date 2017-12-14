@@ -9,11 +9,11 @@ public class Spawnpoint : MonoBehaviour, IAvailable {
 	private int floor = 0;
 
 	[SerializeField]
-	protected string EntityListName;
+	private Jobmanager.ENTITYLISTNAMES EntityListName;
 
 	void Start() {
-		if (EntityListName != null) {
-			GameController.instance.AddJobObject (EntityListName, this.gameObject);
+		if (EntityListName != Jobmanager.ENTITYLISTNAMES.UNDEFINED) {
+			GameController.instance.GetJobManager().AddJobObject (EntityListName, this.gameObject);
 		}
 	}
 

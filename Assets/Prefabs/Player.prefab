@@ -274,7 +274,6 @@ MonoBehaviour:
   rightHandTexture: {fileID: 1480073225296830}
   coffeePotLevels: {fileID: 2800000, guid: 9e0ffbefdb5ad2a4a9bfa3ba6321dc36, type: 3}
   coffeePotUILevels: {fileID: 2800000, guid: d586591d4cafc034088b643445ef9ba9, type: 3}
-  gui: {fileID: 0}
   lift: {fileID: 0}
   inLift: 0
 --- !u!114 &114782357041478034
@@ -335,9 +334,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -21
+  m_SortingLayerID: 212628091
+  m_SortingLayer: -3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9e0ffbefdb5ad2a4a9bfa3ba6321dc36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -379,9 +378,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -20
+  m_SortingLayerID: 212628091
+  m_SortingLayer: -3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 12df1961ac0bfe640adbbcc2d5ad82e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

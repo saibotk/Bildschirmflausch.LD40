@@ -3,25 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Jobmanager {
-
+	public enum ENTITYLISTNAMES { UNDEFINED, WATERINGPLANTS, DIRTSPAWNPOINTS, LETTERSPAWNPOINTS, BROOMSPAWNPOINTS, DELIVERYNPCS, COFFEENPCS };
 	private static readonly float[] JOB_PROBABILITIES = new float[] {0.3f, 0.8f, 1.0f};
 	
 	private List<Job> jobList = new List<Job>();
-	private List<JobType> jobTypes = new List<JobType> ();
-	//private Dictionary<string, int> jobCount;
+	private List<JobFactory> jobFactorys = new List<JobFactory> ();
+	private Dictionary<ENTITYLISTNAMES, List<GameObject>> jobObjects = new Dictionary<ENTITYLISTNAMES, List<GameObject>> ();
 	private int maxJobs = 2;
-	private GameController controller;
 
-	public Jobmanager (GameController controller) {
-		this.controller = controller;
-
-		jobTypes.Add ((JobType) new WateringJobType (controller, this));
-		jobTypes.Add ((JobType) new DeliveryJobType (controller, this));
-		jobTypes.Add ((JobType) new CleaningJobType (controller, this));
+	public Jobmanager (GameObject indicator, GameObject letterprefab, GameObject dirt, GameObject broomprefab) {
+		jobFactorys.Add ((JobFactory) new WateringJobFactory (indicator));
+		jobFactorys.Add ((JobFactory) new DeliveryJobFactory (letterprefab, indicator));
+		jobFactorys.Add ((JobFactory) new CleaningJobFactory (dirt, broomprefab, indicator));
 	}
 
-	public JobType getJobType(string typeName) {
-		return jobTypes.Find (type => type.GetName ().Equals (typeName));
+	public T getJobFactory<T>() where T : JobFactory {
+		return (T) jobFactorys.Find (x => x.GetType() is T);
 	}
 
 	// GetJobAt: integer -> Jobmanager
@@ -34,7 +31,7 @@ public class Jobmanager {
 		List<Job> tmpJobList = new List<Job> (jobList);
 		foreach (Job job in tmpJobList) {
 			if (Time.realtimeSinceStartup >= (job.GetJobStartTime () + job.GetJobTime ())) {
-				controller.GetPlayer().GetComponent<AudioControl>().sfxplay(4);
+				GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(4);
 				RemoveJob (job);
 				maxJobs++;
 				if (Random.value < 0.5)
@@ -68,18 +65,22 @@ public class Jobmanager {
 	}
 
 	public void FinishedJob(Job job) {
-		controller.AddScore (job.GetScoreValue() * jobList.Count * jobList.Count);
-		controller.GetPlayer().GetComponent<AudioControl>().sfxplay(3);
+		GameController.instance.AddScore (job.GetScoreValue() * jobList.Count * jobList.Count);
+		GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(3);
 		RemoveJob (job);
 		if (Random.value < 0.5)
 			addRandomJob ();
 	}
 
 	public void addRandomJob() {
-		Job job = jobTypes[GetRandomJobType()].CreateJob ();
-		Debug.Log ("Adding random job " + job + ".");
-		if (job != null)
+		Job job = jobFactorys[GetRandomJobType()].CreateJob ();
+		Debug.Log ("Called addRandomJob");
+		if (job != null) {
+			Debug.Log ("Adding random job " + job.GetTaskName () + ".");
 			AddJob (job);
+		} else {
+			// TODO
+		}
 	}
 
 	private int GetRandomJobType() {
@@ -92,4 +93,24 @@ public class Jobmanager {
 		Debug.LogWarning ("No random job type found; check your probabilities!");
 		return 0;
 	}
+
+	public void AddJobObject(ENTITYLISTNAMES name, GameObject go) {
+		if (jobObjects.ContainsKey (name)) {
+			jobObjects [name].Add (go);
+		} else {
+			List<GameObject> li = new List<GameObject> ();
+			li.Add (go);
+			jobObjects.Add(name, li);
+		}
+	}
+
+	public List<GameObject> GetJobObjects(ENTITYLISTNAMES name) {
+		if (jobObjects.ContainsKey (name)) {
+			return jobObjects [name];
+
+		} else {
+			return new List<GameObject> ();
+		}
+	}
+
 }
