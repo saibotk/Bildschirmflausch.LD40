@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Jobmanager {
 	private List<Job> jobList = new List<Job>();
-	private Dictionary<string, JobType<Job>> jobTypes = new Dictionary<string, JobType<Job>> ();
+	private Dictionary<string, JobType> jobTypes = new Dictionary<string, JobType> ();
 	private GameController controller;
 
 	public Jobmanager (GameController controller) {
 		this.controller = controller;
 
-		jobTypes.Add ("watering", new WateringJobType (controller, this));
-		jobTypes.Add ("delivery", new DeliveryJobType (controller, this));
-		jobTypes.Add ("cleaning", new CleaningJobType (controller, this));
+		jobTypes.Add ("watering", (JobType) new WateringJobType (controller, this));
+		jobTypes.Add ("delivery", (JobType) new DeliveryJobType (controller, this));
+		jobTypes.Add ("cleaning", (JobType) new CleaningJobType (controller, this));
 	}
 
-	public JobType<Job> getJobType(string typeName) {
+	public JobType getJobType(string typeName) {
 		return jobTypes [typeName];
 	}
 

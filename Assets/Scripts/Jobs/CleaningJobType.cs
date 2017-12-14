@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CleaningJobType : JobType<CleaningJob> {
+public class CleaningJobType : JobType {
 
 	public CleaningJobType (GameController controller, Jobmanager manager) : base ("cleaning", controller, manager) {
 	}
 
-	override public CleaningJob CreateJob() {
+	override public Job CreateJob() {
 		List<GameObject> aDirtSpots = getAvailable (controller.GetJobObjects ("DirtSpawnpoints"));
 		if (aDirtSpots.Count == 0)
 			return null;

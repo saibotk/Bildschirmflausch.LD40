@@ -25,6 +25,7 @@ public class DeliveryJob : Job {
 
 	override public void init() {
 		this.letterGO = GameObject.Instantiate(this.letterPrefab, this.interactableSpawnpoint.position, this.interactableSpawnpoint.rotation);
+		this.letterGO.SetActive (true);
 		this.letterGO.GetComponent<JobEntitiy>().SetJob(this);
 		this.letterGO.GetComponent<JobEntitiy>().SetInteract(
 			delegate (GameObject player) {
@@ -35,7 +36,9 @@ public class DeliveryJob : Job {
 			}
 		);
 
-		this.target.SetIndicator(GameObject.Instantiate (indicatorPrefab, this.target.transform));
+		GameObject indicator = GameObject.Instantiate (indicatorPrefab, target.transform);
+		indicator.SetActive (true);
+		this.target.SetIndicator(indicator);
 		this.target.GetIndicator ().transform.localScale = new Vector3 (0.5f, 0.5f, 0);
 		this.target.SetJob(this);
 		this.target.SetInteract (

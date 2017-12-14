@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class JobType<T> where T : Job {
+public abstract class JobType {
 
 	protected GameController controller;
 	protected Jobmanager manager;
@@ -12,7 +12,7 @@ public abstract class JobType<T> where T : Job {
 		this.manager = manager;
 	}
 
-	public abstract T CreateJob();
+	public abstract Job CreateJob();
 
 	protected List<GameObject> getAvailable(List<GameObject> li) {
 		if (li.Count == 0) {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WateringJobType : JobType<WateringJob> {
+public class WateringJobType : JobType {
 
 	public WateringJobType (GameController controller, Jobmanager manager) : base ("watering", controller, manager) {
 	}
 
-	override public WateringJob CreateJob() {
+	override public Job CreateJob() {
 		List<GameObject> aPlants = getAvailable (controller.GetJobObjects ("WateringPlants"));
 		if (aPlants.Count == 0)
 			return null;

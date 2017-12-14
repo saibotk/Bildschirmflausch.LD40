@@ -20,7 +20,9 @@ public class WateringJob : Job {
 		foreach (JobEntitiy target in tmptargets) {
 			target.SetAvailable (false);
 			target.SetJob (this);
-			target.SetIndicator(GameObject.Instantiate (indicatorPrefab, target.transform));
+			GameObject indicator = GameObject.Instantiate (indicatorPrefab, target.transform);
+			indicator.SetActive (true);
+			target.SetIndicator(indicator);
 			target.SetInteract (
 				delegate (GameObject player) {
 					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryJobType : JobType<DeliveryJob> {
+public class DeliveryJobType : JobType {
 
 	public DeliveryJobType (GameController controller, Jobmanager manager) : base ("delivery", controller, manager) {
 	}
 
-	override public DeliveryJob CreateJob() {
+	override public Job CreateJob() {
 		List<GameObject> aNPCs = getAvailable (controller.GetJobObjects ("DeliveryNPCs"));
 		if (aNPCs.Count == 0)
 			return null;

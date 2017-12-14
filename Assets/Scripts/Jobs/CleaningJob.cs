@@ -31,7 +31,6 @@ public class CleaningJob : Job {
 			(dirtSpot.GetComponent (typeof(IAvailable)) as IAvailable).SetAvailable (false);
 		}
 		foreach (GameObject dirtGo in dirtSpotsGO) {
-			
 			dirtGo.GetComponent<JobEntitiy> ().SetJob (this);
 			dirtGo.GetComponent<JobEntitiy> ().SetIndicator (GameObject.Instantiate(indicatorPrefab, dirtGo.transform));
 			dirtGo.GetComponent<JobEntitiy> ().SetInteract (
