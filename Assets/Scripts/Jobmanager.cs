@@ -1,33 +1,49 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jobmanager
-{
+public class Jobmanager {
 	private List<Job> jobList = new List<Job>();
+	private Dictionary<string, JobType<Job>> jobTypes = new Dictionary<string, JobType<Job>> ();
+	private GameController controller;
+
+	public Jobmanager (GameController controller) {
+		this.controller = controller;
+
+		jobTypes.Add ("watering", new WateringJobType (controller, this));
+		jobTypes.Add ("delivery", new DeliveryJobType (controller, this));
+		jobTypes.Add ("cleaning", new CleaningJobType (controller, this));
+	}
+
+	public JobType<Job> getJobType(string typeName) {
+		return jobTypes [typeName];
+	}
 
 	// GetJobAt: integer -> Jobmanager
 	// Returns the job at the given position, starting at 0
-	public Job GetJobAt(int i)
-	{
+	public Job GetJobAt(int i) {
 		return this.jobList[i];
 	}
 
-	public void checkJobTimes() {
+	public void Update() {
 		List<Job> tmpJobList = new List<Job> (jobList);
 		foreach (Job job in tmpJobList) {
 			if (Time.realtimeSinceStartup >= (job.GetJobStartTime () + job.GetJobTime ())) {
-				GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(4);
+				controller.GetPlayer().GetComponent<AudioControl>().sfxplay(4);
 				RemoveJob (job);
-				GameController.instance.addRandomJob ();
-				GameController.instance.addRandomJob ();
+				addRandomJob ();
+				addRandomJob ();
 			}
 		}
+		if (GetAllJobs ().Count == 0 && Random.value > 0.995)
+			addRandomJob ();
 	}
 
 	// AddJob: Job -> void
 	// Adds the given job at the begin
 	public void AddJob(Job inputJob) {
 		jobList.Add(inputJob);
+		// TODO init job
 		GameUI.instance.UpdateJobListUI (new List<Job>(jobList));
 	}
 
@@ -46,9 +62,15 @@ public class Jobmanager
 	}
 
 	public void finishedJob(Job job) {
-		GameController.instance.AddScore (job.GetScoreValue());
-        GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(3);
-        RemoveJob (job);
-		GameController.instance.addRandomJob ();
+		controller.AddScore (job.GetScoreValue());
+		controller.GetPlayer().GetComponent<AudioControl>().sfxplay(3);
+		RemoveJob (job);
+		addRandomJob ();
+	}
+
+	public void addRandomJob() {
+		Job job = getJobType ("watering").CreateJob ();
+		if (job != null)
+			AddJob (job);
 	}
 }

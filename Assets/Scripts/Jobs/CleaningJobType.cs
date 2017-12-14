@@ -8,7 +8,7 @@ public class CleaningJobType : JobType<CleaningJob> {
 	}
 
 	override public CleaningJob CreateJob() {
-		List<GameObject> aDirtSpots = getAvailable (getGameObjects ("DirtSpawnpoints"));
+		List<GameObject> aDirtSpots = getAvailable (controller.GetJobObjects ("DirtSpawnpoints"));
 		if (aDirtSpots.Count == 0)
 			return null;
 

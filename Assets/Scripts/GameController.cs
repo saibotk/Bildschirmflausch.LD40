@@ -13,10 +13,6 @@ public class GameController : MonoBehaviour {
 
 	private Jobmanager jobmanager;
 
-	private List<string> jobTypes = new List<string>();
-
-	private Dictionary<string, List<GameObject>> jobObjects = new Dictionary<string, List<GameObject>>();
-
 	[SerializeField]
 	private GameObject gameObject;
 
@@ -50,28 +46,21 @@ public class GameController : MonoBehaviour {
 	// SINGLETON
 	public GameController() {
 		GameController.instance = this;
+		jobmanager = new Jobmanager (this);
 	}
 
 	// Use this for initialization
 	void Start () {
-		// JOB TYPES INIT
-		// TODO Change to ENUM
-		jobTypes.Add ("watering");
-		jobTypes.Add ("delivery");
-		jobTypes.Add ("cleaning");
-		// jobTypes.Add ("copying");
 		Time.timeScale = 1;
 		score = 0;
 
-		jobmanager = new Jobmanager ();
-
-		addRandomJob ();
+		jobmanager.addRandomJob ();
 	}
 		
 	// Update is called once per frame
 	void Update () {
 		if (gamestate == 0) {
-			jobmanager.checkJobTimes ();
+			jobmanager.Update ();
 			CheckCoffeeNPCs();
 
 			// TODO Convert too Hook
@@ -85,85 +74,10 @@ public class GameController : MonoBehaviour {
 				// TODO notification
 			}
 		}
-		if (jobmanager.GetAllJobs ().Count == 0 && Random.value > 0.995)
-			addRandomJob ();
-	}
-
-	public void AddJobObject(string name, GameObject go) {
-		if (jobObjects.ContainsKey (name)) {
-			jobObjects [name].Add (go);
-		} else {
-			List<GameObject> li = new List<GameObject> ();
-			li.Add (go);
-			jobObjects.Add(name, li);
-		}
 	}
 
 	public PlayerController GetPlayer() {
 		return player.GetComponent<PlayerController>();
-	}
-
-	public void addRandomJob() {
-		if (addRandomJob (jobTypes))
-	        player.GetComponent<AudioControl>().sfxplay(2);
-		if (jobmanager.GetAllJobs ().Count > 5) {
-			GameOver ();
-		}
-	}
-
-	private bool addRandomJob (List<string> rjobtypes) {
-		if (rjobtypes.Count == 0)
-			return false;
-		GameObject jobIndicator = this.indicator;
-		string jt = rjobtypes [Random.Range (0, Mathf.Min(1, jobTypes.Count))];
-		switch (jt) {
-			case "delivery":
-			List<GameObject> aNPCs = JobType<Job>.getAvailable (getQuestNPCs());
-			if(aNPCs.Count == 0 || floor == 0) {
-					List<string> leftJobTypes = new List<string> (rjobtypes);
-					leftJobTypes.Remove (jt);
-					addRandomJob(leftJobTypes);
-					return false;
-				} 
-
-				GameObject npc = aNPCs [Random.Range (0, aNPCs.Count)];
-				if (npc.GetComponent<NPC> ().GetFloor() <= floor) {
-					jobmanager.AddJob (new DeliveryJob (npc.GetComponent<NPC> (), letterSpawnpoint, letterPrefab, this.jobmanager, jobIndicator));
-				}
-				break;
-			case "watering":
-			List<GameObject> aPlants = JobType<Job>.getAvailable (new List<GameObject> (jobObjects["WateringPlants"]));	
-				if (jobObjects.ContainsKey("WateringPlants") && jobObjects["WateringPlants"].Count == 0 || aPlants.Count == 0) {
-					List<string> leftJobTypes = new List<string> (rjobtypes);
-					leftJobTypes.Remove (jt);
-					if (leftJobTypes.Count == 0) {
-						return false;
-					}
-					addRandomJob (leftJobTypes);
-					return false;
-				}
-				int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));
-				int count = (aPlants.Count >= 3) ? 3 : aPlants.Count;
-				List<GameObject> cAPlants = new List<GameObject> (aPlants);
-				jobmanager.AddJob (new WateringJob (cAPlants.ConvertAll<JobEntitiy> (x => x.GetComponent<JobEntitiy> ()).GetRange (index, count), this.jobmanager, jobIndicator));
-				break;
-			case "cleaning":
-			List<GameObject> aDirtSpots = JobType<Job>.getAvailable (new List<GameObject> (jobObjects["DirtSpawnpoints"]));
-				if (!jobObjects.ContainsKey("DirtSpawnpoints") && jobObjects["DirtSpawnpoints"].Count == 0 || aDirtSpots.Count == 0 || floor < 2) {
-					List<string> leftJobTypes = new List<string> (rjobtypes);
-					leftJobTypes.Remove (jt);
-					if (leftJobTypes.Count == 0) {
-						return false;
-					}
-					addRandomJob(leftJobTypes); 
-					return false;
-				}
-				int cindex = Random.Range (0, Mathf.Max (0, aDirtSpots.Count - 3));
-				int ccount = (aDirtSpots.Count >= 3) ? 3 : aDirtSpots.Count;
-				jobmanager.AddJob (new CleaningJob (aDirtSpots.GetRange (cindex, ccount), dirtPrefab, broomSpawn, broomPrefab, this.jobmanager, jobIndicator));
-				break;
-		}
-		return true;
 	}
 
 	private void GameOver() {
@@ -178,7 +92,7 @@ public class GameController : MonoBehaviour {
 	public void CheckCoffeeNPCs() {
 		int emptyCofeeCounter = 0;
         int almostemptyCofeeCounter = 0;
-		foreach (GameObject NPC in getCoffeeNPCs()) {
+		foreach (GameObject NPC in GetJobObjects ("CoffeeNPCs")) {
 			if (NPC.GetComponent<CoffeeNPC> ().GetCoffeeTimer () == 0) {
 				emptyCofeeCounter++;
 			}
@@ -202,19 +116,6 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	private List<GameObject> getCoffeeNPCs() {
-		if (jobObjects.ContainsKey ("CoffeeNPCs")) 
-			return jobObjects["CoffeeNPCs"];
-		return new List<GameObject> ();
-
-	}
-
-	private List<GameObject> getQuestNPCs() {
-		if (jobObjects.ContainsKey ("DeliveryNPCs")) 
-			return jobObjects["DeliveryNPCs"];
-		return new List<GameObject> ();
-	}
-
 	public void AddScore(int score)  {
 		this.score += score;
 		GameUI.instance.UpdateScore (this.score);
@@ -229,6 +130,10 @@ public class GameController : MonoBehaviour {
 		return floor;
 	}
 
+	public Jobmanager getJobManager() {
+		return jobmanager;
+	}
+
 	// Maybe make private
 	public GameObject GetGameObject() {
 		return gameObject;
@@ -237,5 +142,24 @@ public class GameController : MonoBehaviour {
 	/** Returns one of the direct children of the _Gamecontroller object by its name. */
 	public GameObject GetPrefab(string name) {
 		return gameObject.transform.Find (name).gameObject;
+	}
+
+	protected Dictionary<string, List<GameObject>> jobObjects = new Dictionary<string, List<GameObject>> ();
+
+	public void AddJobObject(string name, GameObject go) {
+		if (jobObjects.ContainsKey (name)) {
+			jobObjects [name].Add (go);
+		} else {
+			List<GameObject> li = new List<GameObject> ();
+			li.Add (go);
+			jobObjects.Add(name, li);
+		}
+	}
+
+	public List<GameObject> GetJobObjects(string name) {
+		if (jobObjects.ContainsKey (name))
+			return jobObjects [name];
+		else
+			return new List<GameObject> ();
 	}
 }

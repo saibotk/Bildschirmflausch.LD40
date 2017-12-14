@@ -8,7 +8,7 @@ public class WateringJobType : JobType<WateringJob> {
 	}
 
 	override public WateringJob CreateJob() {
-		List<GameObject> aPlants = getAvailable (getGameObjects ("WateringPlants"));
+		List<GameObject> aPlants = getAvailable (controller.GetJobObjects ("WateringPlants"));
 		if (aPlants.Count == 0)
 			return null;
 		int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));
