@@ -25,9 +25,19 @@ public class GameUI : MonoBehaviour {
 	private GameObject questQueueItemPrefab;
 	[SerializeField]
 	private GameObject LowCoffeeHint;
+	[SerializeField]
+	private GameObject pauseMenu;
 
 	public GameUI() {
 		GameUI.instance = this;
+	}
+
+	public void SetVolumeSliderVolume(float vol) {
+		GameController.instance.GetPlayer ().GetComponent<AudioControl> ().SetMasterVolume (vol);
+	}
+
+	public void LoadSceneByIndex(int index) {
+		UnityEngine.SceneManagement.SceneManager.LoadScene (index);
 	}
 
 	public void SetPocketImage(Sprite sp) {
@@ -58,8 +68,16 @@ public class GameUI : MonoBehaviour {
 		coffeePotFill.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
 	}
 
-	public void showGameOver() {
+	public void ShowGameOver() {
 		gameOverPanel.SetActive (true);
+	}
+
+	public void ShowPauseMenu() {
+		pauseMenu.SetActive (true);
+	}
+
+	public void ClosePauseMenu() {
+		pauseMenu.SetActive (false);
 	}
 
 	public void UpdateJobListUI(List<Job> jobList) {

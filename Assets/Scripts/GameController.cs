@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 
 	public static GameController instance;
 
+	// 0 = playing 1= gameover -1= paused
 	private int gamestate = 0;
 	private int score;
 	private int floor = 0;
@@ -72,13 +73,29 @@ public class GameController : MonoBehaviour {
 		return player.GetComponent<PlayerController>();
 	}
 
+	public void PauseGame() {
+		if (gamestate != -1) {
+			gamestate = -1;
+			Time.timeScale = 0;
+			GameUI.instance.ShowPauseMenu ();
+		}
+	}
+
+	public void UnPauseGame() {
+		if (gamestate != 0) {
+			gamestate = 0;
+			Time.timeScale = 1;
+			GameUI.instance.ClosePauseMenu ();
+		}
+	}
+
 	private void GameOver() {
 		if (gamestate != 1) {
 			gamestate = 1;
             player.GetComponent<AudioControl>().gameoverplay();
 		}
 		Time.timeScale = 0;
-		GameUI.instance.showGameOver ();
+		GameUI.instance.ShowGameOver ();
 	}
 
 	public void CheckCoffeeNPCs() {
@@ -114,12 +131,16 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("Score is: " + score);
 	}
 
-    public int getScore() {
+    public int GetScore() {
         return score;
     }
 
 	public int GetFloor() {
 		return floor;
+	}
+
+	public int GetState () {
+		return gamestate;
 	}
 
 	public Jobmanager GetJobManager() {

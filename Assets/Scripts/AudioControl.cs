@@ -4,6 +4,7 @@ using UnityEngine.Audio;
 
 public class AudioControl : MonoBehaviour
 {
+	public AudioMixer mixer;
     public AudioMixerSnapshot[] maintheme;
     public AudioMixerSnapshot lifttheme;
     public AudioMixerSnapshot end;
@@ -41,6 +42,11 @@ public class AudioControl : MonoBehaviour
             }    
         }
     }
+
+	public void SetMasterVolume(float nvol) {
+		mixer.SetFloat("masterVolume", Mathf.Clamp (nvol, -80f, 20f));
+	}
+
     private IEnumerator changebgm() {
         yield return new WaitForSeconds(2);
         lifttheme.TransitionTo(m_TransitionIn);
