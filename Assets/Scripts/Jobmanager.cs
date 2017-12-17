@@ -31,7 +31,7 @@ public class Jobmanager {
 		List<Job> tmpJobList = new List<Job> (jobList);
 		foreach (Job job in tmpJobList) {
 			if (Time.realtimeSinceStartup >= (job.GetJobStartTime () + job.GetJobTime ())) {
-				GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(4);
+				GameController.instance.GetPlayer().GetComponent<AudioControl>().SfxPlay(4);
 				RemoveJob (job);
 				maxJobs++;
 				if (Random.value < 0.5)
@@ -66,7 +66,7 @@ public class Jobmanager {
 
 	public void FinishedJob(Job job) {
 		GameController.instance.AddScore (job.GetScoreValue() * jobList.Count * jobList.Count);
-		GameController.instance.GetPlayer().GetComponent<AudioControl>().sfxplay(3);
+		GameController.instance.GetPlayer().GetComponent<AudioControl>().SfxPlay(3);
 		RemoveJob (job);
 		if (Random.value < 0.5)
 			addRandomJob ();

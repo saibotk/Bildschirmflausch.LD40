@@ -30,29 +30,27 @@ public class AudioControl : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Liftmusic") && endstate == false) {
             if(col.isTrigger)
-                StartCoroutine("changebgm");
+                StartCoroutine("ChangeBGM");
         }
     }
 
     void OnTriggerExit2D(Collider2D col) {
         if (col.CompareTag("Liftmusic") && endstate == false) {
             if (col.isTrigger) {
-                maintheme[floor].TransitionTo(m_TransitionOut);
-                StopCoroutine("changebgm");
+                ChangeToMain();
+                StopCoroutine("ChangeBGM");
             }    
         }
     }
 
-	public void SetMasterVolume(float nvol) {
-		mixer.SetFloat("masterVolume", Mathf.Clamp (nvol, -80f, 20f));
-	}
+    
 
-    private IEnumerator changebgm() {
+    private IEnumerator ChangeBGM() {
         yield return new WaitForSeconds(2);
-        lifttheme.TransitionTo(m_TransitionIn);
+        ChangeToLift();
     }
 
-    public void gameoverplay() {
+    public void GameOverPlay() {
         if (endstate == false) {
             end.TransitionTo(0f);
             gameovers.Play();
@@ -71,14 +69,33 @@ public class AudioControl : MonoBehaviour
        2 : Job getto
        3 : Job accomplished
        4 : Job failed */
-    public void sfxplay(int sound) {
+    public void SfxPlay(int sound) {
             soundeffects[sound].Play();
     }
 
-    public void sfxstop(int sound) {
+    public void SfxStop(int sound) {
             soundeffects[sound].Stop();
     }
-    public bool sfxplaying(int sound) {
+    public bool SfxPlaying(int sound) {
         return soundeffects[sound].isPlaying;
     }
+
+    public void ChangeToLift()
+    {
+        lifttheme.TransitionTo(m_TransitionIn);
+    }
+
+    public void ChangeToLift(float trans)
+    {
+        lifttheme.TransitionTo(trans);
+    }
+
+    public void ChangeToMain()
+    {
+        maintheme[floor].TransitionTo(m_TransitionOut);
+    }
+
+    public void SetMasterVolume(float nvol) {
+		mixer.SetFloat("masterVolume", Mathf.Clamp (nvol, -80f, 20f));
+	}
 }
