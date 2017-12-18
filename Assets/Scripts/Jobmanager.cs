@@ -113,4 +113,8 @@ public class Jobmanager {
 		}
 	}
 
+	public int GetMaxJobs () {
+		return this.maxJobs;
+	}
+
 }

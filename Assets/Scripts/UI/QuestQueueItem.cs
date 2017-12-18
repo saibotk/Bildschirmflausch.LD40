@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class QuestQueueItem : MonoBehaviour {
 	private Job job;
 
@@ -19,7 +20,6 @@ public class QuestQueueItem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 	}
 
 	void Update() {
@@ -49,8 +49,18 @@ public class QuestQueueItem : MonoBehaviour {
 
 	public void SetJob(Job j) {
 		this.job = j;
-		indicator.GetComponent<UnityEngine.UI.Image>().color = job.GetJobColor();
-		icon.GetComponent<UnityEngine.UI.Image> ().sprite = job.GetJobIcon ();
+		if (this.job != null) {
+			indicator.GetComponent<UnityEngine.UI.Image> ().color = job.GetJobColor ();
+			icon.GetComponent<UnityEngine.UI.Image> ().sprite = job.GetJobIcon ();
+			icon.GetComponent<UnityEngine.UI.Image> ().color = Color.white;
+			this.GetComponent<CanvasGroup> ().alpha = 1f;
+		} else {
+			indicator.GetComponent<UnityEngine.UI.Image> ().color = Color.grey;
+			icon.GetComponent<UnityEngine.UI.Image> ().sprite = null;
+			icon.GetComponent<UnityEngine.UI.Image> ().color = Color.clear;
+			timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (0, 0, 15, 15), new Vector2 (0.5f, 0.5f));
+			this.GetComponent<CanvasGroup> ().alpha = 0.5f;
+		}
 	}
 
 	public Job GetJob() {

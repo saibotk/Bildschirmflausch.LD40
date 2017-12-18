@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour {
 		score = 0;
 
 		jobmanager = new Jobmanager (indicator, letterPrefab, dirtPrefab, broomPrefab);
+		GameUI.instance.InitJobListUI ();
 		jobmanager.addRandomJob ();
 	}
 		

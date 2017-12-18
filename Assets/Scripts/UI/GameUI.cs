@@ -80,30 +80,36 @@ public class GameUI : MonoBehaviour {
 		pauseMenu.SetActive (false);
 	}
 
+	public void InitJobListUI() {
+		//Cleanup
+		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
+			DestroyImmediate (rt.gameObject);
+		}
+		//Init
+		for (int x=0;x<GameController.instance.GetJobManager().GetMaxJobs();x++) {
+			GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
+			go.transform.localPosition = new Vector3 (0, -x * ((RectTransform)questQueueItemPrefab.transform).rect.height);
+			go.GetComponent<QuestQueueItem> ().SetJob (null);
+		}
+	}
+
 	public void UpdateJobListUI(List<Job> jobList) {
 		int i = 0;
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
-			if (lrt.Count == 0 || lrt.Find (x => x.GetJob () != null && x.GetJob () == j) == null) {
-				GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
-				go.GetComponent<QuestQueueItem> ().SetJob (j);
-				go.transform.localPosition = new Vector3 (0, -i * ((RectTransform)questQueueItemPrefab.transform).rect.height);
+			if (lrt.Count != 0 || lrt.Find (x => x.GetJob () != null && x.GetJob () == j) == null) {
+				QuestQueueItem qqi = lrt.Find (x => x.GetJob () == null);
+				if(qqi != null) qqi.SetJob (j);
 			}
 			i++;
 		}
-
-
+			
 		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
 			if (jobList.Find (x => x == rt.GetJob ()) == null) {
-				DestroyImmediate (rt.gameObject);
+				rt.SetJob (null);
 			}
 		}
 			
-		int i2 = 0;
-		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
-			rt.gameObject.transform.localPosition = new Vector3 (0, -i2 * ((RectTransform)questQueueItemPrefab.transform).rect.height);
-			i2++;
-		}
 
 	}
 }
