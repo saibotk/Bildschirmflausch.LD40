@@ -93,7 +93,39 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: -22
   m_Sprite: {fileID: 21300000, guid: 9efa3810278e74b199c6cb2113d2b41f, type: 3}
+<<<<<<< Updated upstream
   m_Color: {r: 0.41429287, g: 0.5517697, b: 0.510335, a: 1}
+=======
+<<<<<<< Updated upstream
+  m_Color: {r: 0.3659858, g: 0.53578097, b: 0.04767418, a: 1}
+=======
+<<<<<<< Updated upstream
+  m_Color: {r: 0.24649704, g: 0.6835215, b: 0.06759429, a: 1}
+=======
+<<<<<<< Updated upstream
+  m_Color: {r: 0.08058524, g: 0.9556844, b: 0.4464094, a: 1}
+=======
+<<<<<<< Updated upstream
+  m_Color: {r: 0.33145386, g: 0.81289196, b: 0.6992502, a: 1}
+=======
+<<<<<<< Updated upstream
+  m_Color: {r: 0.05205369, g: 0.027077436, b: 0.7906343, a: 1}
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+  m_Color: {r: 0.83930457, g: 0.49655813, b: 0.38907546, a: 1}
+=======
+  m_Color: {r: 0.32483703, g: 0.027043462, b: 0.81737804, a: 1}
+>>>>>>> Stashed changes
+=======
+  m_Color: {r: 0.120761395, g: 0.29134804, b: 0.92750025, a: 1}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
