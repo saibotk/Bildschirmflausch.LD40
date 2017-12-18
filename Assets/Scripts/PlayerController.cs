@@ -49,6 +49,13 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void PlayerInteract() {
+		if (CrossPlatformInputManager.GetButtonDown ("Cancel")) {
+			if (GameController.instance.GetState () == -1) {
+				GameController.instance.UnPauseGame ();
+			} else {
+				GameController.instance.PauseGame ();
+			}
+		}
 		if (CrossPlatformInputManager.GetButtonDown("Use")) {
 			if (interactivesInRange.Count != 0) {
 				GameObject iaclose = null;

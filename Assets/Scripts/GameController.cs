@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 
 	public static GameController instance;
 
+	// 0 = playing 1= gameover -1= paused
 	private int gamestate = 0;
 	private int score;
 	private int floor = 0;
@@ -46,6 +47,7 @@ public class GameController : MonoBehaviour {
 		score = 0;
 
 		jobmanager = new Jobmanager (indicator, letterPrefab, dirtPrefab, broomPrefab);
+		GameUI.instance.InitJobListUI ();
 		jobmanager.addRandomJob ();
 	}
 		
@@ -72,13 +74,32 @@ public class GameController : MonoBehaviour {
 		return player.GetComponent<PlayerController>();
 	}
 
+	public void PauseGame() {
+		if (gamestate != -1) {
+			gamestate = -1;
+            player.GetComponent<AudioControl>().ChangeToLift(0f);
+            Time.timeScale = 0;
+			GameUI.instance.ShowPauseMenu ();
+		}
+	}
+
+	public void UnPauseGame() {
+		if (gamestate != 0) {
+			gamestate = 0;
+			Time.timeScale = 1;
+            player.GetComponent<AudioControl>().ChangeToMain();
+			GameUI.instance.ClosePauseMenu ();
+            
+		}
+	}
+
 	private void GameOver() {
 		if (gamestate != 1) {
 			gamestate = 1;
-            player.GetComponent<AudioControl>().gameoverplay();
+            player.GetComponent<AudioControl>().GameOverPlay();
 		}
 		Time.timeScale = 0;
-		GameUI.instance.showGameOver ();
+		GameUI.instance.ShowGameOver ();
 	}
 
 	public void CheckCoffeeNPCs() {
@@ -96,12 +117,12 @@ public class GameController : MonoBehaviour {
         
         if (emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) {
 			GameUI.instance.SetCoffeeWarningVisible (true);
-            if(player.GetComponent<AudioControl>().sfxplaying(1))
-                player.GetComponent<AudioControl>().sfxplay(1); 
+            if(player.GetComponent<AudioControl>().SfxPlaying(1))
+                player.GetComponent<AudioControl>().SfxPlay(1); 
         }
         else {
 			GameUI.instance.SetCoffeeWarningVisible (false);
-            player.GetComponent<AudioControl>().sfxstop(1);
+            player.GetComponent<AudioControl>().SfxStop(1);
         }
         if (emptyCofeeCounter >= 3) {
 		    GameOver ();
@@ -114,12 +135,16 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("Score is: " + score);
 	}
 
-    public int getScore() {
+    public int GetScore() {
         return score;
     }
 
 	public int GetFloor() {
 		return floor;
+	}
+
+	public int GetState () {
+		return gamestate;
 	}
 
 	public Jobmanager GetJobManager() {
