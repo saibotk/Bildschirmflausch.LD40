@@ -9,7 +9,7 @@ public class Jobmanager {
 	private List<Job> jobList = new List<Job>();
 	private List<JobFactory> jobFactorys = new List<JobFactory> ();
 	private Dictionary<ENTITYLISTNAMES, List<GameObject>> jobObjects = new Dictionary<ENTITYLISTNAMES, List<GameObject>> ();
-	private int maxJobs = 2;
+	private int maxJobs = 10;
 
 	public Jobmanager (GameObject indicator, GameObject letterprefab, GameObject dirt, GameObject broomprefab) {
 		jobFactorys.Add ((JobFactory) new WateringJobFactory (indicator));
@@ -116,5 +116,4 @@ public class Jobmanager {
 	public int GetMaxJobs () {
 		return this.maxJobs;
 	}
-
 }

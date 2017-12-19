@@ -109,7 +109,5 @@ public class GameUI : MonoBehaviour {
 				rt.SetJob (null);
 			}
 		}
-			
-
 	}
 }

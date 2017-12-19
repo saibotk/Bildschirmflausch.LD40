@@ -6,10 +6,10 @@ public abstract class Job
 	private string taskName = "Missing taskName";						// name of the task / headline
 	private string jobDescription = "Missing jobDescription";			// jobdescription
 	private float jobStartTime = 0;
-	private float jobTime = 0; 											// in seconds
+	protected float jobTime = 0; 											// in seconds
 	private int scoreValue = 0;
 	private Sprite jobIcon;
-	private Color jobColor;
+	protected Color jobColor;
 
 	public Job(string taskName, string jobDescription, float jobTime, int scoreValue, Sprite jobIcon)
 	{

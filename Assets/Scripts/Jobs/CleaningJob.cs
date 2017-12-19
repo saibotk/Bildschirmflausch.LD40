@@ -16,7 +16,7 @@ public class CleaningJob : Job {
 		this.dirtSpots = dirtSpots;
 		this.dirtSpotPrefab = dirtSpotPrefab;
 		this.indicatorPrefab = indicatorPrefab;
-		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = GetJobColor();
+		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = jobColor = Random.ColorHSV (70f/360f, 90f/360f, 0.5f, 0.8f, 0.1f, 0.5f);
 		this.broomSpawn = broomSpawn;
 		this.broomPrefab = broomPrefab;
 	}

@@ -48,7 +48,6 @@ public class GameController : MonoBehaviour {
 
 		jobmanager = new Jobmanager (indicator, letterPrefab, dirtPrefab, broomPrefab);
 		GameUI.instance.InitJobListUI ();
-		jobmanager.addRandomJob ();
 	}
 		
 	// Update is called once per frame

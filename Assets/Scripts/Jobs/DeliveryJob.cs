@@ -14,7 +14,7 @@ public class DeliveryJob : Job {
 												: base ("Delivery", "Deliver the item!", 30f, 30, Resources.Load<Sprite>("letter")) {
 		this.deliveryTarget = deliveryTarget;
 		this.indicatorPrefab = indicatorPrefab;
-		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = GetJobColor();
+		this.indicatorPrefab.GetComponent<SpriteRenderer>().color = jobColor = Random.ColorHSV (50f/360f, 60f/360f, 0.3f, 0.6f, 0.7f, 0.9f);
 		this.letter = new Letter(this);
 		this.interactableSpawnpoint = transform;
 		this.letterPrefab = prefab;
