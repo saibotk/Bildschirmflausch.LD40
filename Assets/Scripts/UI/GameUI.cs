@@ -20,6 +20,12 @@ public class GameUI : MonoBehaviour {
 	[SerializeField]
 	private GameObject gameOverPanel;
 	[SerializeField]
+	private GameObject gameOverPanelHeader;
+	[SerializeField]
+	private Sprite gameOverCoffeeSprite;
+	[SerializeField]
+	private Sprite gameOverJobSprite;
+	[SerializeField]
 	private GameObject questPanel;
 	[SerializeField]
 	private GameObject questQueueItemPrefab;
@@ -68,8 +74,17 @@ public class GameUI : MonoBehaviour {
 		coffeePotFill.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
 	}
 
-	public void ShowGameOver() {
+	public void ShowGameOver(int reason) {
 		gameOverPanel.SetActive (true);
+		switch (reason) {
+		case 0:
+			gameOverPanelHeader.GetComponent<UnityEngine.UI.Image> ().sprite = gameOverCoffeeSprite;
+			break;
+		case 1:
+			gameOverPanelHeader.GetComponent<UnityEngine.UI.Image> ().sprite = gameOverJobSprite;
+			break;
+		}
+
 	}
 
 	public void ShowPauseMenu() {
@@ -94,10 +109,17 @@ public class GameUI : MonoBehaviour {
 	}
 
 	public void UpdateJobListUI(List<Job> jobList) {
+		for (int x=questPanel.GetComponentsInChildren<QuestQueueItem> ().Length;x<GameController.instance.GetJobManager().GetMaxJobs();x++) {
+			GameObject go = Instantiate (questQueueItemPrefab, questPanel.transform);
+			go.transform.localPosition = new Vector3 (0, -x * ((RectTransform)questQueueItemPrefab.transform).rect.height);
+			go.GetComponent<QuestQueueItem> ().SetJob (null);
+			Debug.Log ("added new quest slot");
+		}
+
 		int i = 0;
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
-			if (lrt.Count != 0 || lrt.Find (x => x.GetJob () != null && x.GetJob () == j) == null) {
+			if (lrt.Count != 0 && lrt.Find (x => x.GetJob () != null && x.GetJob () == j) == null) {
 				QuestQueueItem qqi = lrt.Find (x => x.GetJob () == null);
 				if(qqi != null) qqi.SetJob (j);
 			}

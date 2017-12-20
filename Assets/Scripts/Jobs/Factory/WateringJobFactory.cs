@@ -12,7 +12,7 @@ public class WateringJobFactory : JobFactory {
 	public override bool CanCreateJob () {
 		List<GameObject> aPlants = Helper.GetAvailable (GameController.instance.GetJobManager().GetJobObjects (Jobmanager.ENTITYLISTNAMES.WATERINGPLANTS));
 		if (aPlants.Count == 0) {
-			Debug.Log ("Not enough plants; " + GameController.instance.GetJobManager().GetJobObjects (Jobmanager.ENTITYLISTNAMES.WATERINGPLANTS).Count + " available");
+			Debug.Log ("Not enough plants; ");
 			return false;
 		} 
 		return true;
@@ -21,7 +21,7 @@ public class WateringJobFactory : JobFactory {
 	override public Job CreateJob() {
 		List<GameObject> aPlants = Helper.GetAvailable (GameController.instance.GetJobManager().GetJobObjects (Jobmanager.ENTITYLISTNAMES.WATERINGPLANTS));
 		if (aPlants.Count == 0) {
-			Debug.Log ("Not enough plants; " + GameController.instance.GetJobManager().GetJobObjects (Jobmanager.ENTITYLISTNAMES.WATERINGPLANTS).Count + " available");
+			Debug.Log ("Not enough plants; ");
 			return null;
 		}
 		int index = Random.Range (0, Mathf.Max (0, aPlants.Count - 3));

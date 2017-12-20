@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour {
 
 	// 0 = playing 1= gameover -1= paused
 	private int gamestate = 0;
+	// 0 = coffee, 1 = jobs
+	private int gameoverreason = 0;
+
 	private int score;
 	private int floor = 0;
 
@@ -98,7 +101,7 @@ public class GameController : MonoBehaviour {
             player.GetComponent<AudioControl>().GameOverPlay();
 		}
 		Time.timeScale = 0;
-		GameUI.instance.ShowGameOver ();
+		GameUI.instance.ShowGameOver (this.gameoverreason);
 	}
 
 	public void CheckCoffeeNPCs() {

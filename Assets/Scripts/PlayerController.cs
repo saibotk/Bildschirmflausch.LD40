@@ -59,12 +59,14 @@ public class PlayerController : MonoBehaviour {
 		if (CrossPlatformInputManager.GetButtonDown("Use")) {
 			if (interactivesInRange.Count != 0) {
 				GameObject iaclose = null;
+				interactivesInRange = interactivesInRange.FindAll (x => (x.GetComponent(typeof(IInteractable)) as IInteractable).CanInteract(this.gameObject));
 				foreach (GameObject ia in interactivesInRange) {
 					if (iaclose == null || Vector2.Distance (gameObject.transform.position, ia.transform.position) < Vector2.Distance (gameObject.transform.position, iaclose.transform.position))
 						iaclose = ia;
 				}
-				(iaclose.GetComponentInChildren (typeof(IInteractable)) as IInteractable).Interact (gameObject);
-
+				if (iaclose != null) {
+					(iaclose.GetComponentInChildren (typeof(IInteractable)) as IInteractable).Interact (gameObject);
+				}
 				SetPlayerCoffeeTextures();
 			}
 		}
