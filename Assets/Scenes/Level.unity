@@ -643,8 +643,8 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.569}
+  m_Material: {fileID: 2100000, guid: 603228670876d8f438e0ff2bf1a2093e, type: 3}
+  m_Color: {r: 0.3019608, g: 0.2509804, b: 0.15686275, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6666,6 +6666,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
+        type: 2}
+      propertyPath: lift
+      value: 
+      objectReference: {fileID: 1919195211}
     - target: {fileID: 114782357041478034, guid: 249c8b19f43afaa448bbb36d580a6bfa,
         type: 2}
       propertyPath: gameovers
@@ -6701,11 +6706,6 @@ Prefab:
       propertyPath: _GameControler
       value: 
       objectReference: {fileID: 910710426}
-    - target: {fileID: 114735199517630382, guid: 249c8b19f43afaa448bbb36d580a6bfa,
-        type: 2}
-      propertyPath: lift
-      value: 
-      objectReference: {fileID: 1919195211}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249c8b19f43afaa448bbb36d580a6bfa, type: 2}
   m_IsPrefabParent: 0
@@ -7575,8 +7575,8 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.569}
+  m_Material: {fileID: 2100000, guid: 3d9bc936d777a4377b12fedf9de8d958, type: 3}
+  m_Color: {r: 0.3019608, g: 0.2509804, b: 0.15686275, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7908,7 +7908,7 @@ MonoBehaviour:
   questQueueItemPrefab: {fileID: 1432181745138212, guid: c7262c7a7646aac44a0cded1345879fa,
     type: 2}
   LowCoffeeHint: {fileID: 1462502323}
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 412870700}
 --- !u!1 &905276027
 GameObject:
   m_ObjectHideFlags: 0
@@ -10011,7 +10011,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.5999756, y: -45.699997}
+  m_AnchoredPosition: {x: -2.5999756, y: -45.69995}
   m_SizeDelta: {x: 176.1, y: 365.91}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1139074069

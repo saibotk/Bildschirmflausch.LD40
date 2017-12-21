@@ -116,6 +116,21 @@ public class GameUI : MonoBehaviour {
 			Debug.Log ("added new quest slot");
 		}
 
+		List<QuestQueueItem> emptyqqi = new List<QuestQueueItem>();
+		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
+			if (jobList.Find (x => x == rt.GetJob ()) == null) {
+				rt.SetJob (null);
+			}
+			if (rt.GetJob() == null) {
+				emptyqqi.Add(rt);
+			}
+			if (emptyqqi.Count != 0 && rt.GetJob () != null) {
+				emptyqqi[0].SetJob(rt.GetJob ());
+				rt.SetJob (null);
+				emptyqqi.RemoveAt(0);
+			}
+		}
+
 		int i = 0;
 		foreach (Job j in jobList) {
 			List<QuestQueueItem> lrt = new List<QuestQueueItem> (questPanel.GetComponentsInChildren<QuestQueueItem> ());
@@ -125,11 +140,6 @@ public class GameUI : MonoBehaviour {
 			}
 			i++;
 		}
-			
-		foreach (QuestQueueItem rt in questPanel.GetComponentsInChildren<QuestQueueItem>()) {
-			if (jobList.Find (x => x == rt.GetJob ()) == null) {
-				rt.SetJob (null);
-			}
-		}
+
 	}
 }
