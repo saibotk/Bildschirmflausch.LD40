@@ -36,10 +36,10 @@ public class CopyJob : Job {
 		this.target.SetJob(this);
 		this.target.SetInteract (
 			delegate (GameObject player) {
-				if(player.GetComponent<PlayerController>().GetInventory().leftHand != null) {
-					if ( player.GetComponent<PlayerController>().GetInventory().leftHand is Letter ) {
-						if (((Letter) player.GetComponent<PlayerController>().GetInventory().leftHand).job == this) {
-							player.GetComponent<PlayerController>().GetInventory().leftHand = null;
+				if(player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand") != null) {
+					if ( player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand") is Letter ) {
+						if (((Letter) player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand")).job == this) {
+							player.GetComponent<PlayerController>().GetInventory().RemoveItemInSlot("leftHand");
 							this.finishJob();
 						}
 					}

@@ -27,7 +27,9 @@ public class DeliveryJob : Job {
 		this.letterGO.GetComponent<JobEntity>().SetJob(this);
 		this.letterGO.GetComponent<JobEntity>().SetInteract(
 			delegate (GameObject player) {
-				bool added = player.GetComponent<PlayerController>().GetInventory().AddItem(this.letter);
+				LetterBundle lb = new LetterBundle();
+				lb.Add(this.letter);
+				bool added = player.GetComponent<PlayerController>().GetInventory().AddItem(lb);
 				if (added) {
 					GameObject.Destroy(this.letterGO);
 				}
@@ -41,12 +43,12 @@ public class DeliveryJob : Job {
 		this.deliveryTarget.SetJob(this);
 		this.deliveryTarget.SetInteract (
 			delegate (GameObject player) {
-				if(player.GetComponent<PlayerController>().GetInventory().leftHand != null) {
-					if ( player.GetComponent<PlayerController>().GetInventory().leftHand is LetterBundle ) {
-						if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().leftHand).Contains(this.letter)) {
-							((LetterBundle) player.GetComponent<PlayerController>().GetInventory().leftHand).Remove(this.letter);
-							if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().leftHand).letters.Count == 0)
-								player.GetComponent<PlayerController>().GetInventory().leftHand = null;
+				if(player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand") != null) {
+					if ( player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand") is LetterBundle ) {
+						if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand")).Contains(this.letter)) {
+							((LetterBundle) player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand")).Remove(this.letter);
+							if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand")).letters.Count == 0)
+								player.GetComponent<PlayerController>().GetInventory().RemoveItemInSlot("leftHand");
 							this.finishJob();
 						}
 					}

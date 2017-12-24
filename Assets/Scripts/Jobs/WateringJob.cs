@@ -21,8 +21,8 @@ public class WateringJob : Job {
 			target.SetIndicator(indicator);
 			target.SetInteract (
 				delegate (GameObject player) {
-					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
-						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is WateringCan) {
+					if (player.GetComponent<PlayerController> ().GetInventory ().GetItem("leftHand") != null) {
+						if (player.GetComponent<PlayerController> ().GetInventory ().GetItem("leftHand") is WateringCan) {
 							cleanupPlant(target);
 							targets.Remove(target);
 							if(this.targets.Count == 0)

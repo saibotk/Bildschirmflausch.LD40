@@ -32,8 +32,8 @@ public class CleaningJob : Job {
 			dirtGo.GetComponent<JobEntity> ().SetIndicator (GameObject.Instantiate(indicatorPrefab, dirtGo.transform));
 			dirtGo.GetComponent<JobEntity> ().SetInteract (
 				delegate(GameObject player) {
-					if (player.GetComponent<PlayerController> ().GetInventory ().leftHand != null) {
-						if (player.GetComponent<PlayerController> ().GetInventory ().leftHand is Broom) {
+					if (player.GetComponent<PlayerController> ().GetInventory ().GetItem("leftHand") != null) {
+						if (player.GetComponent<PlayerController> ().GetInventory ().GetItem("leftHand") is Broom) {
 							this.dirtSpotsGO.Remove (dirtGo);
 							if (this.dirtSpotsGO.Count == 0) {
 								this.FinishJob ();
