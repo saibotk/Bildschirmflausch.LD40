@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	private int gameoverreason = 0;
 
 	private int score;
-	private int floor = 0;
+	private int floor = 3;
 
 	private Jobmanager jobmanager;
 

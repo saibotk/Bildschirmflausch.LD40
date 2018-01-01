@@ -9,7 +9,7 @@ public class WateringJob : Job {
 	public WateringJob(List<JobEntity> targets, GameObject indicatorPrefab) : base ("Watering the plants", "Water em all!", 20f, 25, Resources.Load<Sprite>("wateringCan")) {
 		this.targets = targets;
 		this.indicatorPrefab = indicatorPrefab;
-		this.indicatorPrefab.GetComponent<SpriteRenderer> ().color = jobColor; // = Random.ColorHSV (110f/360f, 130f/360f, 0.2f, 0.8f, 0.3f, 1.0f);
+		this.indicatorPrefab.GetComponent<SpriteRenderer> ().color = jobColor = Random.ColorHSV (110f/360f, 130f/360f, 0.2f, 0.8f, 0.3f, 1.0f);
 	}
 
 	override public void init() {

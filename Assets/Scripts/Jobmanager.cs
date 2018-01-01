@@ -17,6 +17,11 @@ public class Jobmanager {
 		jobFactorys.Add ((JobFactory) new CleaningJobFactory (dirt, broomprefab, indicator));
 	}
 
+	/// <summary>
+	/// Gets the job factory.
+	/// </summary>
+	/// <returns>The job factory.</returns>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public T getJobFactory<T>() where T : JobFactory {
 		return (T) jobFactorys.Find (x => x.GetType() is T);
 	}
@@ -64,6 +69,10 @@ public class Jobmanager {
 		return jobList;
 	}
 
+	/// <summary>
+	/// Finisheds the job.
+	/// </summary>
+	/// <param name="job">Job.</param>
 	public void FinishedJob(Job job) {
 		GameController.instance.AddScore (job.GetScoreValue() * jobList.Count * jobList.Count);
 		GameController.instance.GetPlayer().GetComponent<AudioControl>().SfxPlay(3);
@@ -72,6 +81,9 @@ public class Jobmanager {
 			addRandomJob ();
 	}
 
+	/// <summary>
+	/// Adds the random job.
+	/// </summary>
 	public void addRandomJob() {
 		Job job = jobFactorys[GetRandomJobType()].CreateJob ();
 		Debug.Log ("Called addRandomJob");
@@ -83,6 +95,10 @@ public class Jobmanager {
 		}
 	}
 
+	/// <summary>
+	/// Gets the random type of the job.
+	/// </summary>
+	/// <returns>The random job type.</returns>
 	private int GetRandomJobType() {
 		float random = Random.value;
 		// TODO weight this with the amount of job currently active
@@ -94,6 +110,11 @@ public class Jobmanager {
 		return 0;
 	}
 
+	/// <summary>
+	/// Adds the job object.
+	/// </summary>
+	/// <param name="name">Name.</param>
+	/// <param name="go">GameObject.</param>
 	public void AddJobObject(ENTITYLISTNAMES name, GameObject go) {
 		if (jobObjects.ContainsKey (name)) {
 			jobObjects [name].Add (go);
@@ -104,6 +125,11 @@ public class Jobmanager {
 		}
 	}
 
+	/// <summary>
+	/// Gets the job objects.
+	/// </summary>
+	/// <returns>The job objects.</returns>
+	/// <param name="name">List name.</param>
 	public List<GameObject> GetJobObjects(ENTITYLISTNAMES name) {
 		if (jobObjects.ContainsKey (name)) {
 			return jobObjects [name];
@@ -113,6 +139,10 @@ public class Jobmanager {
 		}
 	}
 
+	/// <summary>
+	/// Gets the max jobs.
+	/// </summary>
+	/// <returns>The max jobs.</returns>
 	public int GetMaxJobs () {
 		return this.maxJobs;
 	}

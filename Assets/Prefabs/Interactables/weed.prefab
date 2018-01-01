@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4391211972293300}
   - component: {fileID: 212256328103521570}
   - component: {fileID: 61381523051708482}
-  - component: {fileID: 114775383517496264}
+  - component: {fileID: 114666734287398762}
   m_Layer: 0
   m_Name: weed
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114775383517496264
+--- !u!114 &114666734287398762
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,11 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1800210931305510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f14f8cd50e21a1428ce8a20a07300e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6df180800f0c6ba4f82c15873852c0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: 3
-  jobEntityListName: WateringPlants
+  floor: 0
+  jobEntityListName: 1
 --- !u!212 &212256328103521570
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -2,111 +2,160 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory {
-	protected Dictionary<string, Item> slots = new Dictionary<string, Item> ();
-	public CoffeePot coffeePot = null;
+/// <summary>
+/// General Inventory class.
+/// </summary>
+public abstract class Inventory : Item {
 
-	public Inventory() {
-		slots.Add ("leftHand", null);
-		slots.Add ("pocket", null);
+	/// <summary>
+	/// The slots which are dynamic, so that an added item is not determined to keep its position.
+	/// </summary>
+	protected Dictionary<string, Item> slots;
+
+	protected bool isInfinite = true;
+
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Inventory"/> class.
+	/// </summary>
+	/// <param name="name">Name.</param>
+	/// <param name="icon">Icon.</param>
+	public Inventory(string name, Sprite icon) : base(name, icon, false, false) {
+		this.slots = new Dictionary<string, Item> ();
 	}
 
-	public Item GetItem(string slot) {
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Inventory"/> class.
+	/// </summary>
+	/// <param name="name">Name.</param>
+	/// <param name="icon">Icon.</param>
+	/// <param name="infinite">If set to <c>true</c> infinite.</param>
+	public Inventory(string name, Sprite icon, bool infinite) : base(name, icon, false, false) {
+		this.isInfinite = infinite;
+		this.slots = new Dictionary<string, Item> ();
+	}
+		
+	/// <summary>
+	/// Gets the size of the inventory.
+	/// </summary>
+	/// <returns>The size.</returns>
+	public int GetSize() {
+		return slots.Count;
+	}
+
+	/// <summary>
+	/// Gets the first occurance of a specific item instance in the inventory.
+	/// </summary>
+	/// <returns>The item.</returns>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
+	public T GetItem<T>() where T : Item {
+		if (slots.Values.Count != 0) {
+			Item i = (new List<Item> (slots.Values)).Find (x => x != null && x.GetType () == typeof(T));
+			return (T)i;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Adds the item.
+	/// </summary>
+	/// <returns><c>true</c>, if item was added, <c>false</c> otherwise.</returns>
+	/// <param name="item">Item.</param>
+	public virtual bool AddItem(Item item) {
+		if (item == null || slots.Count == 0) {
+			if (this.isInfinite) {
+				slots.Add (item.GetHashCode ().ToString (), item);
+				return true;
+			} else {
+				return false;
+			}
+		}
+		List<Item> li = new List<Item> (slots.Values);
+		if (li.Find (x => x != null && x.Equals (item)) != null)
+			return false;
+
+		if (this.isInfinite && !slots.ContainsKey(item.GetHashCode().ToString())) {
+			slots.Add (item.GetHashCode ().ToString (), item);
+			return true;
+		} else {
+			Item tmpreplace = null;
+			bool replaced = false;
+			List<string> tmplist = new List<string> (slots.Keys);
+			foreach (string k in tmplist) {
+				if (slots[k] != null && slots [k].isDroppable == false)
+					continue;
+				if (tmpreplace != null && tmpreplace != slots [k]) {
+					Item tmp2 = slots [k];
+					slots [k] = tmpreplace;
+					tmpreplace = tmp2;
+				}
+				if (!replaced) {
+					tmpreplace = slots [k];
+					slots [k] = item;
+					replaced = true;
+				}
+			}
+			return replaced;
+		}
+	}
+
+	/// <summary>
+	/// Removes the item in the slot with the given name.
+	/// </summary>
+	/// <param name="sn">Slot key.</param>
+	public virtual void RemoveItemInSlot(string sn) {
+		if (slots.ContainsKey (sn)) {
+			slots [sn] = null;
+		}
+		OrganizeInventory ();
+	}
+
+	/// <summary>
+	/// Removes the item.
+	/// </summary>
+	/// <param name="item">Item.</param>
+	public virtual void RemoveItem(Item item) {
+		List<string> tmp = new List<string> (slots.Keys);
+		foreach (string k in tmp) {
+			if (slots [k] != null && slots [k].Equals (item)) {
+				if (this.isInfinite) {
+					slots.Remove (k);
+				} else {
+					slots [k] = null;
+				}
+			}
+		}
+
+		OrganizeInventory ();
+	}
+
+	/// <summary>
+	/// Gets an item from a specific slot.
+	/// </summary>
+	/// <returns>The item.</returns>
+	/// <param name="slot">Slot name.</param>
+	public virtual Item GetItem(string slot) {
 		if (!slots.ContainsKey (slot))
 			return null;
 		return slots [slot];
 	}
 
-	public bool AddItem(Item item) {
-		if (item == null || slots.Count == 0)
-			return false;
-		List<Item> li = new List<Item> (slots.Values);
-		if (li.Find (x => x != null && x.IsEqual (item)) != null)
+	/// <summary>
+	/// Determines whether an item is in the inventory.
+	/// </summary>
+	/// <returns><c>true</c> if the item is in this inventory the method returns <c>true</c> otherwise, <c>false</c>.</returns>
+	/// <param name="i">The item.</param>
+	public virtual bool IsInInventory(Item i) {
+		if (i == null || slots.Count == 0)
 			return false;
 
-		Item tmpreplace = null;
-		bool replaced = false;
-		List<string> tmplist = new List<string> (slots.Keys);
-		foreach (string k in tmplist) {
-			if (tmpreplace != null && tmpreplace != slots [k]) {
-				Item tmp2 = slots [k];
-				slots [k] = tmpreplace;
-				tmpreplace = tmp2;
-			}
-			if (!replaced) {
-				tmpreplace = slots [k];
-				slots [k] = item;
-				replaced = true;
-			}
-		}
-		UpdateGUI ();
-		return true;
-		// TODO UGLY CODE!!!!
-		// And it got worse
-//		if (item is Letter) {
-//			if (leftHand is LetterBundle) {
-//				((LetterBundle)leftHand).Add ((Letter) item);
-//				UpdateGUI ();
-//				return true;
-//			} else if (pocket is LetterBundle) {
-//				((LetterBundle)pocket).Add ((Letter) item);
-//				UpdateGUI ();
-//				return true;
-//			} else {
-//				if (leftHand == null) {
-//					LetterBundle lb = new LetterBundle ();
-//					lb.Add ((Letter)item);
-//					this.leftHand = lb;
-//					UpdateGUI ();
-//					return true;
-//				}
-//
-//				//if (pocket == null)
-//				{
-//					pocket = leftHand;
-//					LetterBundle lb = new LetterBundle ();
-//					lb.Add ((Letter)item);
-//					leftHand = lb;
-//					UpdateGUI ();
-//					return true;
-//				}
-//
-//				//return false;
-//			}
-//		} else {
-//			// !!! NO UNIQUE ITEMS POSSIBLE -> JUST FOR WATERING CAN N STUFF
-//			if (leftHand != null && leftHand.GetType() == item.GetType() || pocket != null && pocket.GetType() == item.GetType())
-//				return false;
-//			// Place in left hand
-//			if (leftHand == null) {
-//				this.leftHand = item;
-//				UpdateGUI ();
-//				return true;
-//			}
-//
-//			// Place in pocket
-//			if (pocket == null) {
-//				pocket = leftHand;
-//				leftHand = item;
-//				UpdateGUI ();
-//				return true;
-//			}
-//				
-//			if ((pocket is WateringCan && item is Broom) || (pocket is Broom && item is WateringCan)) {
-//				pocket = leftHand;
-//				leftHand = item;
-//				UpdateGUI ();
-//				return true;
-//			}
-//			if ((leftHand is WateringCan && item is Broom) || (leftHand is Broom && item is WateringCan)) {
-//				leftHand = item;
-//				UpdateGUI ();
-//				return true;
-//			}
-//		}
-//		return false;
+		List<Item> li = new List<Item> (slots.Values);
+		return li.Contains (i);
 	}
 
+	/// <summary>
+	/// Organizes the inventory.
+	/// </summary>
 	private void OrganizeInventory() {
 		List<string> tmplist = new List<string> (slots.Keys);
 		List<string> emptyslots = new List<string> ();
@@ -121,63 +170,6 @@ public class Inventory {
 			}
 		}
 	}
-
-	public void RemoveItemInSlot(string sn) {
-		slots [sn] = null;
-		OrganizeInventory ();
-		UpdateGUI ();
-	}
-
-	public void RemoveItem(Item item) {
-//		if (leftHand != null && (leftHand is LetterBundle) && (item is Letter)) {
-//			((LetterBundle)leftHand).Remove ((Letter)item);
-//			if (((LetterBundle) leftHand).letters.Count == 0)
-//				leftHand = null;
-//		}
-//		if (pocket != null && (pocket is LetterBundle) && (item is Letter)) {
-//			((LetterBundle) pocket).Remove ((Letter)item);
-//			if (((LetterBundle) pocket).letters.Count == 0)
-//				pocket = null;
-//		}
-//		if (leftHand != null && leftHand.Equals (item)) {
-//			leftHand = null;
-//		}
-//		if (pocket != null && pocket.Equals (item)) {
-//			pocket = null;
-//		}
-
-		foreach (string k in slots.Keys) {
-			if (slots [k].IsEqual (item))
-				slots [k] = null;
-		}
-
-		OrganizeInventory ();
-		UpdateGUI ();
-	}
-
-	public bool IsInInventory(Item i) {
-		if (i == null || slots.Count == 0)
-			return false;
-		
-		List<Item> li = new List<Item> (slots.Values);
-		return li.Contains (i);
-	}
-
-	public void Drop(Item i) {
-		if (i == null || slots.Count == 0)
-			return;
-	}
-
-	private void UpdateGUI() {
-		GameUI.instance.SetLeftHandImage (((slots["leftHand"] == null) ? null : slots["leftHand"].icon));
-		GameUI.instance.SetPocketImage (((slots["pocket"] == null) ? null : slots["pocket"].icon));
-		//gui.SetRightHandImage ();
-	}
-
-	public void Swap() {
-		Item tmp = this.slots["leftHand"];
-		this.slots["leftHand"] = this.slots["pocket"];
-		this.slots["pocket"] = tmp;
-		UpdateGUI ();
-	}
 }
+
+

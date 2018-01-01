@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private GameObject lift;
 	private int movementState; // -1 = left, 0 = idle, 1 = right
-	private Inventory inv;
+	private PlayerInventory inv;
 	private List<GameObject> interactivesInRange = new List<GameObject>();
 	private Animator animator;
 	private LiftController liftController;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		movementState =  0;
-		inv = new Inventory ();
+		inv = new PlayerInventory ();
 		inv.coffeePot = new CoffeePot (6);
 
 		animator = GetComponentInChildren<Animator>();
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
 		PlayerInteract ();
 	}
 
-	public Inventory GetInventory() {
+	public PlayerInventory GetInventory() {
 		return inv;
 	}
 

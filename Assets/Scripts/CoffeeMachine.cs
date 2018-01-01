@@ -40,7 +40,7 @@ public class CoffeeMachine : MonoBehaviour, IInteractable {
 
 	// Define what to do when a player interacts with the coffeemachine
 	public void Interact( GameObject player ) {
-		Inventory inv = player.GetComponent<PlayerController> ().GetInventory ();
+		PlayerInventory inv = player.GetComponent<PlayerController> ().GetInventory ();
 		if (inv.coffeePot != null && cpot == null) {
 			cpot = inv.coffeePot;
 			inv.coffeePot = null;

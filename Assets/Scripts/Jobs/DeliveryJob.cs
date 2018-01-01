@@ -27,9 +27,15 @@ public class DeliveryJob : Job {
 		this.letterGO.GetComponent<JobEntity>().SetJob(this);
 		this.letterGO.GetComponent<JobEntity>().SetInteract(
 			delegate (GameObject player) {
-				LetterBundle lb = new LetterBundle();
-				lb.Add(this.letter);
-				bool added = player.GetComponent<PlayerController>().GetInventory().AddItem(lb);
+				LetterBundle lb = player.GetComponent<PlayerController>().GetInventory().GetItem<LetterBundle>();
+				bool added = false;
+				if(lb == null) {
+					lb = new LetterBundle();
+					lb.AddItem(this.letter);
+					added = player.GetComponent<PlayerController>().GetInventory().AddItem(lb);
+				} else {
+					added = lb.AddItem(this.letter);
+				}
 				if (added) {
 					GameObject.Destroy(this.letterGO);
 				}
@@ -43,12 +49,14 @@ public class DeliveryJob : Job {
 		this.deliveryTarget.SetJob(this);
 		this.deliveryTarget.SetInteract (
 			delegate (GameObject player) {
-				if(player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand") != null) {
-					if ( player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand") is LetterBundle ) {
-						if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand")).Contains(this.letter)) {
-							((LetterBundle) player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand")).Remove(this.letter);
-							if (((LetterBundle) player.GetComponent<PlayerController>().GetInventory().GetItem("leftHand")).letters.Count == 0)
-								player.GetComponent<PlayerController>().GetInventory().RemoveItemInSlot("leftHand");
+				Inventory inv = player.GetComponent<PlayerController>().GetInventory();
+				if(inv.GetItem("leftHand") != null) {
+					if ( inv.GetItem("leftHand").GetType() == typeof(LetterBundle) ) {
+						LetterBundle lb = (LetterBundle) inv.GetItem("leftHand");
+						if (lb.IsInInventory(this.letter)) {
+							lb.RemoveItem(this.letter);
+							if (lb.GetSize() == 0)
+								inv.RemoveItemInSlot("leftHand");
 							this.finishJob();
 						}
 					}
@@ -62,7 +70,15 @@ public class DeliveryJob : Job {
 	}
 
 	override public void cleanup() {
-		GameController.instance.GetPlayer().GetInventory().RemoveItem(this.letter);
+		Inventory inv = GameController.instance.GetPlayer ().GetInventory ();
+		LetterBundle lb = inv.GetItem<LetterBundle> ();
+		if (lb != null) {
+			if (lb.GetSize () > 0) {
+				lb.RemoveItem (this.letter);
+			} else {
+				inv.RemoveItem (lb);
+			}
+		}
 		this.deliveryTarget.SetInteract (null);
 		this.deliveryTarget.SetJob (null);
 		this.deliveryTarget.SetAvailable (true);
