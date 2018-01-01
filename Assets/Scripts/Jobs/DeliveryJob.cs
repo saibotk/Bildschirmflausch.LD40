@@ -73,7 +73,7 @@ public class DeliveryJob : Job {
 		Inventory inv = GameController.instance.GetPlayer ().GetInventory ();
 		LetterBundle lb = inv.GetItem<LetterBundle> ();
 		if (lb != null) {
-			if (lb.GetSize () > 0) {
+			if (lb.GetSize () > 1) {
 				lb.RemoveItem (this.letter);
 			} else {
 				inv.RemoveItem (lb);
