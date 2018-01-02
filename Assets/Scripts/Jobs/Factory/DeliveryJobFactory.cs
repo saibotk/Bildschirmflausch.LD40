@@ -6,7 +6,7 @@ public class DeliveryJobFactory : JobFactory {
 	private GameObject letter;
 	private GameObject indicator;
 
-	public DeliveryJobFactory (GameObject letter, GameObject indicator) : base (FACTORYNAMES.DELIVERY) {
+	public DeliveryJobFactory (GameObject letter, GameObject indicator, float probability) : base (FACTORYNAMES.DELIVERY, probability) {
 		this.letter = letter;
 		this.indicator = indicator;
 	}

@@ -19,28 +19,28 @@ public class NPCWalkingAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		changeState ();
+		ChangeState ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (state == 0) {
 			if (idleTime <= 0) {
-				changeState ();
+				ChangeState ();
 			} else {
 				idleTime -= Time.deltaTime;
 			}
 		} else {
 			if (gameObject.transform.position.x < leftBoundary) {
 				state = 1;
-				updateSprite ();
+				UpdateSprite ();
 			}
 			if  ( gameObject.transform.position.x > rightBoundary) {
 				state = -1;
-				updateSprite ();
+				UpdateSprite ();
 			}
 			if (walkingDistance <= 0) {
-				changeState();
+				ChangeState();
 			} else {
 				transform.Translate ((state * speed * Time.deltaTime) / 100, 0, 0);
 				walkingDistance -= (speed * Time.deltaTime) / 100;
@@ -49,20 +49,20 @@ public class NPCWalkingAI : MonoBehaviour {
 	}
 
 	// change state between walking and standing
-	private void changeState() {
+	private void ChangeState() {
 		state = Random.Range (-1, 2);
 		if (state == 0 && !canIdle)
 			state = Random.Range (0, 1) * 2 - 1;
 		if (state == 0) {
 			idleTime = (float) Random.Range (5, 10);
-			updateSprite ();
+			UpdateSprite ();
 		} else {
 			walkingDistance = (float) Random.Range (1, 3);
-			updateSprite ();
+			UpdateSprite ();
 		}
 	}
 
-	private void updateSprite() {
+	private void UpdateSprite() {
 		if (state == 0) {
 			NPCTexture.GetComponent<Animator> ().SetBool ("walking", false);
 		} else {

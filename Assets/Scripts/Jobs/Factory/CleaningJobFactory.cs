@@ -7,7 +7,7 @@ public class CleaningJobFactory : JobFactory {
 	private GameObject broom;
 	private GameObject indicator;
 
-	public CleaningJobFactory (GameObject dirt, GameObject broom, GameObject indicator) : base (FACTORYNAMES.CLEANING) {
+	public CleaningJobFactory (GameObject dirt, GameObject broom, GameObject indicator, float probability) : base (FACTORYNAMES.CLEANING, probability) {
 		this.dirt = dirt;
 		this.broom = broom;
 		this.indicator = indicator;

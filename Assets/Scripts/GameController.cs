@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	private int gameoverreason = 0;
 
 	private int score;
-	private int floor = 3;
+	private int floor = 0;
 
 	private Jobmanager jobmanager;
 
@@ -48,7 +48,6 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		Time.timeScale = 1;
 		score = 0;
-
 		jobmanager = new Jobmanager (indicator, letterPrefab, dirtPrefab, broomPrefab);
 		GameUI.instance.InitJobListUI ();
 	}
@@ -59,7 +58,8 @@ public class GameController : MonoBehaviour {
 			jobmanager.Update ();
 			CheckCoffeeNPCs();
 
-			// TODO Convert too Hook
+			// TODO Convert to Hook
+			// range for each floor should be editable in the inspector
 			// Unlock new floor
 			if ((floor < 1 && score >= 50) ||
 			   (floor < 2 && score >= 100) ||

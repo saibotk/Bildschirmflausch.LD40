@@ -23,7 +23,8 @@ public class QuestQueueItem : MonoBehaviour {
 	}
 
 	void Update() {
-		if (job != null) {
+		// performance?
+		if (job != null && GameController.instance.GetState() == 0) {
 			float timestate = (Time.realtimeSinceStartup - job.GetJobStartTime ()) / job.GetJobTime () * 9;
 			if (timestate < 1) {
 				timer.GetComponent<UnityEngine.UI.Image> ().sprite = Sprite.Create (texTimer, new Rect (0, 0, 15, 15), new Vector2 (0.5f, 0.5f));

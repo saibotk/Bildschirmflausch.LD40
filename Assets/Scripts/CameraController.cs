@@ -11,22 +11,22 @@ public class CameraController : MonoBehaviour {
 
 	void Start () {
 		offset = transform.position;// - player.transform.position;
-		//ccollider = GetComponent<BoxCollider2D>();
+		//collider = GetComponent<BoxCollider2D>();
 	}
 
 	void LateUpdate () {
 		//Bounds levelBounds = ccollider.bounds;
 
-		var mapX = 100.0;
-		var mapY = 100.0;
+		//var mapX = 100.0;
+		//var mapY = 100.0;
 
-		var vertExtent = Camera.main.orthographicSize;    
-		var horzExtent = vertExtent * Screen.width / Screen.height;
+		//var vertExtent = Camera.main.orthographicSize;    
+		//var horzExtent = vertExtent * Screen.width / Screen.height;
 		// Calculations assume map is position at the origin
-		var minX = horzExtent - mapX / 2.0;
-		var maxX = mapX / 2.0 - horzExtent;
-		var minY = vertExtent - mapY / 2.0;
-		var maxY = mapY / 2.0 - vertExtent;
+		//var minX = horzExtent - mapX / 2.0;
+		//var maxX = mapX / 2.0 - horzExtent;
+		//var minY = vertExtent - mapY / 2.0;
+		//var maxY = mapY / 2.0 - vertExtent;
 
 		var playerPos = player.transform.position + offset;
 		var diff = playerPos - transform.position;

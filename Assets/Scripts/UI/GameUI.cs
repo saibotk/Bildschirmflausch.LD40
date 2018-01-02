@@ -6,9 +6,9 @@ public class GameUI : MonoBehaviour {
 	public static GameUI instance;
 
 	[SerializeField]
-	private GameObject pocket;
+	private UIInventorySlot pocket;
 	[SerializeField]
-	private GameObject left;
+	private UIInventorySlot left;
 	[SerializeField]
 	private GameObject right;
 	[SerializeField]
@@ -46,12 +46,17 @@ public class GameUI : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene (index);
 	}
 
-	public void SetPocketImage(Sprite sp) {
-		pocket.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
+	// Maybe restrict access???
+	public void quitGame() {
+		UnityEngine.Application.Quit ();
 	}
 
-	public void SetLeftHandImage(Sprite sp) {
-		left.GetComponentInChildren<UnityEngine.UI.Image> ().sprite = sp;
+	public void SetLeftHandSlot(Item i) {
+		left.SetItem (i);
+	}
+
+	public void SetPocketSlot(Item i) {
+		pocket.SetItem (i);
 	}
 
 	public void SetRightHandImage(Sprite sp) {

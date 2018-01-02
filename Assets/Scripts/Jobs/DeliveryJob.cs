@@ -54,9 +54,6 @@ public class DeliveryJob : Job {
 					if ( inv.GetItem("leftHand").GetType() == typeof(LetterBundle) ) {
 						LetterBundle lb = (LetterBundle) inv.GetItem("leftHand");
 						if (lb.IsInInventory(this.letter)) {
-							lb.RemoveItem(this.letter);
-							if (lb.GetSize() == 0)
-								inv.RemoveItemInSlot("leftHand");
 							this.finishJob();
 						}
 					}

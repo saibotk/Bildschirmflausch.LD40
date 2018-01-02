@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +15,7 @@ public abstract class Inventory : Item {
 
 	protected bool isInfinite = true;
 
+	private Action<Inventory> onChangeCallback;
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Inventory"/> class.
@@ -35,6 +37,16 @@ public abstract class Inventory : Item {
 		this.slots = new Dictionary<string, Item> ();
 	}
 		
+	// TODO think about security, should this be public?
+	public void SetOnChangeCallback(Action<Inventory> method) {
+		onChangeCallback = method;
+	}
+
+	private void CallOnChange() {
+		if (onChangeCallback != null)
+			onChangeCallback (this);
+	}
+
 	/// <summary>
 	/// Gets the size of the inventory.
 	/// </summary>
@@ -65,6 +77,7 @@ public abstract class Inventory : Item {
 		if (item == null || slots.Count == 0) {
 			if (this.isInfinite) {
 				slots.Add (item.GetHashCode ().ToString (), item);
+				CallOnChange ();
 				return true;
 			} else {
 				return false;
@@ -76,6 +89,7 @@ public abstract class Inventory : Item {
 
 		if (this.isInfinite && !slots.ContainsKey(item.GetHashCode().ToString())) {
 			slots.Add (item.GetHashCode ().ToString (), item);
+			CallOnChange ();
 			return true;
 		} else {
 			Item tmpreplace = null;
@@ -95,6 +109,7 @@ public abstract class Inventory : Item {
 					replaced = true;
 				}
 			}
+			CallOnChange ();
 			return replaced;
 		}
 	}
@@ -104,10 +119,14 @@ public abstract class Inventory : Item {
 	/// </summary>
 	/// <param name="sn">Slot key.</param>
 	public virtual void RemoveItemInSlot(string sn) {
+		bool tmpchanges = false;
 		if (slots.ContainsKey (sn)) {
 			slots [sn] = null;
+			tmpchanges = true;
 		}
 		OrganizeInventory ();
+		if (tmpchanges)
+			CallOnChange ();
 	}
 
 	/// <summary>
@@ -116,6 +135,7 @@ public abstract class Inventory : Item {
 	/// <param name="item">Item.</param>
 	public virtual void RemoveItem(Item item) {
 		List<string> tmp = new List<string> (slots.Keys);
+		bool tmpchanges = false;
 		foreach (string k in tmp) {
 			if (slots [k] != null && slots [k].Equals (item)) {
 				if (this.isInfinite) {
@@ -123,10 +143,12 @@ public abstract class Inventory : Item {
 				} else {
 					slots [k] = null;
 				}
+				tmpchanges = true;
 			}
 		}
-
 		OrganizeInventory ();
+		if (tmpchanges)
+			CallOnChange ();
 	}
 
 	/// <summary>

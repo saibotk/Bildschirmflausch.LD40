@@ -20,6 +20,11 @@ public class PlayerInventory : Inventory {
 	/// <returns><c>true</c>, if item was added, <c>false</c> otherwise.</returns>
 	/// <param name="item">Item.</param>
 	public override bool AddItem(Item item) {
+		if (item.GetType ().IsSubclassOf (typeof(Inventory))) {
+			((Inventory)item).SetOnChangeCallback (delegate (Inventory obj) {
+				UpdateGUI();
+			});
+		}
 		if (base.AddItem (item)) {
 			UpdateGUI ();
 			return true;
@@ -68,8 +73,8 @@ public class PlayerInventory : Inventory {
 	/// Updates the GUI.
 	/// </summary>
 	private void UpdateGUI() {
-		GameUI.instance.SetLeftHandImage (((slots["leftHand"] == null) ? null : slots["leftHand"].GetIcon()));
-		GameUI.instance.SetPocketImage (((slots["pocket"] == null) ? null : slots["pocket"].GetIcon()));
+		GameUI.instance.SetLeftHandSlot (slots["leftHand"]);
+		GameUI.instance.SetPocketSlot (slots["pocket"]);
 	}
 
 }
