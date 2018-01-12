@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		if (gamestate == 0) {
 			jobmanager.Update ();
-			CheckCoffeeNPCs();
+			CheckCoffeeNPCs ();
 
 			// TODO Convert to Hook
 			// range for each floor should be editable in the inspector
@@ -119,7 +119,7 @@ public class GameController : MonoBehaviour {
         
         if (emptyCofeeCounter == 2 || almostemptyCofeeCounter > 2) {
 			GameUI.instance.SetCoffeeWarningVisible (true);
-            if(player.GetComponent<AudioControl>().SfxPlaying(1))
+            if(!player.GetComponent<AudioControl>().SfxPlaying(1))
                 player.GetComponent<AudioControl>().SfxPlay(1); 
         }
         else {
@@ -151,10 +151,5 @@ public class GameController : MonoBehaviour {
 
 	public Jobmanager GetJobManager() {
 		return jobmanager;
-	}
-
-	// Maybe make private
-	public GameObject GetGameObject() {
-		return gameObject;
 	}
 }
