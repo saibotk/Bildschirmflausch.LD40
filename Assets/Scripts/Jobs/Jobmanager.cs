@@ -21,16 +21,16 @@ public class Jobmanager {
 	/// </summary>
 	/// <returns>The job factory.</returns>
 	/// <typeparam name="T">The 1st type parameter.</typeparam>
-	public T getJobFactory<T>() where T : JobFactory {
+	public T GetJobFactory<T>() where T : JobFactory {
 		return (T) jobFactorys.Find (x => x.GetType() is T);
 	}
 
 	// GetJobAt: integer -> Jobmanager
 	// Returns the job at the given position, starting at 0
 	public Job GetJobAt(int i) {
-		return this.jobList[i];
+		return this.jobList [i];
 	}
-
+		
 	public void Update() {
 		List<Job> tmpJobList = new List<Job> (jobList);
 		foreach (Job job in tmpJobList) {
@@ -39,11 +39,11 @@ public class Jobmanager {
 				RemoveJob (job);
 				maxJobs++;
 				if (Random.value < 0.5)
-					addRandomJob ();
+					AddRandomJob ();
 			}
 		}
 		if (jobList.Count < maxJobs && Random.value > 0.995) // TODO vary probability
-			addRandomJob ();
+			AddRandomJob ();
 	}
 
 	// AddJob: Job -> void
@@ -77,13 +77,13 @@ public class Jobmanager {
 		GameController.instance.GetPlayer().GetComponent<AudioControl>().SfxPlay(3);
 		RemoveJob (job);
 		if (Random.value < 0.5)
-			addRandomJob ();
+			AddRandomJob ();
 	}
 
 	/// <summary>
 	/// Adds the random job.
 	/// </summary>
-	public void addRandomJob() {
+	public void AddRandomJob() {
 		Job job = GetRandomJobType().CreateJob ();
 		Debug.Log ("Called addRandomJob");
 		if (job != null) {
